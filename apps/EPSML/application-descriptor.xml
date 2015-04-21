@@ -1,14 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-		<!-- Licensed Materials - Property of IBM
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Licensed Materials - Property of IBM
 			 5725-I43 (C) Copyright IBM Corp. 2006, 2013. All Rights Reserved.
 			 US Government Users Restricted Rights - Use, duplication or
              disclosure restricted by GSA ADP Schedule Contract with IBM Corp. -->
-
 <!-- Attribute "id" must be identical to application folder name -->
-<application id="EPSML" platformVersion="6.3.0.00.20150214-1702"
-	xmlns="http://www.worklight.com/application-descriptor" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<application xmlns="http://www.worklight.com/application-descriptor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="EPSML" platformVersion="7.0.0.00.20150402-2001">
 
 	<displayName>EPSML</displayName>
 	<description>EPSML</description>
