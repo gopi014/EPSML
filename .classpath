@@ -4,5 +4,8 @@
 	<classpathentry kind="con" path="com.worklight.studio.plugin.classpath.SERVER_CONTAINER"/>
 	<classpathentry kind="src" path="server/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/workspace/EPSML/server/lib/bpjtk-v3.0.3_b20090914.jar" rootpath="/"/>
+	<classpathentry kind="lib" path="C:/workspace/EPSML/server/lib/cwa2.jar" rootpath="/"/>
+	<classpathentry kind="lib" path="C:/workspace/EPSML/server/lib/ojdbc14.jar" rootpath="/"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
