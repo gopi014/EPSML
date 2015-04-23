@@ -1,16 +1,30 @@
+var busyIndicator;
 function wlCommonInit(){
-	/*
-	 * Use of WL.Client.connect() API before any connectivity to a MobileFirst Server is required. 
-	 * This API should be called only once, before any other WL.Client methods that communicate with the MobileFirst Server.
-	 * Don't forget to specify and implement onSuccess and onFailure callback functions for WL.Client.connect(), e.g:
-	 *    
-	 *    WL.Client.connect({
-	 *    		onSuccess: onConnectSuccess,
-	 *    		onFailure: onConnectFailure
-	 *    });
-	 *     
-	 */
 	
-	// Common initialization code goes here
+	getSecretData();
+	WL.ClientMessages.loading = "Authenticating";
+	busyIndicator = new WL.BusyIndicator ();
+}
+
+function getSecretData(){
+	
+	//busyIndicator = new WL.BusyIndicator ("", {text: "Please wait..."});
+	var invocationData = {
+			adapter: "LoginAdapter",
+			procedure: "getSecretData",
+			parameters: []
+	};
+	var options ={
+			onSuccess: getSecretData_Callback,
+			onFailure: getSecretData_Callback
+		  }
+	WL.Client.invokeProcedure(invocationData,options );
 	
 }
+
+function getSecretData_Callback(response){
+	busyIndicator.hide();
+	//alert("getSecretData_Callback response :: " + JSON.stringify(response));
+}
+
+

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML><html>
+    <head>
+        <meta charset="UTF-8">
+        <title>epsml2</title>
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" name="viewport">
+    		<!--
+    			<link rel="shortcut icon" href="images/favicon.png">
+    			<link rel="apple-touch-icon" href="images/apple-touch-icon.png"> 
+    		-->
+        <link href="worklight/worklight.css" rel="stylesheet">
+        <link href="jqueryMobile/demos/css/themes/default/jquery.mobile.theme-1.4.5.min.css" rel="stylesheet">
+        <link href="jqueryMobile/demos/css/themes/default/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+        <link href="jqueryMobile/demos/theme-classic/theme-classic.css" rel="stylesheet">
+        <link href="jqueryMobile/jquery.mobile.external-png-1.4.5.css" rel="stylesheet">
+        <link href="jqueryMobile/jquery.mobile.theme-1.4.5.css" rel="stylesheet">
+        <link href="jqueryMobile/jquery.mobile.inline-png-1.4.5.min.css" rel="stylesheet">
+        <link href="jqueryMobile/jquery.mobile-1.4.5.css" rel="stylesheet">
+        <link href="jqueryMobile/jquery.mobile.structure-1.4.5.min.css" rel="stylesheet">
+        <link href="jqueryMobile/demos/css/themes/default/jquery.mobile.inline-png-1.4.5.min.css" rel="stylesheet">
+        <link href="jqueryMobile/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+        <link href="jqueryMobile/jquery.mobile.inline-svg-1.4.5.css" rel="stylesheet">
+        <link href="jqueryMobile/jquery.mobile.theme-1.4.5.min.css" rel="stylesheet">
+        <link href="jqueryMobile/demos/css/themes/default/jquery.mobile.structure-1.4.5.min.css" rel="stylesheet">
+        <link href="jqueryMobile/demos/css/themes/default/jquery.mobile.external-png-1.4.5.min.css" rel="stylesheet">
+        <link href="jqueryMobile/jquery.mobile.inline-png-1.4.5.css" rel="stylesheet">
+        <link href="jqueryMobile/demos/css/themes/default/jquery.mobile.inline-svg-1.4.5.min.css" rel="stylesheet">
+        <link href="jqueryMobile/jquery.mobile.inline-svg-1.4.5.min.css" rel="stylesheet">
+        <link href="jqueryMobile/jquery.mobile.structure-1.4.5.css" rel="stylesheet">
+        <link href="jqueryMobile/jquery.mobile.external-png-1.4.5.min.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+        <link href="jqueryMobile/bootstrap.min.css" rel="stylesheet">
+        <script>
+		// Define WL namespace.
+		var WL = WL ? WL : {};
+		/**
+		 * WLClient configuration variables.
+		 * Values are injected by the deployer that packs the gadget.
+		 */
+		 WL.StaticAppProps = {
+   "APP_DISPLAY_NAME": "EPSML",
+   "APP_ID": "EPSML",
+   "APP_SERVICES_URL": "\/apps\/services\/",
+   "APP_VERSION": "1.0",
+   "ENVIRONMENT": "android",
+   "LOGIN_DISPLAY_TYPE": "embedded",
+   "WORKLIGHT_NATIVE_VERSION": "3004445378",
+   "WORKLIGHT_PLATFORM_VERSION": "7.0.0.0",
+   "WORKLIGHT_ROOT_URL": "\/apps\/services\/api\/EPSML\/android\/"
+};
+</script>
+		<script src="worklight/cordova.js"></script>
+		<script src="worklight/wljq.js"></script>
+		<script src="worklight/worklight.js"></script>
+		<script src="worklight/checksum.js"></script>
+		<script>window.$ = window.jQuery = WLJQ;</script>
+    		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <src>
+        </src>
+        <script src="jqueryMobile/demos/js/jquery.js"></script>
+    		<script src="jqueryMobile/demos/js/jquery.mobile-1.4.5.js"></script>
+    		<script src="jqueryMobile/bootstrap.min.js"></script>
+        <link href="css/theme.css" rel="stylesheet">
+        <link href="jqueryMobile/jquery.mobile-1.4.5.css" rel="stylesheet">
+        <style>
+  .ui-page { background: #00AEEF;}  
+</style>
+    </head>
+    <body style="display: none;">
+        <div data-role="page" id="AuthBody" style="display: none">    		
+<!--  
+					  <div data-role="header">
+					  </div>
+-->
+            <div class="ui-content" data-role="main">
+                <div style="text-align:center">
+                    <img height="80" src="images/image.png" width="80">
+			</div>
+                <h2 align="center" style="color: white">EPSML-2</h2>
+    <!--  <form method="post" action="demoform.asp">-->
+     <!--  <label for="fname" class="ui-hidden-accessible">Firstname</label>--> 
+                <div class="container">                                                                                            
+                    <div class="table-responsive">          
+                        <table class="table" style="width:100%">
+                            <tbody> 
+                                <tr>          
+                                    <td style="width:5%"><img hspace="5" src="images/image2.png" vspace="7" width="40"></td>
+            <td style="width:95%">
+            <input id="usernameInputField" name="username" placeholder="Username" style="opacity: 0.7 !important;" type="text"></td>
+                                </tr> 
+                                <tr>
+                                    <td style="width:5%"> <img hspace="5" src="images/image3.png" vspace="7" width="40"></td>
+            <td style="width:95%"><input id="passwordInputField" name="password" placeholder="Password" style="background-color: #8cfbfb" type="password"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button id="loginButton" style="background: #1C75BC; color: white; font-weight: bold">Login</button>
+   <!--  </form>-->
+ <!--  
+  <div data-role="footer">
+  </div>
+  -->
+            </div>
+            <div data-id="fixedFooter" data-position="fixed" data-role="footer" data-tap-toggle="false" style="background: #00AEEF ;text-align:center;border:none">
+                <img height="80" src="images/image1.png" width="80">
+</div>
+        </div>
+        <div data-role="page" id="AppBody">
+            <div class="header">
+                <h1>Custom Login Module</h1>
+                <input onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})" type="button" value="Logout">
+            </div>
+        </div>
+        <script src="js/initOptions.js"></script>
+    		<script src="js/main.js"></script>
+    		<script src="js/messages.js"></script>
+    		<script src="js/CustomAuthenticatorRealmChallengeHandler.js"></script>
+    </body>
+</html>
