@@ -1,0 +1,17 @@
+.table-responsive {
+	border: 0px solid #ddd !important;
+}
+ ::-webkit-input-placeholder { /* WebKit browsers */
+    color:    white !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    white !important;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    white !important;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    white !important;
+}

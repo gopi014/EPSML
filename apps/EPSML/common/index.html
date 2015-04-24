@@ -31,9 +31,8 @@
     		<link rel="stylesheet" href="jqueryMobile/bootstrap.min.css">
     		<script>window.$ = window.jQuery = WLJQ;</script>
     		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-            <src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+            <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     		<script src="jqueryMobile/demos/js/jquery.js"></script>
-    		<script src="jqueryMobile/demos/js/jquery.mobile-1.4.5.js"></script>
     		<script src="jqueryMobile/bootstrap.min.js"></script>
             <link rel="stylesheet" href="css/theme.css">
     		<link href="jqueryMobile/jquery.mobile-1.4.5.css" rel="stylesheet">
@@ -50,6 +49,7 @@
     	
     	
    <body style="display: none;">
+
     		<div data-role="page" id="AuthBody" style="display: none">    		
 
 <!--  
@@ -66,7 +66,7 @@
 			<div style="text-align:center">
 			<img src="images/image.png"   width="80" height="80">
 			</div>
-			<h2 align="center" style="color: white"; >EPSML-2</h2>
+			<h2 align="center" style="color: white" >EPSML-2</h2>
     <!--  <form method="post" action="demoform.asp">-->
      <!--  <label for="fname" class="ui-hidden-accessible">Firstname</label>--> 
       
@@ -105,9 +105,9 @@
        </table>
       
       
-      </div>
+     
     </div>
-  
+</div>  
        
    <!--  </form>-->
   
@@ -133,13 +133,13 @@
 			
 </div>
 
+   <div data-role="page"  id="AppBody" >
 
-<div data-role="page" id="AppBody" >
-<div class="header">
 					<h1>Custom Login Module</h1>
 					<input type="button" value="Logout" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})" />
-				</div>
+			
 </div>
+
 	
 	<script src="js/initOptions.js"></script>
     		<script src="js/main.js"></script>
