@@ -81,7 +81,9 @@
       
       
       <tbody> 
-      
+               
+                      
+   
       <tr>          
             <td style="width:5%"><img src="images/image2.png"  width="40" vspace="7" hspace="5"></td>
             <td style="width:95%">
@@ -101,6 +103,7 @@
         </tbody>
       </table>
       <table class="table" style="width:100%">
+      <div id="loginmesg" style="color:red"></div>
        <button  id="loginButton" style="background: #1C75BC; color: white; font-weight: bold">Login</button>
        </table>
       
@@ -135,7 +138,7 @@
 
    <div data-role="page"  id="AppBody" >
 
-					<h1>Custom Login Module</h1>
+					<h1 id="head1">Custom Login Module</h1>
 					<input type="button" value="Logout" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})" />
 			
 </div>

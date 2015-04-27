@@ -28,13 +28,23 @@ customAuthenticatorRealmChallengeHandler.handleChallenge = function(response){
 		$('#passwordInputField').val('');
         if (response.responseJSON.errorMessage){
         	busyIndicator.hide();
-        	alert(response.responseJSON.errorMessage);
+        	$('#loginmesg').text('*'+response.responseJSON.errorMessage);
         	
         }
 	} else if (authStatus == "complete"){
-		$('#AppBody').show();
-		$('#AuthBody').hide();
-		customAuthenticatorRealmChallengeHandler.submitSuccess();
+		var email=$('#usernameInputField').val();
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "validate",
+				parameters: [email]
+		};
+		var options ={
+				onSuccess: getSecretData_Callback,
+				onFailure: getSecretData_Callback1
+			  }
+		WL.Client.invokeProcedure(invocationData,options );
+		
+		
 	}
 };
 
@@ -64,4 +74,35 @@ $('#cancelButton').bind('click', function () {
 	customAuthenticatorRealmChallengeHandler.submitFailure();
 });
 
-
+function getSecretData_Callback(response){
+	var invocationResult = response.invocationResult;
+	var result = invocationResult.resultSet;
+	var length = result.length;
+	if(length == 0)
+		{
+		$('#loginmesg').text("Sorry!You Don't have permission to view This page");
+		busyIndicator.hide();
+		}
+	else{
+		
+	
+	var name=result[0].emp_name;
+	var team=result[0].team;
+	if((team == 'Manager') || (team == 'PL') )
+		{
+		$('#AppBody').show();
+		$('#AuthBody').hide();
+		$('#head1').text("In Manager Module");
+		busyIndicator.hide();
+		}
+	else{
+		$('#AppBody').show();
+		$('#AuthBody').hide();
+		busyIndicator.hide();
+	}
+	}
+}
+function getSecretData_Callback1(response){
+	alert("in failure");
+	busyIndicator.hide();
+}

@@ -92,6 +92,7 @@
                             </tbody>
                         </table>
                         <table class="table" style="width:100%">
+                            <div id="loginmesg" style="color:red"></div>
                             <button id="loginButton" style="background: #1C75BC; color: white; font-weight: bold">Login</button>
                         </table>
                     </div>
@@ -107,7 +108,7 @@
 </div>
         </div>
         <div data-role="page" id="AppBody">
-            <h1>Custom Login Module</h1>
+            <h1 id="head1">Custom Login Module</h1>
             <input onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})" type="button" value="Logout">
         </div>
         <script src="js/initOptions.js"></script>
