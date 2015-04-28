@@ -92,7 +92,10 @@ function getSecretData_Callback(response){
 		{
 		$('#AppBody').show();
 		$('#AuthBody').hide();
-		$('#head1').text("In Manager Module");
+		$('#semployee').hide();
+		$('#smanager').show();
+		$('#start').hide();
+		$('#onshift').show();
 		busyIndicator.hide();
 		}
 	else{
