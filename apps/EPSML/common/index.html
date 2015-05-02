@@ -139,7 +139,7 @@
 </div>
 <div class="ui-block-a" style="display: none;" id="smanager">
 <div class="ui-bar ui-bar-a">
-<div class="menu-elem"> <a href="#">
+<div class="menu-elem"> <a href="#" onclick="shift();">
 <div class="menu-img"> <img src="images/shift.png" style="width: 50px;"> </div>
 <div class="menu-text"> Shift Schedule </div>
 </a> </div>
@@ -187,7 +187,7 @@
 <!-- 1st elem -->
 <div class="ui-block">
 <div class="ui-bar ui-bar-a">
-<div class="menu-elem"> <a href="#">
+<div class="menu-elem"> <a href="#" onclick="wiki();">
 <div class="menu-img"> <img src="images/wiki.png" style="width: 60px;"> </div>
 <div class="menu-text"> Wiki Updates </div>
 </a> </div>
@@ -198,6 +198,48 @@
 </div>
 <!-- .ui-content --> 
 <!-- Page body --> 
+</div>
+</div>
+<div data-role="page" id="eshift" style="background: #00AEEF"> 
+<div data-role="header"style="background:#0E74BC;color:white;">
+<a href="#" class="ui-btn-left ui-corner-all ui-icon-home ui-btn-icon-notext" onclick="home();"></a>
+<h1 class="Home">Shift Schedule</h1>
+<a href="#" data-role="button"data-direction="reverse" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})" data-transition="slide"
+        data-iconpos="notext"  class="ui-btn-right"><img src="images/logout.png" style="width: 25px;"></a>
+</div>
+<div data-role="main" class="ui-content">
+<div class="scroll">
+<table data-role="table"class="myTable">
+<tbody>
+        <tr>
+          <td class="headcol">DhineshvikramKrishna</td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+</div> 
+</div>
+<div data-role="page" id="wikiBody" style="background: #00AEEF"> 
+<div data-role="header"style="background:#0E74BC;color:white;">
+<a href="#" class="ui-btn-left ui-corner-all ui-icon-home ui-btn-icon-notext" onclick="home();"></a>
+<h1 class="Home">Shift Schedule</h1>
+<a href="#" data-role="button"data-direction="reverse" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})" data-transition="slide"
+        data-iconpos="notext"  class="ui-btn-right"><img src="images/logout.png" style="width: 25px;"></a>
+</div>
+<div role="main" class="ui-content">
+<ul data-role="listview" id="recentupdates">
+        
+
+    </ul>
 </div>
 </div>
 	<script src="js/initOptions.js"></script>

@@ -74,4 +74,37 @@ color: #FFF;
 	text-align:center !important;
 	font-size:2em !important;
 }	
-	
+.myTable{
+border-spacing: 5px;
+border-collapse: separate;
+border: 1px solid #00AEEF;
+}
+.myTable td,th{
+
+border: 1px solid #00AEEF;
+}
+
+.headcol {
+            position:absolute;
+            left:0;
+            top:auto;
+            border-right: 0px none #00AEEF; 
+        }      
+.scroll{
+
+        overflow-x:scroll;  
+        margin-left:10em; 
+        overflow-y:visible;
+        padding-bottom:1px;
+        } 
+#no-ellipsis{
+    text-overflow: initial !imporatnt;
+    overflow: visible !imporatnt;
+    white-space: normal !important;
+}
+
+.ui-icon.inline { display:inline-block; }​
+.ui-widget-header.center { text-align:center; }
+
+.ui-list {background: #3DC8F3 !important;
+color:    white !important;}        

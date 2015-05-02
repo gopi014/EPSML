@@ -76,7 +76,17 @@ color: #FFF;
 	text-align:center !important;
 	font-size:2em !important;
 }	
-	
+table.name{
+	border-spacing: 0px;
+border-collapse: collapse;
+}
+.name tr {
+    border-bottom: 1px solid #d6d6d6 !important;
+}
+.name1 tr {
+    border-bottom: 1px solid #d6d6d6 !important;
+    
+}
 /* Stylesheet content from css/main.css in folder android */
 /*	 Licensed Materials - Property of IBM
 	 5725-I43 (C) Copyright IBM Corp. 2006, 2013. All Rights Reserved.

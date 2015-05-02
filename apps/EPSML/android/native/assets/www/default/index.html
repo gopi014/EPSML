@@ -126,7 +126,7 @@
                     <div class="ui-block-a" id="smanager" style="display: none;">
                         <div class="ui-bar ui-bar-a">
                             <div class="menu-elem"> 
-                                <a href="#">
+                                <a href="#" onclick="shift();">
                                     <div class="menu-img"> 
                                         <img src="images/shift.png" style="width: 50px;"> </div>
                                     <div class="menu-text"> Shift Schedule </div>
@@ -200,6 +200,66 @@
             </div>
 <!-- .ui-content --> 
 <!-- Page body --> 
+        </div>
+        <div data-role="page" id="eshift" style="background: #00AEEF"> 
+            <div data-role="header" style="background:#0E74BC;color:white;">
+                <a class="ui-btn-left ui-corner-all ui-icon-home ui-btn-icon-notext" href="#" onclick="home();"></a>
+                <h1 class="Home">Shift Schedule</h1>
+                <a class="ui-btn-right" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})"><img src="images/logout.png" style="width: 25px;"></a>
+            </div>
+            <div class="ui-content" data-role="main">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a" style="width:30%">
+                        <table class="ui-responsive ui-shadow name" data-mode="columntoggle" data-role="table" id="name">
+                            <thead>
+                                <tr>
+                                    <th>Name/Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Gopi</td>
+                                </tr>
+                                <tr>
+                                    <td>Gopi</td>
+                                </tr>
+                                <tr>
+                                    <td>Gopi</td>
+                                </tr>
+                                <tr>
+                                    <td>Gopi</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="ui-block-b" style="overflow: auto;">
+                        <table class="ui-responsive ui-shadow name" data-mode="columntoggle" data-role="table" id="name1">
+                            <thead>
+                                <tr>
+                                    <th>Name/Date</th>
+        <th>Name/Date</th>
+        <th>Name/Date</th>
+        <th>Name/Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Gopi</td><td>Gopi</td><td>Gopi</td><td>Gopi</td>
+                                </tr>
+                                <tr>
+                                    <td>Gopi</td><td>Gopi</td><td>Gopi</td><td>Gopi</td>
+                                </tr>
+                                <tr>
+                                    <td>Gopi</td><td>Gopi</td><td>Gopi</td><td>Gopi</td>
+                                </tr>
+                                <tr>
+                                    <td>Gopi</td><td>Gopi</td><td>Gopi</td><td>Gopi</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="js/initOptions.js"></script>
     		<script src="js/main.js"></script>

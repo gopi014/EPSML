@@ -28,6 +28,15 @@ function getSecretData_Callback(response){
 	busyIndicator.hide();
 	//alert("getSecretData_Callback response :: " + JSON.stringify(response));
 }
+function shift(){
+	$('#AppBody').hide();
+	$('#eshift').show();
+}
+function home()
+{
+	$('#AppBody').show();
+	$('#eshift').hide();
+	}
 
 
 
