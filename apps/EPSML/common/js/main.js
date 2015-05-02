@@ -61,8 +61,8 @@ var invocationResult = response.invocationResult;
 
 var feeds = invocationResult.feed;
 var entry= feeds.entry;
-
-for(var i=0;i<5;i++)
+var length=entry.length;
+for(var i=0;i<length;i++)
 	{
 	
 var content = entry[i].content;
@@ -82,19 +82,29 @@ var a =document.createElement("a");
 var h3=document.createElement("h3");
 var p=document.createElement("p");
 var p1=document.createElement("p");
+var p2=document.createElement("p");
 li.appendChild(document.createTextNode(title));
 li.setAttribute("data-role", "list-divider");
 li.setAttribute("class","ui-list");
+li.setAttribute("id","wihead"+i);
 ul.appendChild(li);
 li1.appendChild(document.createTextNode(""));
 a.setAttribute('href', "#");
-h3.value("Author:"+name);
-p.value("Description"+finalsummary);
-p1.value("Last update:"+finaldate);
-p1.setattribute("class","ui-li-aside");
-a.appendChild(p1);
-a.appendChild(p);
+a.setAttribute('id', i);
+a.setAttribute('onclick', 'wikidetail(id);');
+h3.innerHTML="Author:"+name;
+h3.setAttribute("id","wiauth"+i);
+p.innerHTML="Description"+finalsummary;
+p2.innerHTML="Description"+summary;
+p2.setAttribute("id","wisum"+i);
+p2.setAttribute("style","display:none;");
+p1.setAttribute("class","ui-li-aside");
+p1.innerHTML="Last update:"+finaldate;
+p1.setAttribute("id","widate"+i);
 a.appendChild(h3);
+a.appendChild(p);
+a.appendChild(p1);
+a.appendChild(p2);
 li1.appendChild(a);
 ul.appendChild(li1);
 	}
@@ -106,3 +116,19 @@ function feedsFailure(response){
 	busy.hide();
 	alert("failure");
 }
+function wikidetail(par){
+	var header=$("#wihead"+par).text();
+	var author=$("#wiauth"+par).text();
+	var sum=$("#wisum"+par).text();
+	var date=$("#widate"+par).text();
+	$('#wikiheader').text(header);
+	$('#wikiauthor').text(author);
+	$('#wikidesc').text(sum);
+	$('#wikidate').text(date);
+	$('#wikiBody').hide();
+	$('#wikiBody1').show();
+}
+function back(){
+	$('#wikiBody1').hide();
+	$('#wikiBody').show();
+	}

@@ -231,13 +231,33 @@
 <div data-role="page" id="wikiBody" style="background: #00AEEF"> 
 <div data-role="header"style="background:#0E74BC;color:white;">
 <a href="#" class="ui-btn-left ui-corner-all ui-icon-home ui-btn-icon-notext" onclick="home();"></a>
-<h1 class="Home">Shift Schedule</h1>
+<h1 class="Home">Wiki Updates</h1>
 <a href="#" data-role="button"data-direction="reverse" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})" data-transition="slide"
         data-iconpos="notext"  class="ui-btn-right"><img src="images/logout.png" style="width: 25px;"></a>
 </div>
 <div role="main" class="ui-content">
 <ul data-role="listview" id="recentupdates">
         
+
+    </ul>
+</div>
+</div>
+<div data-role="page" id="wikiBody1" style="background: #00AEEF"> 
+<div data-role="header"style="background:#0E74BC;color:white;">
+<a href="#" class="ui-btn-left ui-corner-all ui-icon-home ui-btn-icon-notext" onclick="back();"></a>
+<h1 class="Home">Wiki Updates</h1>
+<a href="#" data-role="button"data-direction="reverse" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})" data-transition="slide"
+        data-iconpos="notext"  class="ui-btn-right"><img src="images/logout.png" style="width: 25px;"></a>
+</div>
+<div role="main" class="ui-content">
+<ul data-role="listview" id="recentupdates1">
+<li data-role="list-divider" class= "ui-list" id="wikiheader">
+</li>
+<li>
+<h3 id="wikiauthor"></h3>
+  <p id="wikidesc"></p>
+  <p class="ui-li-aside" id="wikidate"></p>
+</li>        
 
     </ul>
 </div>
