@@ -58,6 +58,7 @@ text-decoration: none;
 margin-top: 5px;
 font-size: 0.9em;
 color: #FFF;
+text-align:center;
 }
 
 .ui-bar, .ui-body {
@@ -76,16 +77,58 @@ color: #FFF;
 	text-align:center !important;
 	font-size:2em !important;
 }	
-table.name{
-	border-spacing: 0px;
-border-collapse: collapse;
+.myTable{
+border-spacing: 5px;
+border-collapse: separate;
+border: 1px solid #00AEEF;
 }
-.name tr {
-    border-bottom: 1px solid #d6d6d6 !important;
+.myTable td,th{
+
+border: 1px solid #00AEEF;
 }
-.name1 tr {
-    border-bottom: 1px solid #d6d6d6 !important;
-    
+
+.headcol {
+            position:absolute;
+            left:0;
+            top:auto;
+            border-right: 0px none #00AEEF; 
+        }      
+.scroll{
+
+        overflow-x:scroll;  
+        margin-left:10em; 
+        overflow-y:visible;
+        padding-bottom:1px;
+        } 
+#no-ellipsis{
+    text-overflow: initial !imporatnt;
+    overflow: visible !imporatnt;
+    white-space: normal !important;
+}
+
+.ui-icon.inline { display:inline-block; }​
+.ui-widget-header.center { text-align:center; }
+
+.ui-list {
+	background: #3DC8F3 !important;
+color:    white !important;
+font-size: 0.9 em;
+}        
+.dateright{
+	
+	top: 1em !important;
+	right: 3.333em !important;
+	margin: 0 !important;
+	text-align: right !important;
+	color:    white !important;
+	
+}
+.wikia{
+	color:    white !important;
+	font-size: 0.8em !important;
+}
+#wikidate{
+	font-size: 0.8em !important;
 }
 /* Stylesheet content from css/main.css in folder android */
 /*	 Licensed Materials - Property of IBM

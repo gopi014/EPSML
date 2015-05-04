@@ -1,5 +1,6 @@
 var busyIndicator;
 var busy;
+var summ=[];
 function wlCommonInit(){
 	
 	getSecretData();
@@ -73,13 +74,13 @@ var publisheddate =activityentry.object.published;
 var newdate= new Date(publisheddate);
 var finaldate=newdate.toLocaleString();
 var summary = activityentry.object.summary;
-
+summ[i]=summary;
 var finalsummary=summary.substring(0,100)+'....';
 var ul = document.getElementById('recentupdates');
 var li = document.createElement("li");
 var li1 =document.createElement("li");
 var a =document.createElement("a");
-var h3=document.createElement("h3");
+var h3=document.createElement("p");
 var p=document.createElement("p");
 var p1=document.createElement("p");
 var p2=document.createElement("p");
@@ -92,18 +93,19 @@ li1.appendChild(document.createTextNode(""));
 a.setAttribute('href', "#");
 a.setAttribute('id', i);
 a.setAttribute('onclick', 'wikidetail(id);');
+a.setAttribute('class', 'wikia');
 h3.innerHTML="Author:"+name;
 h3.setAttribute("id","wiauth"+i);
-p.innerHTML="Description"+finalsummary;
+p.innerHTML="<b>Description<b>:<br>"+finalsummary;
 p2.innerHTML="Description"+summary;
 p2.setAttribute("id","wisum"+i);
 p2.setAttribute("style","display:none;");
-p1.setAttribute("class","ui-li-aside");
+p1.setAttribute("class","dateright");
 p1.innerHTML="Last update:"+finaldate;
 p1.setAttribute("id","widate"+i);
+a.appendChild(p1);
 a.appendChild(h3);
 a.appendChild(p);
-a.appendChild(p1);
 a.appendChild(p2);
 li1.appendChild(a);
 ul.appendChild(li1);
@@ -117,13 +119,14 @@ function feedsFailure(response){
 	alert("failure");
 }
 function wikidetail(par){
+	var wikidesc = document.getElementById('wikidesc');
 	var header=$("#wihead"+par).text();
 	var author=$("#wiauth"+par).text();
-	var sum=$("#wisum"+par).text();
+	var sum=summ[par];
 	var date=$("#widate"+par).text();
 	$('#wikiheader').text(header);
 	$('#wikiauthor').text(author);
-	$('#wikidesc').text(sum);
+	wikidesc.innerHTML='<b>Summary:</b><br>'+sum;
 	$('#wikidate').text(date);
 	$('#wikiBody').hide();
 	$('#wikiBody1').show();

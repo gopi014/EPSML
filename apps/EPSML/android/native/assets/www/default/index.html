@@ -187,7 +187,7 @@
                     <div class="ui-block">
                         <div class="ui-bar ui-bar-a">
                             <div class="menu-elem"> 
-                                <a href="#">
+                                <a href="#" onclick="wiki();">
                                     <div class="menu-img"> 
                                         <img src="images/wiki.png" style="width: 60px;"> </div>
                                     <div class="menu-text"> Wiki Updates </div>
@@ -208,57 +208,53 @@
                 <a class="ui-btn-right" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})"><img src="images/logout.png" style="width: 25px;"></a>
             </div>
             <div class="ui-content" data-role="main">
-                <div class="ui-grid-a">
-                    <div class="ui-block-a" style="width:30%">
-                        <table class="ui-responsive ui-shadow name" data-mode="columntoggle" data-role="table" id="name">
-                            <thead>
-                                <tr>
-                                    <th>Name/Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Gopi</td>
-                                </tr>
-                                <tr>
-                                    <td>Gopi</td>
-                                </tr>
-                                <tr>
-                                    <td>Gopi</td>
-                                </tr>
-                                <tr>
-                                    <td>Gopi</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="ui-block-b" style="overflow: auto;">
-                        <table class="ui-responsive ui-shadow name" data-mode="columntoggle" data-role="table" id="name1">
-                            <thead>
-                                <tr>
-                                    <th>Name/Date</th>
-        <th>Name/Date</th>
-        <th>Name/Date</th>
-        <th>Name/Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Gopi</td><td>Gopi</td><td>Gopi</td><td>Gopi</td>
-                                </tr>
-                                <tr>
-                                    <td>Gopi</td><td>Gopi</td><td>Gopi</td><td>Gopi</td>
-                                </tr>
-                                <tr>
-                                    <td>Gopi</td><td>Gopi</td><td>Gopi</td><td>Gopi</td>
-                                </tr>
-                                <tr>
-                                    <td>Gopi</td><td>Gopi</td><td>Gopi</td><td>Gopi</td>
-                                </tr>
-                            </tbody>
-                        </table> 
-                    </div>
+                <div class="scroll">
+                    <table class="myTable" data-role="table">
+                        <tbody>
+                            <tr>
+                                <td class="headcol">DhineshvikramKrishna</td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+          <td style="background-color: grey;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+            </div> 
+        </div>
+        <div data-role="page" id="wikiBody" style="background: #00AEEF"> 
+            <div data-role="header" style="background:#0E74BC;color:white;">
+                <a class="ui-btn-left ui-corner-all ui-icon-home ui-btn-icon-notext" href="#" onclick="home();"></a>
+                <h1 class="Home">Wiki Updates</h1>
+                <a class="ui-btn-right" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})"><img src="images/logout.png" style="width: 25px;"></a>
+            </div>
+            <div class="ui-content" role="main">
+                <ul data-role="listview" id="recentupdates" style="margin-left: -15px;">
+                </ul>
+            </div>
+        </div>
+        <div data-role="page" id="wikiBody1" style="background: #00AEEF"> 
+            <div data-role="header" style="background:#0E74BC;color:white;">
+                <a class="ui-btn-left ui-corner-all ui-icon-arrow-l ui-btn-icon-notext" href="#" onclick="back();"></a>
+                <h1 class="Home">Wiki Updates</h1>
+                <a class="ui-btn-right" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})"><img src="images/logout.png" style="width: 25px;"></a>
+            </div>
+            <div class="ui-content" role="main">
+                <ul data-role="listview" id="recentupdates1" style="margin-left: -15px;">
+                    <li class="ui-list" data-role="list-divider" id="wikiheader">
+                    </li>
+                    <li>
+                        <p class="dateright" id="wikidate"></p>
+                        <h4 class="wikia" id="wikiauthor"></h4>
+                        <p class="wikia" id="wikidesc"></p>
+                    </li>        
+                </ul>
             </div>
         </div>
         <script src="js/initOptions.js"></script>

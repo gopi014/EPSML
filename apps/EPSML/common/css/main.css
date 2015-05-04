@@ -56,6 +56,7 @@ text-decoration: none;
 margin-top: 5px;
 font-size: 0.9em;
 color: #FFF;
+text-align:center;
 }
 
 .ui-bar, .ui-body {
@@ -106,5 +107,24 @@ border: 1px solid #00AEEF;
 .ui-icon.inline { display:inline-block; }​
 .ui-widget-header.center { text-align:center; }
 
-.ui-list {background: #3DC8F3 !important;
-color:    white !important;}        
+.ui-list {
+	background: #3DC8F3 !important;
+color:    white !important;
+font-size: 0.9 em;
+}        
+.dateright{
+	
+	top: 1em !important;
+	right: 3.333em !important;
+	margin: 0 !important;
+	text-align: right !important;
+	color:    white !important;
+	
+}
+.wikia{
+	color:    white !important;
+	font-size: 0.8em !important;
+}
+#wikidate{
+	font-size: 0.8em !important;
+}
