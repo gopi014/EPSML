@@ -2,7 +2,7 @@
 <html>
     	<head>
     		<meta charset="UTF-8">
-    		<title>epsml2</title>
+    		<title>THINKMATIX</title>
     		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
     		<!--
     			<link rel="shortcut icon" href="images/favicon.png">
@@ -66,7 +66,7 @@
 			<div style="text-align:center">
 			<img src="images/image.png"   width="80" height="80">
 			</div>
-			<h2 align="center" style="color: white" >EPSML-2</h2>
+			<h2 align="center" style="color: white" >THINKMATIX</h2>
     <!--  <form method="post" action="demoform.asp">-->
      <!--  <label for="fname" class="ui-hidden-accessible">Firstname</label>--> 
       
@@ -148,7 +148,7 @@
 <!-- 2nd elem -->
 <div class="ui-block-b">
 <div class="ui-bar ui-bar-a">
-<div class="menu-elem"> <a href="#">
+<div class="menu-elem"> <a href="#" onclick="wfhleave();">
 <div class="menu-img"> <img src="images/wfh.png" style="width: 65px;"> </div>
 <div class="menu-text"> Leave/WFH </div>
 </a> </div>
@@ -236,7 +236,7 @@
         data-iconpos="notext"  class="ui-btn-right"><img src="images/logout.png" style="width: 25px;"></a>
 </div>
 <div role="main" class="ui-content">
-<ul data-role="listview" id="recentupdates" style="margin-left: -15px;">
+<ul data-role="listview" data-inset="true" id="recentupdates" style="margin-left: -15px;">
         
 
     </ul>
@@ -263,6 +263,67 @@
     </ul>
 </div>
 </div>
+<div data-role="page" id="wfhleave" style="background: #00AEEF">
+    			
+    				<!--application UI goes here-->
+   		<div data-role="header"style="background:#0E74BC;color:white;">
+<a href="#" class="ui-btn-left ui-corner-all ui-icon-arrow-l ui-btn-icon-notext" onclick="back();"></a>
+<h1 class="Home">WFH & Leave</h1>
+<a href="#" data-role="button"data-direction="reverse" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})" data-transition="slide"
+        data-iconpos="notext"  class="ui-btn-right"><img src="images/logout.png" style="width: 25px;"></a>
+</div>
+ <div role="main" class="ui-content">
+<div data-role="tabs">
+<div data-role="navbar">
+<ul>
+<li><a href="#fragment-1" class="ui-btn-active">WFH</a></li>
+<li><a href="#fragment-2">LEAVE</a></li>
+</ul>
+</div>
+<div id="fragment-1" style="color:white" >
+<ul>
+<li style="background:#3DC8F3">
+<p><b>Firstname,Lastname</b></p>
+<p>May 01st,2015</p>
+</li>
+<li style="background:#3DC8F3">
+<p><b>Firstname,Lastname</b></p>
+<p>May 01st,2015</p>
+</li>
+<li style="background:#3DC8F3">
+<p><b>Firstname,Lastname</b></p>
+<p>May 01st,2015</p>
+</li>
+<li style="background:#3DC8F3">
+<p><b>Firstname,Lastname</b></p>
+<p>May 01st,2015</p>
+</li>
+</ul>
+</div>
+<div id="fragment-2" style="color:white" >
+<ul>
+<li style="background:#3DC8F3">
+<p><b>Firstname,Lastname</b></p>
+<p>June 01st,2015</p>
+</li>
+<li style="background:#3DC8F3">
+<p><b>Firstname,Lastname</b></p>
+<p>June 01st,2015</p>
+</li>
+<li style="background:#3DC8F3">
+<p><b>Firstname,Lastname</b></p>
+<p>June 01st,2015</p>
+</li>
+<li style="background:#3DC8F3">
+<p><b>Firstname,Lastname</b></p>
+<p>May 01st,2015</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+   	
+    		</div>
 	<script src="js/initOptions.js"></script>
     		<script src="js/main.js"></script>
     		<script src="js/messages.js"></script>

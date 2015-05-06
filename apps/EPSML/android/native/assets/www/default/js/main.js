@@ -137,6 +137,10 @@ function back(){
 	$('#wikiBody1').hide();
 	$('#wikiBody').show();
 	}
+function wfhleave(){
+	$('#AppBody').hide();
+	$('#wfhleave').show();
+}
 /* JavaScript content from js/main.js in folder android */
 // This method is invoked after loading the main HTML and successful initialization of the IBM MobileFirst Platform runtime.
 function wlEnvInit(){

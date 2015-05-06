@@ -18,57 +18,68 @@
    color:    white !important;
 }
 .ui-grid-a {
-padding: 0;
-margin: 0;
-margin-top: 15px;
-height: 380px;
-}
-.ui-block-a, .ui-block-b {
-padding: 0;
-margin: 0;
-height: 33.3%;
-}
-.ui-block-a a, .ui-block-b a {
-width: 50%;
-}
-.ui-bar-a, ui-bar {
-margin: 0 auto;
-padding: 0;
-height: 90%;
-width: 90%;
-max-width: 500px;
-text-align: center;
-/* Gradient set-up */
-background: #3DC8F3 !important;
-/* Border set-up */
-border: 0px solid white;
-border-radius: 0px;
-box-shadow: 0px 0px 0px #000;
-display: table;
-}
-.menu-elem {
-margin: 0;
-display: table-cell;
-vertical-align: middle;
-}
-.menu-elem a {
-text-decoration: none;
-}
-.menu-elem .menu-text {
-margin-top: 5px;
-font-size: 0.9em;
-color: #FFF;
-text-align:center;
-}
+     padding: 0;
+     margin: 0;
+     margin-top: 15px;
+     height: 380px;
+ }
+ .ui-block-a, .ui-block-b {
+     padding: 0;
+     margin: 0 auto;
+     height: 33.3%;
+ }
+ .ui-block-a *, .ui-block-b * {
+     margin: 0 auto;
+     text-align: center;
+ }
+ .ui-block-a a, .ui-block-b a {
+     width: 50%;
+ }
+ .ui-bar-a, ui-bar {
+     margin: 0 auto;
+     padding: 0;
+     height: 90%;
+     width: 90%;
+     max-width: 500px;
+     text-align: center;
+     /* Gradient set-up */
+     background: #3DC8F3 !important;
+     /* Border set-up */
+     border: 0px solid white;
+     border-radius: 0px;
+     box-shadow: 0px 0px 0px #000;
+     display: table;
+ }
+ .menu-elem {
+     margin: 0 auto;    
+     text-align: center !important;
+ }
+ .menu-elem a {
+     text-decoration: none;
+      margin: 0 auto;    
+     text-align: center !important;
+ }
+ .menu-elem .menu-text {
+     margin-top: 5px;
+     font-size: 0.9em;
+     color: #FFF;
+     text-align:center;
+ }
+ .ui-bar, .ui-body {
+     position: relative;
+     overflow: hidden;
+     display: block;
+     padding: 0.9em 1em !important;
+     clear: both;
+     text-align: center !important;
+ }
+ .ui-input-text{
+ border-width: 0px !important;
+ }
+ .ui-btn, label.ui-btn{
+ border-width: 0px !important;
+ }
 
-.ui-bar, .ui-body {
-    position: relative;
-    overflow: hidden;
-    display: block;
-    padding: 0.9em 1em !important;
-    clear: both;
-    text-align: -moz-center;
-}
 .ui-page { 
 	background: #00AEEF !important;
 	}  
@@ -129,6 +140,9 @@ font-size: 0.9 em;
 }
 #wikidate{
 	font-size: 0.8em !important;
+}
+.ui-bar-a{
+	border-width: 0px !important;
 }
 /* Stylesheet content from css/main.css in folder android */
 /*	 Licensed Materials - Property of IBM

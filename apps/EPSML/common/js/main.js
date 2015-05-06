@@ -135,3 +135,7 @@ function back(){
 	$('#wikiBody1').hide();
 	$('#wikiBody').show();
 	}
+function wfhleave(){
+	$('#AppBody').hide();
+	$('#wfhleave').show();
+}

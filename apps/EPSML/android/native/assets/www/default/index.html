@@ -1,7 +1,7 @@
 <!DOCTYPE HTML><html>
     <head>
         <meta charset="UTF-8">
-        <title>epsml2</title>
+        <title>THINKMATIX</title>
         <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" name="viewport">
     		<!--
     			<link rel="shortcut icon" href="images/favicon.png">
@@ -73,7 +73,7 @@
                 <div style="text-align:center">
                     <img height="80" src="images/image.png" width="80">
 			</div>
-                <h2 align="center" style="color: white">EPSML-2</h2>
+                <h2 align="center" style="color: white">THINKMATIX</h2>
     <!--  <form method="post" action="demoform.asp">-->
      <!--  <label for="fname" class="ui-hidden-accessible">Firstname</label>--> 
                 <div class="container">                                                                                            
@@ -138,7 +138,7 @@
                     <div class="ui-block-b">
                         <div class="ui-bar ui-bar-a">
                             <div class="menu-elem"> 
-                                <a href="#">
+                                <a href="wfhleave();">
                                     <div class="menu-img"> 
                                         <img src="images/wfh.png" style="width: 65px;"> </div>
                                     <div class="menu-text"> Leave/WFH </div>
@@ -235,7 +235,7 @@
                 <a class="ui-btn-right" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})"><img src="images/logout.png" style="width: 25px;"></a>
             </div>
             <div class="ui-content" role="main">
-                <ul data-role="listview" id="recentupdates" style="margin-left: -15px;">
+                <ul data-inset="true" data-role="listview" id="recentupdates" style="margin-left: -15px;">
                 </ul>
             </div>
         </div>
@@ -255,6 +255,86 @@
                         <p class="wikia" id="wikidesc"></p>
                     </li>        
                 </ul>
+            </div>
+        </div>
+        <div data-role="page" id="wfhleave">
+            <div data-role="content" style="padding: 15px">
+    				<!--application UI goes here-->
+                <div data-role="header" style="background:#0E74BC;color:white;">
+                    <a class="ui-btn-left ui-corner-all ui-icon-home ui-btn-icon-notext" href="#" onclick="home();"></a>
+                    <h1 class="Home">WFH &amp; Leave</h1>
+                    <a class="ui-btn-right" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})"><img src="images/logout.png" style="width: 25px;"></a>
+                </div>
+                <div class="ui-content" role="main">
+                    <div data-role="tabs">
+                        <div data-role="navbar">
+                            <ul>
+                                <li>
+                                    <a class="ui-btn-active" href="#fragment-1">WFH</a>
+                                </li>
+                                <li>
+                                    <a href="#fragment-2">LEAVE</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="fragment-1" style="color:white">
+                            <ul>
+                                <li style="background:#3DC8F3">
+                                    <p>
+                                        <b>Firstname,Lastname</b>
+                                    </p>
+                                    <p>May 01st,2015</p>
+                                </li>
+                                <li style="background:#3DC8F3">
+                                    <p>
+                                        <b>Firstname,Lastname</b>
+                                    </p>
+                                    <p>May 01st,2015</p>
+                                </li>
+                                <li style="background:#3DC8F3">
+                                    <p>
+                                        <b>Firstname,Lastname</b>
+                                    </p>
+                                    <p>May 01st,2015</p>
+                                </li>
+                                <li style="background:#3DC8F3">
+                                    <p>
+                                        <b>Firstname,Lastname</b>
+                                    </p>
+                                    <p>May 01st,2015</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="fragment-2" style="color:white">
+                            <ul>
+                                <li style="background:#3DC8F3">
+                                    <p>
+                                        <b>Firstname,Lastname</b>
+                                    </p>
+                                    <p>June 01st,2015</p>
+                                </li>
+                                <li style="background:#3DC8F3">
+                                    <p>
+                                        <b>Firstname,Lastname</b>
+                                    </p>
+                                    <p>June 01st,2015</p>
+                                </li>
+                                <li style="background:#3DC8F3">
+                                    <p>
+                                        <b>Firstname,Lastname</b>
+                                    </p>
+                                    <p>June 01st,2015</p>
+                                </li>
+                                <li style="background:#3DC8F3">
+                                    <p>
+                                        <b>Firstname,Lastname</b>
+                                    </p>
+                                    <p>May 01st,2015</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <script src="js/initOptions.js"></script>
