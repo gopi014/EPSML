@@ -2,277 +2,166 @@
 <html>
     	<head>
     		<meta charset="UTF-8">
-    		<title>THINKMATIX</title>
-    		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
-    		<!--
-    			<link rel="shortcut icon" href="images/favicon.png">
-    			<link rel="apple-touch-icon" href="images/apple-touch-icon.png"> 
-    		-->
-    		<link href="jqueryMobile/demos/css/themes/default/jquery.mobile.theme-1.4.5.min.css" rel="stylesheet">
-    		<link href="jqueryMobile/demos/css/themes/default/jquery.mobile-1.4.5.min.css" rel="stylesheet">
-    		<link href="jqueryMobile/demos/theme-classic/theme-classic.css" rel="stylesheet">
-    		<link href="jqueryMobile/jquery.mobile.external-png-1.4.5.css" rel="stylesheet">
-    		<link href="jqueryMobile/jquery.mobile.theme-1.4.5.css" rel="stylesheet">
-    		<link href="jqueryMobile/jquery.mobile.inline-png-1.4.5.min.css" rel="stylesheet">
+    		    		<title>Thinkmatix</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    		<link rel="shortcut icon" href="images/favicon.png">
+    		<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     		<link href="jqueryMobile/jquery.mobile-1.4.5.css" rel="stylesheet">
-    		<link href="jqueryMobile/jquery.mobile.structure-1.4.5.min.css" rel="stylesheet">
-    		<link href="jqueryMobile/demos/css/themes/default/jquery.mobile.inline-png-1.4.5.min.css" rel="stylesheet">
-    		<link href="jqueryMobile/jquery.mobile-1.4.5.min.css" rel="stylesheet">
-    		<link href="jqueryMobile/jquery.mobile.inline-svg-1.4.5.css" rel="stylesheet">
-    		<link href="jqueryMobile/jquery.mobile.theme-1.4.5.min.css" rel="stylesheet">
-    		<link href="jqueryMobile/demos/css/themes/default/jquery.mobile.structure-1.4.5.min.css" rel="stylesheet">
-    		<link href="jqueryMobile/demos/css/themes/default/jquery.mobile.external-png-1.4.5.min.css" rel="stylesheet">
-    		<link href="jqueryMobile/jquery.mobile.inline-png-1.4.5.css" rel="stylesheet">
-    		<link href="jqueryMobile/demos/css/themes/default/jquery.mobile.inline-svg-1.4.5.min.css" rel="stylesheet">
-    		<link href="jqueryMobile/jquery.mobile.inline-svg-1.4.5.min.css" rel="stylesheet">
-    		<link href="jqueryMobile/jquery.mobile.structure-1.4.5.css" rel="stylesheet">
-    		<link href="jqueryMobile/jquery.mobile.external-png-1.4.5.min.css" rel="stylesheet">
     		<link rel="stylesheet" href="css/main.css">
-    		<link rel="stylesheet" href="jqueryMobile/bootstrap.min.css">
     		<script>window.$ = window.jQuery = WLJQ;</script>
-    		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-            <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    		<script src="jqueryMobile/demos/js/jquery.js"></script>
-    		<script src="jqueryMobile/bootstrap.min.js"></script>
-            <link rel="stylesheet" href="css/theme.css">
-    		<link href="jqueryMobile/jquery.mobile-1.4.5.css" rel="stylesheet">
-    			
-    		
-    		<style>
-
-  .ui-page { background: #00AEEF;}  
-  
-   
-
-</style>
+    		<script src="jqueryMobile/jquery.mobile-1.4.5.js"></script>
     	</head>
-    	
-    	
-   <body style="display: none;">
-
-    		<div data-role="page" id="AuthBody" style="display: none">    		
-
-<!--  
-
-					  <div data-role="header">
-					    
-					  </div>
--->
-  
- 
- 
-  <div data-role="main" class="ui-content">
-  
+    	<body style="display: none;">
+    		<!--application UI goes here-->
+    	<div data-role="page" id="AuthBody" >    		
+  			<div data-role="main" class="ui-content">
 			<div style="text-align:center">
-			<img src="images/image.png"   width="80" height="80">
+				<img src="images/image.png"   width="80" height="80">
 			</div>
 			<h2 align="center" style="color: white" >THINKMATIX</h2>
-    <!--  <form method="post" action="demoform.asp">-->
-     <!--  <label for="fname" class="ui-hidden-accessible">Firstname</label>--> 
-      
-          
-      
-    
-         
-      
-      <div class="container">                                                                                            
-      <div class="table-responsive">          
-      <table class="table" style="width:100%">
-      
-      
-      <tbody> 
-               
-                      
-   
-      <tr>          
-            <td style="width:5%"><img src="images/image2.png"  width="40" vspace="7" hspace="5"></td>
-            <td style="width:95%">
-            <input type="text" name="username" id="usernameInputField" placeholder="Username"  style="opacity : 0.7; background: #00AEEF; color: white"/></td>
-        </tr> 
-        
-                  
-         
-          <tr>
-            <td style="width:5%"> <img src="images/image3.png" width="40" hspace="5" vspace="7"></td>
-            <td style="width:95%"><input type="password" name="password" id="passwordInputField" placeholder="Password" style="opacity : 0.7; background: #00AEEF; color: white"/></td>
-           
-            </tr>
-          
-          
-          
-        </tbody>
-      </table>
-      <table class="table" style="width:100%">
-      <div id="loginmesg" style="color:red"></div>
-       <button  id="loginButton" style="background: #1C75BC; color: white; font-weight: bold">Login</button>
-       </table>
-    </div>
-</div>  
-</div>
- <div data-role="footer" data-id="fixedFooter" data-position="fixed" data-tap-toggle="false" style="background: #00AEEF ;text-align:center;border:none">
-    <img src="images/image1.png"   width="80" height="80"/>
-</div>	
-</div>
-<div data-role="page" id="AppBody" style="background: #00AEEF"> 
-<div data-role="header"style="background:#0E74BC;color:white;">
-<h1 class="Home">Home</h1>
-<a href="#" data-role="button"data-direction="reverse" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})" data-transition="slide"
-        data-iconpos="notext"  class="ui-btn-right"><img src="images/logout.png" style="width: 25px;"></a>
-</div>
+      		<div class="container">                                                                                            
+      			<div class="table-responsive">          
+     				 <table class="table" style="width:100%">
+      					<tbody> 
+      					<tr>          
+            				<td style="width:5%"><img src="images/image2.png"  width="40" vspace="7" hspace="5"></td>
+            				<td style="width:95%">
+            				<input type="text" name="username" id="usernameInputField" placeholder="Username"  style="opacity : 0.7; background: #00AEEF; color: white"/></td>
+        				</tr> 
+        				<tr>
+            				<td style="width:5%"> <img src="images/image3.png" width="40" hspace="5" vspace="7"></td>
+            				<td style="width:95%"><input type="password" name="password" id="passwordInputField" placeholder="Password" style="opacity : 0.7; background: #00AEEF; color: white"/></td>
+          				</tr>
+          				</tbody>
+      				</table>
+      					<div id="loginmesg" style="color:red"></div>
+      						 <button  id="loginButton" style="background: #1C75BC; color: white; font-weight: bold" >Login</button>
 
-					
-
-
-<!-- Page body -->
-<div role="main" class="ui-content">
-<div class="ui-grid-a"> <!-- menu-container --> 
-
-<!-- FIRST ROW --> 
-<!-- 1st elem -->
-<div class="ui-block-a" id="semployee">
-<div class="ui-bar ui-bar-a">
-<div class="menu-elem"> <a href="#">
-<div class="menu-img"> <img src="images/shift.png" style="width: 50px;"> </div>
-<div class="menu-text"> Shift Schedule </div>
-</a> </div>
-</div>
-</div>
+    			</div>
+			</div>  
+			</div>
+ 				<div data-role="footer" data-id="fixedFooter" data-position="fixed" data-tap-toggle="false" style="background: #00AEEF ;text-align:center;border:none">
+   			 		<img src="images/image1.png"   width="60" />
+				</div>	
+		</div>
+		<div data-role="page"  id="AppBody"  >
+		<div data-role="header">
+			<h1 class="Home">Home</h1>
+			<a href="#" data-role="button"data-direction="reverse" onclick="logout();" data-transition="slide" data-iconpos="notext" class="ui-btn-right btn-bg">
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
+		</div>
+   		<div data-role="main" class="ui-content">
+		<div class="ui-grid-a home-grid-a"> 
+			<div class="ui-block-a" id="semployee">
+			<div class="ui-bar ui-bar-a ui-home-bar">
+			<div class="menu-elem"> 
+			<a href="#">
+			<span class="menu-img"> 
+			<img src="images/shift.png" style="width: 50px;height: 55px;" > </span>
+			<span class="menu-text"> Shift Schedule </span>
+			</a> 
+			</div>
+			</div>
+			</div>
 <div class="ui-block-a" style="display: none;" id="smanager">
-<div class="ui-bar ui-bar-a">
+<div class="ui-bar ui-bar-a ui-home-bar">
 <div class="menu-elem"> <a href="#" onclick="shift();">
-<div class="menu-img"> <img src="images/shift.png" style="width: 50px;"> </div>
-<div class="menu-text"> Shift Schedule </div>
+<span class="menu-img"> <img src="images/shift.png" style="width: 50px; height: 55px;"> </span>
+<span class="menu-text"> Shift Schedule </span>
 </a> </div>
 </div>
 </div>
 <!-- 2nd elem -->
 <div class="ui-block-b">
-<div class="ui-bar ui-bar-a">
+<div class="ui-bar ui-bar-a ui-home-bar">
 <div class="menu-elem"> <a href="#" onclick="wfhleave();">
-<div class="menu-img"> <img src="images/wfh.png" style="width: 65px;"> </div>
-<div class="menu-text"> Leave/WFH </div>
+<span class="menu-img"> <img src="images/wfh.png" style="width:50px;height: 55px;"> </span>
+<span class="menu-text"> Leave/WFH </span>
 </a> </div>
 </div>
 </div>
-
-<!-- SECOND ROW --> 
+<!-- SECOND ROW -->
 <!-- 1st elem -->
 <div class="ui-block-a" id="start">
-<div class="ui-bar ui-bar-a">
+<div class="ui-bar ui-bar-a ui-home-bar">
 <div class="menu-elem"> <a href="#">
-<div class="menu-img"> <img src="images/start_x2F_stop.png" style="width: 60px;"> </div>
-<div class="menu-text"> Start/Stop shift </div>
+<span class="menu-img"> <img src="images/start_x2F_stop.png" style="width: 50px;height: 55px;"> </span>
+<span class="menu-text"> Start/Stop shift </span>
 </a> </div>
 </div>
 </div>
 <div class="ui-block-a" id="onshift" style="display: none;">
-<div class="ui-bar ui-bar-a">
+<div class="ui-bar ui-bar-a ui-home-bar">
 <div class="menu-elem"> <a href="#">
-<div class="menu-img"> <img src="images/start_x2F_stop.png" style="width: 60px;"> </div>
-<div class="menu-text"> On shift </div>
+<span class="menu-img"> <img src="images/start_x2F_stop.png" style="width: 50px;height: 55px;"> </span>
+<span class="menu-text"> On shift </span>
 </a> </div>
 </div>
 </div>
 <!-- 2nd elem -->
 <div class="ui-block-b">
-<div class="ui-bar ui-bar-a">
+<div class="ui-bar ui-bar-a ui-home-bar">
 <div class="menu-elem"> <a href="#">
-<div class="menu-img"> <img src="images/q-end.png" style="width: 50px;"> </div>
-<div class="menu-text"> Q-End Support </div>
+<span class="menu-img"> <img src="images/q-end.png" style="width: 50px;height: 55px;"> </span>
+<span class="menu-text"> Q-End Support </span>
 </a> </div>
 </div>
 </div>
-
-<!-- THIRD ROW --> 
+<!-- THIRD ROW -->
 <!-- 1st elem -->
 <div class="ui-block">
-<div class="ui-bar ui-bar-a">
+<div class="ui-bar ui-bar-a ui-home-bar">
 <div class="menu-elem"> <a href="#" onclick="wiki();">
-<div class="menu-img"> <img src="images/wiki.png" style="width: 60px;"> </div>
-<div class="menu-text"> Wiki Updates </div>
+<span class="menu-img"> <img src="images/wiki.png" style="width: 60px;"> </span>
+<span class="menu-text"> Wiki Updates </span>
 </a> </div>
 </div>
 </div>
 </div>
-<!-- menu container --> 
-</div>
-<!-- .ui-content --> 
-<!-- Page body --> 
+<!-- menu container -->
 </div>
 </div>
-<div data-role="page" id="eshift" style="background: #00AEEF"> 
-<div data-role="header"style="background:#0E74BC;color:white;">
-<a href="#" class="ui-btn-left ui-corner-all ui-icon-home ui-btn-icon-notext" onclick="home();"></a>
-<h1 class="Home">Shift Schedule</h1>
-<a href="#" data-role="button"data-direction="reverse" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})" data-transition="slide"
-        data-iconpos="notext"  class="ui-btn-right"><img src="images/logout.png" style="width: 25px;"></a>
+<div data-role="page" id="wikiBody" >
+<div data-role="header">
+<a href="#" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="home();"></a>
+<h1 class="Home">Wiki Updates</h1>
+<a href="#" data-role="button"data-direction="reverse" onclick="logout();" data-transition="slide"
+data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" style="width: 25px;"></a>
+</div>
+<div role="main" class="ui-content">
+<div id="wikiContent">
+</div>
+</div>
+</div>
+<div data-role="page" id="wikiBody1" >
+<div data-role="header">
+<a href="#" class="ui-btn ui-icon-arrow-l ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="back();"></a>
+<h1 class="Home">Wiki Updates</h1>
+<a href="#" data-role="button"data-direction="reverse" onclick="logout();" data-transition="slide"
+data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" style="width: 25px;"></a>
 </div>
 <div data-role="main" class="ui-content">
-<div class="scroll">
-<table data-role="table"class="myTable">
-<tbody>
-        <tr>
-          <td class="headcol">DhineshvikramKrishna</td>
-          <td style="background-color: grey;"></td>
-          <td style="background-color: grey;"></td>
-          <td style="background-color: grey;"></td>
-          <td style="background-color: grey;"></td>
-          <td style="background-color: grey;"></td>
-          <td style="background-color: grey;"></td>
-          <td style="background-color: grey;"></td>
-          <td style="background-color: grey;"></td>
-          <td style="background-color: grey;"></td>
-        </tr>
-      </tbody>
-    </table>
-</div>
-</div> 
-</div>
-<div data-role="page" id="wikiBody" style="background: #00AEEF"> 
-<div data-role="header"style="background:#0E74BC;color:white;">
-<a href="#" class="ui-btn-left ui-corner-all ui-icon-home ui-btn-icon-notext" onclick="home();"></a>
-<h1 class="Home">Wiki Updates</h1>
-<a href="#" data-role="button"data-direction="reverse" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})" data-transition="slide"
-        data-iconpos="notext"  class="ui-btn-right"><img src="images/logout.png" style="width: 25px;"></a>
-</div>
-<div role="main" class="ui-content">
-<ul data-role="listview" data-inset="true" id="recentupdates" style="margin-left: -15px;">
-        
-
-    </ul>
-</div>
-</div>
-<div data-role="page" id="wikiBody1" style="background: #00AEEF"> 
-<div data-role="header"style="background:#0E74BC;color:white;">
-<a href="#" class="ui-btn-left ui-corner-all ui-icon-arrow-l ui-btn-icon-notext" onclick="back();"></a>
-<h1 class="Home">Wiki Updates</h1>
-<a href="#" data-role="button"data-direction="reverse" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})" data-transition="slide"
-        data-iconpos="notext"  class="ui-btn-right"><img src="images/logout.png" style="width: 25px;"></a>
-</div>
-<div role="main" class="ui-content">
-<ul data-role="listview" id="recentupdates1" style="margin-left: -15px;">
-<li data-role="list-divider" class= "ui-list" id="wikiheader">
+<ul data-role="listview" id="recentupdates1" data-inset="true" >
+<li class="wikia">
+<h2 id="wikiheader"></h2>
+<p id="wikiauthor"></p>
+<p id="wikidesc"></p>
+<p class="ui-li-aside" id="wikidate"></p>
 </li>
-<li>
-<p class="dateright" id="wikidate"></p>
-<h4 class="wikia" id="wikiauthor"></h4>
-  <p class="wikia" id="wikidesc"></p>
-  
-</li>        
-
-    </ul>
+</ul>
 </div>
 </div>
 <div data-role="page" id="wfhleave" style="background: #00AEEF">
-    			
-    				<!--application UI goes here-->
-   		<div data-role="header"style="background:#0E74BC;color:white;">
-<a href="#" class="ui-btn-left ui-corner-all ui-icon-arrow-l ui-btn-icon-notext" onclick="back();"></a>
-<h1 class="Home">WFH & Leave</h1>
-<a href="#" data-role="button"data-direction="reverse" onclick="WL.Client.logout('CustomAuthenticatorRealm',{onSuccess: WL.Client.reloadApp})" data-transition="slide"
-        data-iconpos="notext"  class="ui-btn-right"><img src="images/logout.png" style="width: 25px;"></a>
-</div>
- <div role="main" class="ui-content">
+<!--application UI goes here-->
+<div data-role="header">
+            <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="home();"></a>
+            <h1 class="Home">WFH/Leave</h1>
+			<a href="#" data-direction="reverse" onclick="logout();" data-transition="slide" data-iconpos="notext" class="ui-btn-right btn-bg">
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
+		</div>
+<div data-role="main" class="ui-content">
 <div data-role="tabs">
 <div data-role="navbar">
 <ul>
@@ -322,11 +211,10 @@
 </div>
 </div>
 </div>
-   	
-    		</div>
-	<script src="js/initOptions.js"></script>
+</div>
+    		<script src="js/initOptions.js"></script>
     		<script src="js/main.js"></script>
     		<script src="js/messages.js"></script>
     		<script src="js/CustomAuthenticatorRealmChallengeHandler.js"></script>
     	</body>
-</html>
+</html> 

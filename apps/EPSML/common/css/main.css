@@ -1,144 +1,150 @@
-.table-responsive {
-	border: 0px solid #ddd !important;
+[data-role="page"]{
+	background: #00AEEF; 
 }
- ::-webkit-input-placeholder { /* WebKit browsers */
-    color:    white !important;
+[data-role="header"]{
+	background:#0E74BC !important;
+	color:white !important;
+}
+.table-responsive {
+border: 0px solid #ddd !important;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+color: white !important;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:    white !important;
-   opacity:  1;
+color: white !important;
+opacity: 1;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    white !important;
-   opacity:  1;
+color: white !important;
+opacity: 1;
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
-   color:    white !important;
+color: white !important;
 }
-.ui-grid-a {
-     padding: 0;
-     margin: 0;
-     margin-top: 15px;
-     height: 380px;
- }
- .ui-block-a, .ui-block-b {
-     padding: 0;
-     margin: 0 auto;
-     height: 33.3%;
- }
- .ui-block-a *, .ui-block-b * {
-     margin: 0 auto;
-     text-align: center;
- }
- .ui-block-a a, .ui-block-b a {
-     width: 50%;
- }
- .ui-bar-a, ui-bar {
-     margin: 0 auto;
-     padding: 0;
-     height: 90%;
-     width: 90%;
-     max-width: 500px;
-     text-align: center;
-     /* Gradient set-up */
-     background: #3DC8F3 !important;
-     /* Border set-up */
-     border: 0px solid white;
-     border-radius: 0px;
-     box-shadow: 0px 0px 0px #000;
-     display: table;
- }
- .menu-elem {
-     margin: 0 auto;    
-     text-align: center !important;
- }
- .menu-elem a {
-     text-decoration: none;
-      margin: 0 auto;    
-     text-align: center !important;
- }
- .menu-elem .menu-text {
-     margin-top: 5px;
-     font-size: 0.9em;
-     color: #FFF;
-     text-align:center;
- }
- .ui-bar, .ui-body {
-     position: relative;
-     overflow: hidden;
-     display: block;
-     padding: 0.9em 1em !important;
-     clear: both;
-     text-align: center !important;
- }
- .ui-input-text{
- border-width: 0px !important;
- }
- .ui-btn, label.ui-btn{
- border-width: 0px !important;
- }
-
-.ui-page { 
-	background: #00AEEF !important;
-	}  
+.home-grid-a {
+padding: 0;
+margin: 0;
+margin-top: 15px;
+height: 380px;
+}
+.ui-block-a, .ui-block-b {
+padding: 0;
+margin: 0 auto;
+height: 33.3%;
+}
+.ui-block-a *, .ui-block-b * {
+margin: 0 auto;
+text-align: center;
+}
+.ui-grid-a span{
+	display: block;
+}
+.ui-home-bar a, .ui-home-bar a {
+width: 50%;
+}
+.ui-bar-a, ui-bar {
+margin: 0 auto;
+padding: 0;
+height: 90%;
+width: 90%;
+max-width: 500px;
+text-align: center;
+/* Gradient set-up */
+background: #3DC8F3 !important;
+/* Border set-up */
+border: 0px solid white;
+border-radius: 0px;
+box-shadow: 0px 0px 0px #000;
+display: table;
+}
+.menu-elem {
+margin: 15px auto;
+text-align: center !important;
+}
+.menu-elem a {
+text-decoration: none;
+margin: 0 auto;
+text-align: center !important;
+}
+.menu-elem .menu-text {
+margin-top: 5px;
+font-size: 0.9em;
+color: #FFF;
+text-align:center;
+}
+.ui-bar, .ui-body {
+position: relative;
+overflow: hidden;
+display: block;
+clear: both;
+text-align: center !important;
+}
+.ui-input-text{
+border-width: 0px !important;
+}
+.ui-btn, label.ui-btn{
+border-width: 0px !important;
+}
+.ui-page {
+background: #00AEEF !important;
+}
 .Home {
-	margin-top: 0px !important;
-	text-align:center !important;
-	font-size:2em !important;
-}	
+margin-top: 0px !important;
+text-align:center !important;
+font-size:2em !important;
+padding: 0em 0px !important;
+}
 .myTable{
 border-spacing: 5px;
 border-collapse: separate;
 border: 1px solid #00AEEF;
 }
 .myTable td,th{
-
 border: 1px solid #00AEEF;
 }
-
 .headcol {
-            position:absolute;
-            left:0;
-            top:auto;
-            border-right: 0px none #00AEEF; 
-        }      
-.scroll{
-
-        overflow-x:scroll;  
-        margin-left:10em; 
-        overflow-y:visible;
-        padding-bottom:1px;
-        } 
-#no-ellipsis{
-    text-overflow: initial !imporatnt;
-    overflow: visible !imporatnt;
-    white-space: normal !important;
+position:absolute;
+left:0;
+top:auto;
+border-right: 0px none #00AEEF;
 }
-
+.scroll{
+overflow-x:scroll;
+margin-left:10em;
+overflow-y:visible;
+padding-bottom:1px;
+}
+#no-ellipsis{
+text-overflow: initial !imporatnt;
+overflow: visible !imporatnt;
+white-space: normal !important;
+}
 .ui-icon.inline { display:inline-block; }​
 .ui-widget-header.center { text-align:center; }
-
 .ui-list {
-	background: #3DC8F3 !important;
-color:    white !important;
+background: #3DC8F3 !important;
+color: white !important;
 font-size: 0.9 em;
-}        
-.dateright{
-	
-	top: 1em !important;
-	right: 3.333em !important;
-	margin: 0 !important;
-	text-align: right !important;
-	color:    white !important;
-	
 }
 .wikia{
-	color:    white !important;
-	font-size: 0.8em !important;
+color: white !important;
+background: #3DC8F3 !important;
+border-width: 0.1em !important;
 }
 #wikidate{
-	font-size: 0.8em !important;
+font-size: 0.8em !important;
 }
 .ui-bar-a{
-	border-width: 0px !important;
+border-width: 0px !important;
+} 
+.ui-shadow{
+	box-shadow: none !important;
+}
+.btn-bg{
+	background: none !important;
+}
+.ui-listview > li p{
+	font-size: 0.9em;
+	white-space: normal;
 }

@@ -3,7 +3,7 @@ var busy;
 var summ=[];
 function wlCommonInit(){
 	
-	getSecretData();
+    getSecretData();
 	WL.ClientMessages.loading = "Authenticating";
 	busyIndicator = new WL.BusyIndicator ();
 }
@@ -19,7 +19,7 @@ function getSecretData(){
 	var options ={
 			onSuccess: getSecretData_Callback,
 			onFailure: getSecretData_Callback
-		  }
+		  };
 	WL.Client.invokeProcedure(invocationData,options );
 	
 }
@@ -34,12 +34,13 @@ function shift(){
 }
 function home()
 {
-	$('#AppBody').show();
-	$('#wikiBody').hide();
-	$('#eshift').hide();
+	$.mobile.changePage( "#AppBody",{ changeHash: false });
 	}
 
 function wiki(){
+	var ullength=$("#recentupdates li").length;
+	if(ullength == 0)
+		{
 	WL.ClientMessages.loading = "Loading!Please wait...";
 	busy = new WL.BusyIndicator ();
 	busy.show();
@@ -54,7 +55,24 @@ function wiki(){
         onSuccess : feedsSuccess,
         onFailure : feedsFailure,
     });
-
+		}
+	else{
+		$('#wikiContent').empty();
+		WL.ClientMessages.loading = "Loading!Please wait...";
+		busy = new WL.BusyIndicator ();
+		busy.show();
+		var n='gopinathrk@in.ibm.com';
+		var m='gopi4ibm';
+		var invocationData = {
+				adapter: "WikiUpdates",
+				procedure: "getfeeds",
+				parameters: [n,m]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : feedsSuccess,
+	        onFailure : feedsFailure,
+	    });
+	}
 }
 function feedsSuccess(response){
 	
@@ -63,6 +81,12 @@ var invocationResult = response.invocationResult;
 var feeds = invocationResult.feed;
 var entry= feeds.entry;
 var length=entry.length;
+var div=document.getElementById('wikiContent');
+var ul = document.createElement('ul');
+ul.setAttribute('data-role','listview');
+ul.setAttribute('data-inset','true');
+ul.setAttribute('id','recentupdates');
+
 for(var i=0;i<length;i++)
 	{
 	
@@ -76,43 +100,37 @@ var finaldate=newdate.toLocaleString();
 var summary = activityentry.object.summary;
 summ[i]=summary;
 var finalsummary=summary.substring(0,100)+'....';
-var ul = document.getElementById('recentupdates');
 var li = document.createElement("li");
-var li1 =document.createElement("li");
 var a =document.createElement("a");
-var h3=document.createElement("p");
+var h2=document.createElement("h2");
 var p=document.createElement("p");
 var p1=document.createElement("p");
-var p2=document.createElement("p");
-li.appendChild(document.createTextNode(title));
-li.setAttribute("data-role", "list-divider");
-li.setAttribute("class","ui-list");
-li.setAttribute("id","wihead"+i);
-ul.appendChild(li);
-li1.appendChild(document.createTextNode(""));
+var p3=document.createElement("p");
+li.appendChild(document.createTextNode(""));
 a.setAttribute('href', "#");
 a.setAttribute('id', i);
 a.setAttribute('onclick', 'wikidetail(id);');
 a.setAttribute('class', 'wikia');
-h3.innerHTML="Author:"+name;
-h3.setAttribute("id","wiauth"+i);
-p.innerHTML="<b>Description<b>:<br>"+finalsummary;
-p2.innerHTML="Description"+summary;
-p2.setAttribute("id","wisum"+i);
-p2.setAttribute("style","display:none;");
-p1.setAttribute("class","dateright");
-p1.innerHTML="Last update:"+finaldate;
-p1.setAttribute("id","widate"+i);
-a.appendChild(p1);
-a.appendChild(h3);
+h2.setAttribute("id","wihead"+i);
+h2.innerHTML=title;
+p.innerHTML="<strong>"+name+"<strong>";
+p.setAttribute("id","wiauth"+i);
+p1.innerHTML="<b>Description<b>:<br>"+finalsummary;
+p3.setAttribute("class","ui-li-aside");
+p3.innerHTML="<strong>Last update:"+finaldate+"<strong>";
+p3.setAttribute("id","widate"+i);
+a.appendChild(h2);
 a.appendChild(p);
-a.appendChild(p2);
-li1.appendChild(a);
-ul.appendChild(li1);
+a.appendChild(p1);
+a.appendChild(p3);
+li.appendChild(a);
+ul.appendChild(li);
+
 	}
+div.appendChild(ul);
 	busy.hide();
-$('#AppBody').hide();
-$('#wikiBody').show();
+	$.mobile.changePage( "#wikiBody",{ changeHash: false });
+	
 }
 function feedsFailure(response){
 	busy.hide();
@@ -128,14 +146,23 @@ function wikidetail(par){
 	$('#wikiauthor').text(author);
 	wikidesc.innerHTML='<b>Summary:</b><br>'+sum;
 	$('#wikidate').text(date);
-	$('#wikiBody').hide();
-	$('#wikiBody1').show();
+	$.mobile.changePage( "#wikiBody1");
+	
 }
 function back(){
-	$('#wikiBody1').hide();
-	$('#wikiBody').show();
+	$.mobile.changePage( "#wikiBody");
 	}
 function wfhleave(){
-	$('#AppBody').hide();
-	$('#wfhleave').show();
+	$.mobile.changePage( "#wfhleave");
+}
+function logout(){
+	var options={
+			onSuccess : logoutSuccess,
+	};
+	WL.Client.logout('CustomAuthenticatorRealm',options);
+}
+function logoutSuccess(){
+	WL.Client.reloadApp;
+	$.mobile.changePage('index.html', { reloadPage: true });
+	
 }
