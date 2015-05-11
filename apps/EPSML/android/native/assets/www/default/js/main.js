@@ -36,7 +36,8 @@ function shift(){
 }
 function home()
 {
-	$.mobile.changePage( "#AppBody");
+	$.mobile.changePage( "#AppBody",{ changeHash: false });
+	$('#AppBody').show();
 	}
 
 function wiki(){
@@ -59,7 +60,7 @@ function wiki(){
     });
 		}
 	else{
-		$('#wikiContent').empty();
+		$('#recentupdates').remove();
 		WL.ClientMessages.loading = "Loading!Please wait...";
 		busy = new WL.BusyIndicator ();
 		busy.show();
@@ -88,6 +89,7 @@ var ul = document.createElement('ul');
 ul.setAttribute('data-role','listview');
 ul.setAttribute('data-inset','true');
 ul.setAttribute('id','recentupdates');
+ul.setAttribute('class','ui-listview ui-listview-inset ui-corner-all ui-shadow');
 
 for(var i=0;i<length;i++)
 	{
@@ -112,13 +114,13 @@ li.appendChild(document.createTextNode(""));
 a.setAttribute('href', "#");
 a.setAttribute('id', i);
 a.setAttribute('onclick', 'wikidetail(id);');
-a.setAttribute('class', 'wikia');
+a.setAttribute('class', 'wikia ui-btn ui-btn-icon-right ui-icon-carat-r');
 h2.setAttribute("id","wihead"+i);
 h2.innerHTML=title;
 p.innerHTML="<strong>"+name+"<strong>";
 p.setAttribute("id","wiauth"+i);
 p1.innerHTML="<b>Description<b>:<br>"+finalsummary;
-p3.setAttribute("class","ui-li-aside");
+//p3.setAttribute("class","ui-li-aside");
 p3.innerHTML="<strong>Last update:"+finaldate+"<strong>";
 p3.setAttribute("id","widate"+i);
 a.appendChild(h2);
@@ -131,7 +133,9 @@ ul.appendChild(li);
 	}
 div.appendChild(ul);
 	busy.hide();
-	$.mobile.changePage( "#wikiBody");
+	$('#AppBody').hide();
+	$.mobile.changePage( "#wikiBody",{ changeHash: false });
+	
 }
 function feedsFailure(response){
 	busy.hide();
@@ -147,26 +151,22 @@ function wikidetail(par){
 	$('#wikiauthor').text(author);
 	wikidesc.innerHTML='<b>Summary:</b><br>'+sum;
 	$('#wikidate').text(date);
-	$.mobile.changePage('wiki.html', {transition: 'flip', prefetch:'true'});
+	$.mobile.changePage( "#wikiBody1",{ changeHash: false });
 	
 }
 function back(){
-	$.mobile.changePage( "#wikiBody");
+	$.mobile.changePage( "#wikiBody",{ changeHash: false });
 	}
 function wfhleave(){
-	$.mobile.changePage( "#wfhleave");
+	$.mobile.changePage( "#wfhleave",{ changeHash: false });
 }
 function logout(){
 	var options={
-			onSuccess : logoutSuccess,
+			onSuccess : WL.Client.reloadApp,
 	};
 	WL.Client.logout('CustomAuthenticatorRealm',options);
 }
-function logoutSuccess(){
-	WL.Client.reloadApp;
-	$.mobile.changePage('index.html', { reloadPage: true });
-	
-}
+
 /* JavaScript content from js/main.js in folder android */
 // This method is invoked after loading the main HTML and successful initialization of the IBM MobileFirst Platform runtime.
 function wlEnvInit(){

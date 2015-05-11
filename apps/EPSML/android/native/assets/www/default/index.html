@@ -156,6 +156,34 @@
 <!-- menu container -->
             </div>
         </div>
+        <div data-role="page" id="wikiBody">
+            <div data-role="header">
+                <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
+                <h1 class="Home">Wiki Updates</h1>
+                <a class="ui-btn-right  btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();"><img src="images/logout.png" style="width: 25px;"></a>
+            </div>
+            <div class="ui-content" role="main">
+                <div id="wikiContent">
+                </div>
+            </div>
+        </div>
+        <div data-role="page" id="wikiBody1">
+            <div data-role="header">
+                <a class="ui-btn ui-icon-arrow-l ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="back();"></a>
+                <h1 class="Home">Wiki Updates</h1>
+                <a class="ui-btn-right  btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();"><img src="images/logout.png" style="width: 25px;"></a>
+            </div>
+            <div class="ui-content" data-role="main">
+                <ul data-inset="true" data-role="listview" id="recentupdates1">
+                    <li class="wikia">
+                        <h2 id="wikiheader"></h2>
+                        <p id="wikiauthor"></p>
+                        <p id="wikidesc"></p>
+                        <p class="ui-li-aside" id="wikidate"></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div data-role="page" id="wfhleave" style="background: #00AEEF">
 <!--application UI goes here-->
             <div data-role="header">

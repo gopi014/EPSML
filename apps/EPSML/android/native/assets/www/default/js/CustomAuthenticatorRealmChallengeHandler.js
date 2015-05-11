@@ -108,6 +108,6 @@ function getSecretData_Callback(response){
 	}
 }
 function getSecretData_Callback1(response){
-	alert("in failure");
+	$('#loginmesg').text("*Database error.please contact your DBA");
 	busyIndicator.hide();
 }

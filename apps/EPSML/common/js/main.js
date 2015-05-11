@@ -35,6 +35,7 @@ function shift(){
 function home()
 {
 	$.mobile.changePage( "#AppBody",{ changeHash: false });
+	$('#AppBody').show();
 	}
 
 function wiki(){
@@ -57,7 +58,7 @@ function wiki(){
     });
 		}
 	else{
-		$('#wikiContent').empty();
+		$('#recentupdates').remove();
 		WL.ClientMessages.loading = "Loading!Please wait...";
 		busy = new WL.BusyIndicator ();
 		busy.show();
@@ -86,6 +87,7 @@ var ul = document.createElement('ul');
 ul.setAttribute('data-role','listview');
 ul.setAttribute('data-inset','true');
 ul.setAttribute('id','recentupdates');
+ul.setAttribute('class','ui-listview ui-listview-inset ui-corner-all ui-shadow');
 
 for(var i=0;i<length;i++)
 	{
@@ -110,13 +112,13 @@ li.appendChild(document.createTextNode(""));
 a.setAttribute('href', "#");
 a.setAttribute('id', i);
 a.setAttribute('onclick', 'wikidetail(id);');
-a.setAttribute('class', 'wikia');
+a.setAttribute('class', 'wikia ui-btn ui-btn-icon-right ui-icon-carat-r');
 h2.setAttribute("id","wihead"+i);
 h2.innerHTML=title;
 p.innerHTML="<strong>"+name+"<strong>";
 p.setAttribute("id","wiauth"+i);
 p1.innerHTML="<b>Description<b>:<br>"+finalsummary;
-p3.setAttribute("class","ui-li-aside");
+//p3.setAttribute("class","ui-li-aside");
 p3.innerHTML="<strong>Last update:"+finaldate+"<strong>";
 p3.setAttribute("id","widate"+i);
 a.appendChild(h2);
@@ -129,6 +131,7 @@ ul.appendChild(li);
 	}
 div.appendChild(ul);
 	busy.hide();
+	$('#AppBody').hide();
 	$.mobile.changePage( "#wikiBody",{ changeHash: false });
 	
 }
@@ -146,23 +149,126 @@ function wikidetail(par){
 	$('#wikiauthor').text(author);
 	wikidesc.innerHTML='<b>Summary:</b><br>'+sum;
 	$('#wikidate').text(date);
-	$.mobile.changePage( "#wikiBody1");
+	$.mobile.changePage( "#wikiBody1",{ changeHash: false });
 	
 }
 function back(){
-	$.mobile.changePage( "#wikiBody");
+	$.mobile.changePage( "#wikiBody",{ changeHash: false });
 	}
 function wfhleave(){
-	$.mobile.changePage( "#wfhleave");
+	
 }
 function logout(){
 	var options={
-			onSuccess : logoutSuccess,
+			onSuccess : WL.Client.reloadApp,
 	};
 	WL.Client.logout('CustomAuthenticatorRealm',options);
 }
-function logoutSuccess(){
-	WL.Client.reloadApp;
-	$.mobile.changePage('index.html', { reloadPage: true });
+function getleavewfh()
+{
+	var ullength=$("#fragment-2ul li").length;
+	var ullength1=$("#fragment-1ul li").length;
+	if((ullength == 0) ){
+		if((ullength1 == 0)){
+				
+		WL.ClientMessages.loading = "Loading!Please wait...";
+		busy = new WL.BusyIndicator ();
+		busy.show();
+		var n='gopinathrk@in.ibm.com';
+		var m='gopi4ibm';
+		var invocationData = {
+				adapter: "Leavewfh",
+				procedure: "getleavewfh",
+				parameters: [n,m]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : leaveSuccess,
+	        onFailure : leaveFailure,
+	    });
+		}
+		else{
+			$('#fragment-1ul li').remove();
+			WL.ClientMessages.loading = "Loading!Please wait...";
+			busy = new WL.BusyIndicator ();
+			busy.show();
+			var n='gopinathrk@in.ibm.com';
+			var m='gopi4ibm';
+			var invocationData = {
+					adapter: "Leavewfh",
+					procedure: "getleavewfh",
+					parameters: [n,m]
+			};
+			WL.Client.invokeProcedure(invocationData,{
+		        onSuccess : leaveSuccess,
+		        onFailure : leaveFailure,
+		    });
+		}
+	}
+	else{
+		$('#fragment-2ul li').remove();
+		$('#fragment-1ul li').remove();
+		
+		
+		WL.ClientMessages.loading = "Loading!Please wait...";
+		busy = new WL.BusyIndicator ();
+		busy.show();
+		var n='gopinathrk@in.ibm.com';
+		var m='gopi4ibm';
+		var invocationData = {
+				adapter: "Leavewfh",
+				procedure: "getleavewfh",
+				parameters: [n,m]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : leaveSuccess,
+	        onFailure : leaveFailure,
+	    });
+	}
+	}
+function leaveSuccess(response){
 	
+	var invocationResult = response.invocationResult;
+	var feeds = invocationResult.feed;
+	var entry= feeds.entry;
+	var length=entry.length;
+	var i= length-1;
+	var content = entry[i].content;
+	var cdata=content.CDATA;
+	cdata=$(cdata);
+	var ul=document.getElementById('fragment-2ul');
+	var ul1=document.getElementById('fragment-1ul');
+	cdata.find("tbody tr").slice(1).each(function(){
+        var Name =$(this).find("td:eq(0)").text();
+        var Date =$(this).find("td:eq(1)").text();
+        var RequestType =($(this).find("td:eq(2)").text()).trim();
+            if (RequestType == 'PL'){
+        	var li = document.createElement("li");	
+        	var p=document.createElement("p");
+        	var p1=document.createElement("p");
+        	li.style.background='#3DC8F3';
+        	p.innerHTML="<strong>"+Name+"</strong>";
+        	p1.innerHTML=Date;
+        	li.appendChild(p);
+        	li.appendChild(p1);
+        	ul.appendChild(li);
+        }  
+        else{
+        	var li1 = document.createElement("li");	
+        	var p2=document.createElement("p");
+        	var p3=document.createElement("p");
+        	li1.style.background='#3DC8F3';
+        	p2.innerHTML="<strong>"+Name+"</strong>";
+        	p3.innerHTML=Date;
+        	li1.appendChild(p2);
+        	li1.appendChild(p3);
+        	ul1.appendChild(li1);
+        	
+        }
+});
+	busy.hide();
+	$.mobile.changePage( "#wfhleave",{ changeHash: false });	
+}
+function leaveFailure(response){
+	
+	alert("Faliure");
 }
