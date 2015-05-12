@@ -78,15 +78,25 @@ function getSecretData_Callback(response){
 	var invocationResult = response.invocationResult;
 	var result = invocationResult.resultSet;
 	var length = result.length;
+	
 	if(length == 0)
 		{
 		$('#loginmesg').text("Sorry!You Don't have permission to view This page");
 		busyIndicator.hide();
 		}
-	else{
-		
 	
-	var name=result[0].emp_name;
+	else if (result[0].team == 'Pem'){
+		$('#AppBody').show();
+		$('#AuthBody').hide();
+		$('#semployee').hide();
+		$('#leavewfh').hide();
+		$('#start').hide();
+		$('#wikiupdates').hide();
+		busyIndicator.hide();
+	}
+	else {	
+	
+	
 	var team=result[0].team;
 	if((team == 'Manager') || (team == 'PL') )
 		{
