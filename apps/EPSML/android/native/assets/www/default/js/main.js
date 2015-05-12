@@ -32,7 +32,7 @@ function getSecretData_Callback(response){
 }
 function shift(){
 	$('#AppBody').hide();
-	$('#eshift').show();
+	$('#shiftmanager').show();
 }
 function home()
 {

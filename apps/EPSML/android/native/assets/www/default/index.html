@@ -97,7 +97,7 @@
                         </div>
                     </div>
 <!-- 2nd elem -->
-                    <div class="ui-block-b">
+                    <div class="ui-block-b" id="leavewfh">
                         <div class="ui-bar ui-bar-a ui-home-bar">
                             <div class="menu-elem"> 
                                 <a href="#" onclick="getleavewfh();">
@@ -142,12 +142,23 @@
                     </div>
 <!-- THIRD ROW -->
 <!-- 1st elem -->
-                    <div class="ui-block">
+                    <div class="ui-block-a" id="wikiupdates">
                         <div class="ui-bar ui-bar-a ui-home-bar">
                             <div class="menu-elem"> 
                                 <a href="#" onclick="wiki();">
 <span class="menu-img"> <img src="images/wiki.png" style="width: 60px;"> </span>
 <span class="menu-text"> Wiki Updates </span>
+</a> 
+                            </div>
+                        </div>
+                    </div>
+<!-- 2nd elem -->
+                    <div class="ui-block-b">
+                        <div class="ui-bar ui-bar-a ui-home-bar">
+                            <div class="menu-elem"> 
+                                <a href="#">
+<span class="menu-img"> <img src="images/shift.png" style="width: 50px;height: 55px;"> </span>
+<span class="menu-text"> Shift Actuals </span>
 </a> 
                             </div>
                         </div>
@@ -216,9 +227,204 @@
                 </div>
             </div>
         </div>
-        <script src="js/initOptions.js"></script>
+        <div data-role="page" id="shiftmanager">
+            <div data-role="header" data-theme="b">
+                <h1>Shift Schedule</h1>
+            </div>
+            <!-- /header -->
+            <div data-role="content"> 
+                <div class="ui-field-contain" style="position: static;">
+                    <select data-native-menu="false" id="select-custom-20" name="select-custom-20">
+        <option value="AL">Select Team</option>
+        <option value="SS">SAPSM</option>
+        <option value="EM">Emptoris</option>
+        <option value="SA">SAP ACCESS</option>
+        <option value="PE">PESSYSTMAINT</option>
+        <option value="SB">SAPBI</option>
+        <option value="CS">CSA</option>
+        <option value="WO">WOI</option>
+        <option value="FL">Florida</option>
+        <option value="GA">Georgia</option>
+        <option value="HI">Hawaii</option>
+    </select>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+            <th>Apr 01</th>
+            <th>Apr 02</th>
+            <th>Apr 03</th>
+            <th>Apr 04</th>
+            <th>Apr 05</th>
+            <th>Apr 06</th>
+            <th>Apr 07</th>
+            <th>Apr 08</th>
+            <th>Apr 09</th>
+            <th>Apr 10</th>
+            <th>Apr 11</th>
+            <th>Apr 12</th>
+            <th>Apr 13</th>
+            <th>Apr 14</th>
+            <th>Apr 15</th>
+            <th>Apr 16</th>
+            <th>Apr 17</th>
+            <th>Apr 18</th>
+            <th>Apr 19</th>
+            <th>Apr 20</th>
+            <th>Apr 21</th>
+            <th>Apr 22</th>
+            <th>Apr 23</th>
+            <th>Apr 24</th>
+            <th>Apr 25</th>
+            <th>Apr 26</th>
+            <th>Apr 27</th>
+            <th>Apr 28</th>
+            <th>Apr 29</th>
+            <th>Apr 30</th>
+            <th>Apr 31</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="emp_name">FirstName</td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #F4FA58"></td>
+            <td style="background-color: #82FA58"></td>
+            <td style="background-color: #58FAD0"></td>
+            <td style="background-color: #5858FA"></td>
+            <td style="background-color: #FA58F4"></td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #5858FA"></td>
+                        </tr> 
+                        <tr>
+                            <td id="emp_name">FirstName</td>
+            <td style="background-color: #F4FA58"></td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #58FAD0"></td>
+            <td style="background-color: #82FA58"></td>
+            <td style="background-color: #F78181"></td>
+             <td style="background-color: #FA58F4"></td>
+              <td style="background-color: #5858FA"></td>
+               <td style="background-color: #F4FA58"></td>
+                        </tr>    
+                        <tr>
+                            <td id="emp_name">FirstName</td>
+            <td style="background-color: #58FAD0"></td>
+               <td style="background-color: #F4FA58"></td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #F78181"></td>
+             <td style="background-color: #FA58F4"></td>
+             <td style="background-color: #F4FA58"></td>
+              <td style="background-color: #5858FA"></td>
+              <td style="background-color: #82FA58"></td>
+                        </tr>     
+                        <tr>
+                            <td id="emp_name">FirstName</td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #F4FA58"></td>
+            <td style="background-color: #82FA58"></td>
+            <td style="background-color: #58FAD0"></td>
+            <td style="background-color: #5858FA"></td>
+            <td style="background-color: #FA58F4"></td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #5858FA"></td>
+                        </tr> 
+                        <tr>
+                            <td id="emp_name">FirstName</td>
+            <td style="background-color: #F4FA58"></td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #58FAD0"></td>
+            <td style="background-color: #82FA58"></td>
+            <td style="background-color: #F78181"></td>
+             <td style="background-color: #FA58F4"></td>
+              <td style="background-color: #5858FA"></td>
+               <td style="background-color: #F4FA58"></td>
+                        </tr>    
+                        <tr>
+                            <td id="emp_name">FirstName</td>
+            <td style="background-color: #58FAD0"></td>
+               <td style="background-color: #F4FA58"></td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #F78181"></td>
+             <td style="background-color: #FA58F4"></td>
+             <td style="background-color: #F4FA58"></td>
+              <td style="background-color: #5858FA"></td>
+              <td style="background-color: #82FA58"></td>
+                        </tr> 
+                        <tr>
+                            <td id="emp_name">FirstName</td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #F4FA58"></td>
+            <td style="background-color: #82FA58"></td>
+            <td style="background-color: #58FAD0"></td>
+            <td style="background-color: #5858FA"></td>
+            <td style="background-color: #FA58F4"></td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #5858FA"></td>
+                        </tr> 
+                        <tr>
+                            <td id="emp_name">FirstName</td>
+            <td style="background-color: #F4FA58"></td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #58FAD0"></td>
+            <td style="background-color: #82FA58"></td>
+            <td style="background-color: #F78181"></td>
+             <td style="background-color: #FA58F4"></td>
+              <td style="background-color: #5858FA"></td>
+               <td style="background-color: #F4FA58"></td>
+                        </tr>    
+                        <tr>
+                            <td id="emp_name">FirstName</td>
+            <td style="background-color: #58FAD0"></td>
+               <td style="background-color: #F4FA58"></td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #F78181"></td>
+             <td style="background-color: #FA58F4"></td>
+             <td style="background-color: #F4FA58"></td>
+              <td style="background-color: #5858FA"></td>
+              <td style="background-color: #82FA58"></td>
+                        </tr> 
+                        <tr>
+                            <td id="emp_name">FirstName</td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #F4FA58"></td>
+            <td style="background-color: #82FA58"></td>
+            <td style="background-color: #58FAD0"></td>
+            <td style="background-color: #5858FA"></td>
+            <td style="background-color: #FA58F4"></td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #5858FA"></td>
+                        </tr> 
+                        <tr>
+                            <td id="emp_name">FirstName</td>
+            <td style="background-color: #F4FA58"></td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #58FAD0"></td>
+            <td style="background-color: #82FA58"></td>
+            <td style="background-color: #F78181"></td>
+             <td style="background-color: #FA58F4"></td>
+              <td style="background-color: #5858FA"></td>
+               <td style="background-color: #F4FA58"></td>
+                        </tr>    
+                        <tr>
+                            <td id="emp_name">FirstName</td>
+            <td style="background-color: #58FAD0"></td>
+               <td style="background-color: #F4FA58"></td>
+            <td style="background-color: #F78181"></td>
+            <td style="background-color: #F78181"></td>
+             <td style="background-color: #FA58F4"></td>
+             <td style="background-color: #F4FA58"></td>
+              <td style="background-color: #5858FA"></td>
+              <td style="background-color: #82FA58"></td>
+                        </tr>   
+                    </tbody>
+                </table>
+                <script src="js/initOptions.js"></script>
     		<script src="js/main.js"></script>
     		<script src="js/messages.js"></script>
     		<script src="js/CustomAuthenticatorRealmChallengeHandler.js"></script>
+            </div>
+        </div>
     </body>
 </html>

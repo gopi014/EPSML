@@ -175,7 +175,7 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 <div data-role="tabs">
 <div data-role="navbar">
 <ul>
-<li><a href="#fragment-1" class="ui-btn-active">WFH</a></li>
+<li><a href="#fragment-1" class="ui-btn-active ui-state-persist">WFH</a></li>
 <li><a href="#fragment-2">LEAVE</a></li>
 </ul>
 </div>
@@ -191,6 +191,28 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 </div>
 </div>
 </div>
+<div data-role="page" id="shiftmanager">
+    <div data-role="header"  data-theme="b">
+        <h1>Shift Schedule</h1>
+    </div><!-- /header -->
+    <div data-role="content"> 
+    <div class="ui-field-contain" style="position: static;">
+    <select name="select-custom-20" id="select-custom-20" data-native-menu="false" onchange="teamchange();">
+        <option value="Select">Select a Team</option>
+        <option value="SAPSM">SAPSM</option>
+        <option value="Emptoris">Emptoris</option>
+        <option value="SAP ACCESS">SAP ACCESS</option>
+        <option value="PESSYSTMAINT">PESSYSTMAINT</option>
+        <option value="SAPBI">SAPBI</option>
+        <option value="CSA">CSA</option>
+        <option value="WOI">WOI</option>
+            </select>
+</div>
+   <table id="shimanager">
+   
+ 
+   
+</table>
     		<script src="js/initOptions.js"></script>
     		<script src="js/main.js"></script>
     		<script src="js/messages.js"></script>
