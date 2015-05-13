@@ -16,6 +16,7 @@ month[9] = "October";
 month[10] = "November";
 month[11] = "December";
 var currmonth = month[d.getMonth()]; 
+var currday=d.getDate();
 function wlCommonInit(){
 	
     getSecretData();
@@ -45,7 +46,7 @@ function getSecretData_Callback(response){
 }
 function shift(){
 	$('#AppBody').hide();
-	$('#shiftmanager').show();
+	$.mobile.changePage( "#shiftmanager",{ changeHash: false });
 }
 function home()
 {
@@ -288,6 +289,8 @@ function leaveFailure(response){
 	alert("Faliure");
 }
 function teamchange(){
+	WL.ClientMessages.loading = "Loading!Please wait...";
+	busy = new WL.BusyIndicator ();
 	var teamname = document.getElementById("select-custom-20").value;
 	var tablesize=$('#shimanager tbody tr').length;
 	if(tablesize == 0){
@@ -327,14 +330,16 @@ function teamchangeSuccess(response)
 	var header=table.createTHead();
 	var body=table.createTBody();
 	var row=header.insertRow(0);
-		for(k=0;k<32;k++){
+	var currentdate1=currday;
+		for(k=0;k<(33-currday);k++){
 			if(k==0){
 				var cell=row.insertCell(k);
 				cell.innerHTML='Name';
 			}
 			else{
 		var cell=row.insertCell(k);
-		cell.innerHTML=currmonth+ ' '+k;
+		cell.innerHTML=currmonth+ ' '+currentdate1;
+		currentdate1++;
 			}
 	
 			}
@@ -343,71 +348,25 @@ function teamchangeSuccess(response)
 		var row1=body.insertRow(i);
 		var name = resultset[i].emp_name;
 		var cell1=row1.insertCell(0);
-		var cell2=row1.insertCell(1);
-		var cell3=row1.insertCell(2);
-		var cell4=row1.insertCell(3);
-		var cell5=row1.insertCell(4);
-		var cell6=row1.insertCell(5);
-		var cell7=row1.insertCell(6);
-		var cell8=row1.insertCell(7);
-		var cell9=row1.insertCell(8);
-		var cell10=row1.insertCell(9);
-		var cell11=row1.insertCell(10);
-		var cell12=row1.insertCell(11);
-		var cell13=row1.insertCell(12);
-		var cell14=row1.insertCell(13);
-		var cell15=row1.insertCell(14);
-		var cell16=row1.insertCell(15);
-		var cell17=row1.insertCell(16);
-		var cell18=row1.insertCell(17);
-		var cell19=row1.insertCell(18);
-		var cell20=row1.insertCell(19);
-		var cell21=row1.insertCell(20);
-		var cell22=row1.insertCell(21);
-		var cell23=row1.insertCell(22);
-		var cell24=row1.insertCell(23);
-		var cell25=row1.insertCell(24);
-		var cell26=row1.insertCell(25);
-		var cell27=row1.insertCell(26);
-		var cell28=row1.insertCell(27);
-		var cell29=row1.insertCell(28);
-		var cell30=row1.insertCell(29);
-		var cell31=row1.insertCell(30);
-		var cell32=row1.insertCell(31);
 		cell1.innerHTML=name;
 		cell1.setAttribute('id','emp_name');
-		cell2.innerHTML=resultset[i].day1;
-		cell3.innerHTML=resultset[i].day2;
-		cell4.innerHTML=resultset[i].day3;
-		cell5.innerHTML=resultset[i].day4;
-		cell6.innerHTML=resultset[i].day5;
-		cell7.innerHTML=resultset[i].day6;
-		cell8.innerHTML=resultset[i].day7;
-		cell9.innerHTML=resultset[i].day8;
-		cell10.innerHTML=resultset[i].day9;
-		cell11.innerHTML=resultset[i].day10;
-		cell12.innerHTML=resultset[i].day11;
-		cell13.innerHTML=resultset[i].day12;
-		cell14.innerHTML=resultset[i].day13;
-		cell15.innerHTML=resultset[i].day14;
-		cell16.innerHTML=resultset[i].day15;
-		cell17.innerHTML=resultset[i].day16;
-		cell18.innerHTML=resultset[i].day17;
-		cell19.innerHTML=resultset[i].day18;
-		cell20.innerHTML=resultset[i].day19;
-		cell21.innerHTML=resultset[i].day20;
-		cell22.innerHTML=resultset[i].day21;
-		cell23.innerHTML=resultset[i].day22;
-		cell24.innerHTML=resultset[i].day23;
-		cell25.innerHTML=resultset[i].day24;
-		cell26.innerHTML=resultset[i].day25;
-		cell27.innerHTML=resultset[i].day26;
-		cell28.innerHTML=resultset[i].day27;
-		cell29.innerHTML=resultset[i].day28;
-		cell30.innerHTML=resultset[i].day29;
-		cell31.innerHTML=resultset[i].day30;
-		cell32.innerHTML=resultset[i].day31;
-	}
+		var currentdate=currday;
+		for(var j=1;j<(33-currday);j++){
+			var cell2=row1.insertCell(j);
+			if(resultset[i]['day'+currentdate] =='Week Off' )
+				{
+				cell2.setAttribute("style", "background-color: #58FAD0;");
+				}
+			else if(resultset[i]['day'+currentdate] =='PL' || resultset[i]['day'+currentdate] =='Comp off')
+			{
+				cell2.setAttribute("style", "background-color: #F78181;");
+				}
+			cell2.innerHTML=resultset[i]['day'+currentdate];
+			currentdate++;
+		}
+		}
+	busy.hide();
+	$.mobile.changePage( "#shiftmanager",{ changeHash: false });
 	}
 function teamchangeFailure(response)
 {

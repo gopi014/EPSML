@@ -192,16 +192,20 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 </div>
 </div>
 <div data-role="page" id="shiftmanager">
-    <div data-role="header"  data-theme="b">
-        <h1>Shift Schedule</h1>
-    </div><!-- /header -->
+   <div data-role="header">
+            <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="home();"></a>
+            <h1 class="Home">SHIFT SCHEDULE</h1>
+			<a href="#" data-direction="reverse" onclick="logout();" data-transition="slide" data-iconpos="notext" class="ui-btn-right btn-bg">
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
+		</div>
     <div data-role="content"> 
     <div class="ui-field-contain" style="position: static;">
     <select name="select-custom-20" id="select-custom-20" data-native-menu="false" onchange="teamchange();">
         <option value="Select">Select a Team</option>
         <option value="SAPSM">SAPSM</option>
         <option value="Emptoris">Emptoris</option>
-        <option value="SAP ACCESS">SAP ACCESS</option>
+        <option value="SAPACCESS">SAPACCESS</option>
         <option value="PESSYSTMAINT">PESSYSTMAINT</option>
         <option value="SAPBI">SAPBI</option>
         <option value="CSA">CSA</option>

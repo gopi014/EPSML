@@ -21,7 +21,7 @@
 			<dataSourceDefinition>
 				<driverClass>com.mysql.jdbc.Driver</driverClass>
 				<url>jdbc:mysql://localhost:3306/epsml2</url>
-			    <user>root</user>
+			    <user>epsml2</user>
     			<password>welcome</password> 
 			</dataSourceDefinition>
 		</connectionPolicy>
