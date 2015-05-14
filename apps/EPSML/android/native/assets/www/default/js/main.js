@@ -3,6 +3,22 @@
 var busyIndicator;
 var busy;
 var summ=[];
+var d = new Date();
+var month = new Array();
+month[0] = "January";
+month[1] = "February";
+month[2] = "March";
+month[3] = "April";
+month[4] = "May";
+month[5] = "June";
+month[6] = "July";
+month[7] = "August";
+month[8] = "September";
+month[9] = "October";
+month[10] = "November";
+month[11] = "December";
+var currmonth = month[d.getMonth()]; 
+var currday=d.getDate();
 function wlCommonInit(){
 	
     getSecretData();
@@ -32,7 +48,7 @@ function getSecretData_Callback(response){
 }
 function shift(){
 	$('#AppBody').hide();
-	$('#shiftmanager').show();
+	$.mobile.changePage( "#shiftmanager",{ changeHash: false });
 }
 function home()
 {
@@ -273,6 +289,100 @@ function leaveSuccess(response){
 function leaveFailure(response){
 	
 	alert("Faliure");
+}
+function teamchange(){
+	WL.ClientMessages.loading = "Loading!Please wait...";
+	busy = new WL.BusyIndicator ();
+	var teamname = document.getElementById("select-custom-20").value;
+	var tablesize=$('#shimanager tbody tr').length;
+	if(tablesize == 0){
+		
+	
+	var invocationData = {
+			adapter: "Validate",
+			procedure: "smanager",
+			parameters: [teamname,currmonth]
+	};
+	WL.Client.invokeProcedure(invocationData,{
+        onSuccess : teamchangeSuccess,
+        onFailure : teamchangeFailure,
+    });
+	}
+	else{
+		$('#shimanager tbody tr').remove();
+		$('#shimanager thead tr').remove();
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "smanager",
+				parameters: [teamname,currmonth]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : teamchangeSuccess,
+	        onFailure : teamchangeFailure,
+	    });
+		
+	}
+}
+function teamchangeSuccess(response)
+{
+	var invocationResult = response.invocationResult;
+	var resultset = invocationResult.resultSet;
+	var length =resultset.length;
+	var table =document.getElementById("shimanager");
+	var header=table.createTHead();
+	var body=table.createTBody();
+	var row=header.insertRow(0);
+	var currentdate1=currday;
+		for(k=0;k<(33-currday);k++){
+			if(k==0){
+				var cell=row.insertCell(k);
+				cell.innerHTML='Name';
+			}
+			else{
+		var cell=row.insertCell(k);
+		cell.innerHTML=currmonth+ ' '+currentdate1;
+		currentdate1++;
+			}
+	
+			}
+		
+	for(i=0;i<6;i++){
+		var row1=body.insertRow(i);
+		var name = resultset[i].emp_name;
+		var cell1=row1.insertCell(0);
+		cell1.innerHTML=name;
+		cell1.setAttribute('id','emp_name');
+		var currentdate=currday;
+		for(var j=1;j<(33-currday);j++){
+			var cell2=row1.insertCell(j);
+			if(resultset[i]['day'+currentdate] =='Week Off' )
+				{
+				cell2.setAttribute("style", "background-color: #58FAD0;");
+				}
+			else if(resultset[i]['day'+currentdate] =='PL' || resultset[i]['day'+currentdate] =='Comp off')
+			{
+				cell2.setAttribute("style", "background-color: #F78181;");
+				}
+			cell2.innerHTML=resultset[i]['day'+currentdate];
+			currentdate++;
+		}
+		}
+	busy.hide();
+	$.mobile.changePage( "#shiftmanager",{ changeHash: false });
+	}
+function teamchangeFailure(response)
+{
+	alert('falure');
+	}
+function sp1() {
+	$('#sp2').removeClass("ui-state-persist");
+	$('#sp1').addClass("ui-state-persist");
+	
+}
+function sp2() {
+	$('#sp1').removeClass("ui-state-persist");
+	$('#sp2').addClass("ui-state-persist");
+	
 }
 /* JavaScript content from js/main.js in folder android */
 // This method is invoked after loading the main HTML and successful initialization of the IBM MobileFirst Platform runtime.

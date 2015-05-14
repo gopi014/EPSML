@@ -372,3 +372,13 @@ function teamchangeFailure(response)
 {
 	alert('falure');
 	}
+function sp1() {
+	$('#sp2').removeClass("ui-state-persist");
+	$('#sp1').addClass("ui-state-persist");
+	
+}
+function sp2() {
+	$('#sp1').removeClass("ui-state-persist");
+	$('#sp2').addClass("ui-state-persist");
+	
+}

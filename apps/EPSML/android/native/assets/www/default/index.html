@@ -173,7 +173,7 @@
                 <h1 class="Home">Wiki Updates</h1>
                 <a class="ui-btn-right  btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();"><img src="images/logout.png" style="width: 25px;"></a>
             </div>
-            <div class="ui-content" role="main">
+            <div class="ui-content" data-role="main">
                 <div id="wikiContent">
                 </div>
             </div>
@@ -207,224 +207,54 @@
             <div class="ui-content" data-role="main">
                 <div data-role="tabs">
                     <div data-role="navbar">
-                        <ul>
+                        <ul id="leavetab">
                             <li>
-                                <a class="ui-btn-active" href="#fragment-1">WFH</a>
+                                <a class="ui-btn-active ui-state-persist" href="#fragment-1" id="sp1" onclick="sp1();">WFH</a>
                             </li>
                             <li>
-                                <a href="#fragment-2">LEAVE</a>
+                                <a href="#fragment-2" id="sp2" onclick="sp2();">LEAVE</a>
                             </li>
                         </ul>
                     </div>
                     <div id="fragment-1" style="color:white">
-                        <ul id="fragment-1ul">
+                        <ul id="fragment-1ul" style="margin-left: -40px;">
                         </ul>
                     </div>
                     <div id="fragment-2" style="color:white">
-                        <ul id="fragment-2ul">
+                        <ul id="fragment-2ul" style="margin-left: -40px;">
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
         <div data-role="page" id="shiftmanager">
-            <div data-role="header" data-theme="b">
-                <h1>Shift Schedule</h1>
+            <div data-role="header">
+                <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
+                <h1 class="Home">SHIFT SCHEDULE</h1>
+                <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-transition="slide" href="#" onclick="logout();">
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
             </div>
-            <!-- /header -->
             <div data-role="content"> 
                 <div class="ui-field-contain" style="position: static;">
-                    <select data-native-menu="false" id="select-custom-20" name="select-custom-20">
-        <option value="AL">Select Team</option>
-        <option value="SS">SAPSM</option>
-        <option value="EM">Emptoris</option>
-        <option value="SA">SAP ACCESS</option>
-        <option value="PE">PESSYSTMAINT</option>
-        <option value="SB">SAPBI</option>
-        <option value="CS">CSA</option>
-        <option value="WO">WOI</option>
-        <option value="FL">Florida</option>
-        <option value="GA">Georgia</option>
-        <option value="HI">Hawaii</option>
-    </select>
+                    <select data-native-menu="false" id="select-custom-20" name="select-custom-20" onchange="teamchange();">
+        <option value="Select">Select a Team</option>
+        <option value="SAPSM">SAPSM</option>
+        <option value="Emptoris">Emptoris</option>
+        <option value="SAPACCESS">SAPACCESS</option>
+        <option value="PESSYSTMAINT">PESSYSTMAINT</option>
+        <option value="SAPBI">SAPBI</option>
+        <option value="CSA">CSA</option>
+        <option value="WOI">WOI</option>
+            </select>
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-            <th>Apr 01</th>
-            <th>Apr 02</th>
-            <th>Apr 03</th>
-            <th>Apr 04</th>
-            <th>Apr 05</th>
-            <th>Apr 06</th>
-            <th>Apr 07</th>
-            <th>Apr 08</th>
-            <th>Apr 09</th>
-            <th>Apr 10</th>
-            <th>Apr 11</th>
-            <th>Apr 12</th>
-            <th>Apr 13</th>
-            <th>Apr 14</th>
-            <th>Apr 15</th>
-            <th>Apr 16</th>
-            <th>Apr 17</th>
-            <th>Apr 18</th>
-            <th>Apr 19</th>
-            <th>Apr 20</th>
-            <th>Apr 21</th>
-            <th>Apr 22</th>
-            <th>Apr 23</th>
-            <th>Apr 24</th>
-            <th>Apr 25</th>
-            <th>Apr 26</th>
-            <th>Apr 27</th>
-            <th>Apr 28</th>
-            <th>Apr 29</th>
-            <th>Apr 30</th>
-            <th>Apr 31</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #5858FA"></td>
-            <td style="background-color: #FA58F4"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #5858FA"></td>
-                        </tr> 
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-              <td style="background-color: #5858FA"></td>
-               <td style="background-color: #F4FA58"></td>
-                        </tr>    
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #58FAD0"></td>
-               <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-             <td style="background-color: #F4FA58"></td>
-              <td style="background-color: #5858FA"></td>
-              <td style="background-color: #82FA58"></td>
-                        </tr>     
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #5858FA"></td>
-            <td style="background-color: #FA58F4"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #5858FA"></td>
-                        </tr> 
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-              <td style="background-color: #5858FA"></td>
-               <td style="background-color: #F4FA58"></td>
-                        </tr>    
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #58FAD0"></td>
-               <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-             <td style="background-color: #F4FA58"></td>
-              <td style="background-color: #5858FA"></td>
-              <td style="background-color: #82FA58"></td>
-                        </tr> 
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #5858FA"></td>
-            <td style="background-color: #FA58F4"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #5858FA"></td>
-                        </tr> 
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-              <td style="background-color: #5858FA"></td>
-               <td style="background-color: #F4FA58"></td>
-                        </tr>    
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #58FAD0"></td>
-               <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-             <td style="background-color: #F4FA58"></td>
-              <td style="background-color: #5858FA"></td>
-              <td style="background-color: #82FA58"></td>
-                        </tr> 
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #5858FA"></td>
-            <td style="background-color: #FA58F4"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #5858FA"></td>
-                        </tr> 
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-              <td style="background-color: #5858FA"></td>
-               <td style="background-color: #F4FA58"></td>
-                        </tr>    
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #58FAD0"></td>
-               <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-             <td style="background-color: #F4FA58"></td>
-              <td style="background-color: #5858FA"></td>
-              <td style="background-color: #82FA58"></td>
-                        </tr>   
-                    </tbody>
+                <table id="shimanager">
                 </table>
-                <script src="js/initOptions.js"></script>
+            </div>  
+        </div>		
+        <script src="js/initOptions.js"></script>
     		<script src="js/main.js"></script>
     		<script src="js/messages.js"></script>
     		<script src="js/CustomAuthenticatorRealmChallengeHandler.js"></script>
-            </div>
-        </div>
     </body>
 </html>
