@@ -45,6 +45,7 @@
 				</div>	
 		</div>
 		<div data-role="page"  id="AppBody"  >
+		<div id="teamname" style="display: none;"></div>
 		<div data-role="header">
 			<h1 class="Home">Home</h1>
 			<a href="#" data-role="button"data-direction="reverse" onclick="logout();" data-transition="slide" data-iconpos="notext" class="ui-btn-right btn-bg">
@@ -56,7 +57,7 @@
 			<div class="ui-block-a" id="semployee">
 			<div class="ui-bar ui-bar-a ui-home-bar">
 			<div class="menu-elem"> 
-			<a href="#">
+			<a href="#" onclick="ShiftSchedule_user();">
 			<span class="menu-img"> 
 			<img src="images/shift.png" style="width: 50px;height: 55px;" > </span>
 			<span class="menu-text"> Shift Schedule </span>
@@ -191,6 +192,9 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 </div>
 </div>
 </div>
+
+
+
 <div data-role="page" id="shiftmanager">
    <div data-role="header">
             <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="home();"></a>
@@ -217,6 +221,28 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
  
    
 </table>
+</div>
+</div>
+
+
+<div data-role="page" id="shiftschedule_userp">
+   <div data-role="header">
+            <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="home();"></a>
+            <h1 class="Home">SHIFT SCHEDULE</h1>
+			<a href="#" data-direction="reverse" onclick="logout();" data-transition="slide" data-iconpos="notext" class="ui-btn-right btn-bg">
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
+		</div>
+    <div data-role="content"> 
+     <table id="ssusertable">
+   
+   
+	</table>
+</div>
+</div>
+
+
+
     		<script src="js/initOptions.js"></script>
     		<script src="js/main.js"></script>
     		<script src="js/messages.js"></script>

@@ -100,6 +100,7 @@ function getSecretData_Callback(response){
 	var team=result[0].team;
 	if((team == 'Manager') || (team == 'PL') )
 		{
+		
 		$('#AppBody').show();
 		$('#AuthBody').hide();
 		$('#semployee').hide();
@@ -109,6 +110,7 @@ function getSecretData_Callback(response){
 		busyIndicator.hide();
 		}
 	else{
+		document.getElementById("teamname").value = team;
 		$('#AppBody').show();
 		$('#AuthBody').hide();
 		busyIndicator.hide();
