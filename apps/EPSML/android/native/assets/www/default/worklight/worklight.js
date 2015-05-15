@@ -451,8 +451,7 @@ window.WLJSX = {
 			isOpera 		: isOpera,
 			isWebKit 		: userAgent.indexOf('AppleWebKit/') > -1,
 			isGecko 		: userAgent.indexOf('Gecko') > -1 && userAgent.indexOf('KHTML') === -1,
-			isMobileSafari 	: /Apple.*Mobile/.test(userAgent),
-			isWP81RT : userAgent.indexOf('Windows Phone 8.1') > -1
+			isMobileSafari 	: /Apple.*Mobile/.test(userAgent)
 		};
 	},
 	
@@ -9850,8 +9849,6 @@ __WLClient = function() {
 					errorCode : WL.ErrorCode.REQUEST_TIMEOUT,
 					errorMsg : WL.ClientMessages.requestTimeout
 				};
-				//APAR - 69540: PI38214 TYPEERROR: UNDEFINED IS NOT A FUNCTION OCCURS WHEN LDAP LOGIN REQUEST RETURNS A TIMEOUT.
-				transport.responseText = null;
 				submitLoginFormCallback(transport);
 			}
 
@@ -17732,7 +17729,6 @@ WL.App.hideSplashScreen = function() {
 		
 		// Request methods
 		this.open 					= function(method, url, async, user, password){};
-		this.abort                  = function(){};
 		this.setRequestHeader 		= function(headerName, headerValue){};
 		this.timeout 				= 60000;  // default timeout for hybrid requests is 1 min.
 		this.send 					= function(data){};

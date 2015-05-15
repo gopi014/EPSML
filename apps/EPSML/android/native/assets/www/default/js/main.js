@@ -346,11 +346,7 @@ function teamchangeSuccess(response)
 	
 			}
 		
-<<<<<<< HEAD
 	for(i=0;i<length;i++){
-=======
-	for(i=0;i<6;i++){
->>>>>>> e35def89f2710213e7acb7fc27283de64e518638
 		var row1=body.insertRow(i);
 		var name = resultset[i].emp_name;
 		var cell1=row1.insertCell(0);
@@ -378,15 +374,15 @@ function teamchangeFailure(response)
 {
 	alert('falure');
 	}
-<<<<<<< HEAD
+
 
 function ShiftSchedule_user(){
-	var team = "SAPBI";
-	alert("in shift schedule user ")
+	
+	var teamname=document.getElementById("teamname").value ;
 	var invocationData = {
 			adapter: "Validate",
 			procedure: "getUserShiftSchedule",
-			parameters: [team,currmonth]
+			parameters: [teamname,currmonth]
 	};
 	WL.Client.invokeProcedure(invocationData,{
 		onSuccess : ShiftSchedule_UserSuccess,
@@ -397,11 +393,12 @@ function ShiftSchedule_user(){
 }
 
 function ShiftSchedule_UserSuccess(response){
-	alert("in success");
+	;
 	var invocationResult = response.invocationResult;
 	var resultset = invocationResult.resultSet;
 	var length =resultset.length;
 	var table =document.getElementById("ssusertable");
+	
 	var header=table.createTHead();
 	var body=table.createTBody();
 	var row=header.insertRow(0);
@@ -418,15 +415,18 @@ function ShiftSchedule_UserSuccess(response){
 			}
 	
 			}
-		
+		alert(length)
 	for(i=0;i<length;i++){
 		var row1=body.insertRow(i);
 		var name = resultset[i].emp_name;
+		
 		var cell1=row1.insertCell(0);
 		cell1.innerHTML=name;
 		cell1.setAttribute('id','emp_name');
 		var currentdate=currday;
+		
 		for(var j=1;j<(33-currday);j++){
+			
 			var cell2=row1.insertCell(j);
 			if(resultset[i]['day'+currentdate] =='Week Off' )
 				{
@@ -440,8 +440,10 @@ function ShiftSchedule_UserSuccess(response){
 			currentdate++;
 		}
 		}
-	busy.hide();
-	$.mobile.changePage( "#shiftmanager",{ changeHash: false });
+	//busy.hide();
+	$('#AppBody').hide();
+    $('#shiftschedule_userp').show();
+	//$.mobile.changePage( "#shiftmanager",{ changeHash: false });
 	
 	}
 
@@ -450,7 +452,6 @@ function ShiftSchedule_UserFailure(response){
 	alert("failure");
 }
 
-=======
 function sp1() {
 	$('#sp2').removeClass("ui-state-persist");
 	$('#sp1').addClass("ui-state-persist");
@@ -461,7 +462,8 @@ function sp2() {
 	$('#sp2').addClass("ui-state-persist");
 	
 }
->>>>>>> e35def89f2710213e7acb7fc27283de64e518638
+
+
 /* JavaScript content from js/main.js in folder android */
 // This method is invoked after loading the main HTML and successful initialization of the IBM MobileFirst Platform runtime.
 function wlEnvInit(){

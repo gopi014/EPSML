@@ -372,7 +372,7 @@ function teamchangeFailure(response)
 {
 	alert('falure');
 	}
-<<<<<<< HEAD
+
 
 function ShiftSchedule_user(){
 	
@@ -449,7 +449,7 @@ function ShiftSchedule_UserSuccess(response){
 function ShiftSchedule_UserFailure(response){
 	alert("failure");
 }
-=======
+
 function sp1() {
 	$('#sp2').removeClass("ui-state-persist");
 	$('#sp1').addClass("ui-state-persist");
@@ -460,4 +460,4 @@ function sp2() {
 	$('#sp2').addClass("ui-state-persist");
 	
 }
->>>>>>> e35def89f2710213e7acb7fc27283de64e518638
+
