@@ -173,7 +173,7 @@
                 <h1 class="Home">Wiki Updates</h1>
                 <a class="ui-btn-right  btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();"><img src="images/logout.png" style="width: 25px;"></a>
             </div>
-            <div class="ui-content" role="main">
+            <div class="ui-content" data-role="main">
                 <div id="wikiContent">
                 </div>
             </div>
@@ -207,21 +207,25 @@
             <div class="ui-content" data-role="main">
                 <div data-role="tabs">
                     <div data-role="navbar">
-                        <ul>
+                        <ul id="leavetab">
                             <li>
+<<<<<<< HEAD
                                 <a class="ui-btn-active ui-state-persist" href="#fragment-1">WFH</a>
+=======
+                                <a class="ui-btn-active ui-state-persist" href="#fragment-1" id="sp1" onclick="sp1();">WFH</a>
+>>>>>>> e35def89f2710213e7acb7fc27283de64e518638
                             </li>
                             <li>
-                                <a href="#fragment-2">LEAVE</a>
+                                <a href="#fragment-2" id="sp2" onclick="sp2();">LEAVE</a>
                             </li>
                         </ul>
                     </div>
                     <div id="fragment-1" style="color:white">
-                        <ul id="fragment-1ul">
+                        <ul id="fragment-1ul" style="margin-left: -40px;">
                         </ul>
                     </div>
                     <div id="fragment-2" style="color:white">
-                        <ul id="fragment-2ul">
+                        <ul id="fragment-2ul" style="margin-left: -40px;">
                         </ul>
                     </div>
                 </div>
@@ -249,6 +253,7 @@
             </select>
                 </div>
                 <table id="shimanager">
+<<<<<<< HEAD
                 </table>
             </div>
         </div>
@@ -265,6 +270,11 @@
                 </table>
             </div>
         </div>
+=======
+                </table>
+            </div>  
+        </div>		
+>>>>>>> e35def89f2710213e7acb7fc27283de64e518638
         <script src="js/initOptions.js"></script>
     		<script src="js/main.js"></script>
     		<script src="js/messages.js"></script>

@@ -346,7 +346,11 @@ function teamchangeSuccess(response)
 	
 			}
 		
+<<<<<<< HEAD
 	for(i=0;i<length;i++){
+=======
+	for(i=0;i<6;i++){
+>>>>>>> e35def89f2710213e7acb7fc27283de64e518638
 		var row1=body.insertRow(i);
 		var name = resultset[i].emp_name;
 		var cell1=row1.insertCell(0);
@@ -374,6 +378,7 @@ function teamchangeFailure(response)
 {
 	alert('falure');
 	}
+<<<<<<< HEAD
 
 function ShiftSchedule_user(){
 	var team = "SAPBI";
@@ -445,6 +450,18 @@ function ShiftSchedule_UserFailure(response){
 	alert("failure");
 }
 
+=======
+function sp1() {
+	$('#sp2').removeClass("ui-state-persist");
+	$('#sp1').addClass("ui-state-persist");
+	
+}
+function sp2() {
+	$('#sp1').removeClass("ui-state-persist");
+	$('#sp2').addClass("ui-state-persist");
+	
+}
+>>>>>>> e35def89f2710213e7acb7fc27283de64e518638
 /* JavaScript content from js/main.js in folder android */
 // This method is invoked after loading the main HTML and successful initialization of the IBM MobileFirst Platform runtime.
 function wlEnvInit(){

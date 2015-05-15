@@ -140,7 +140,7 @@
 <a href="#" data-role="button"data-direction="reverse" onclick="logout();" data-transition="slide"
 data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" style="width: 25px;"></a>
 </div>
-<div role="main" class="ui-content">
+<div data-role="main" class="ui-content">
 <div id="wikiContent">
 </div>
 </div>
@@ -175,18 +175,18 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 <div data-role="main" class="ui-content">
 <div data-role="tabs">
 <div data-role="navbar">
-<ul>
-<li><a href="#fragment-1" class="ui-btn-active ui-state-persist">WFH</a></li>
-<li><a href="#fragment-2">LEAVE</a></li>
+<ul id="leavetab">
+<li><a href="#fragment-1" class="ui-btn-active ui-state-persist" id="sp1" onclick="sp1();">WFH</a></li>
+<li><a href="#fragment-2" id="sp2" onclick="sp2();">LEAVE</a></li>
 </ul>
 </div>
 <div id="fragment-1" style="color:white" >
-<ul id="fragment-1ul">
+<ul id="fragment-1ul" style="margin-left: -40px;">
 
 </ul>
 </div>
 <div id="fragment-2" style="color:white" >
-<ul id="fragment-2ul">
+<ul id="fragment-2ul" style="margin-left: -40px;">
 </ul>
 </div>
 </div>
@@ -216,11 +216,9 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
         <option value="WOI">WOI</option>
             </select>
 </div>
-   <table id="shimanager">
-   
- 
-   
+<table id="shimanager">
 </table>
+<<<<<<< HEAD
 </div>
 </div>
 
@@ -244,6 +242,11 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 
 
     		<script src="js/initOptions.js"></script>
+=======
+ </div>  
+  </div>		
+           <script src="js/initOptions.js"></script>
+>>>>>>> e35def89f2710213e7acb7fc27283de64e518638
     		<script src="js/main.js"></script>
     		<script src="js/messages.js"></script>
     		<script src="js/CustomAuthenticatorRealmChallengeHandler.js"></script>
