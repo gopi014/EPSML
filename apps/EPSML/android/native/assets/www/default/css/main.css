@@ -156,6 +156,7 @@ border-color: #38C !important;
 color: #FFF !important;
 text-shadow: 0px 1px 0px #059 !important;
 }
+<<<<<<< HEAD
 th,td {
     padding: 5px;
     white-space: nowrap;
@@ -185,6 +186,42 @@ border-right: none;
 .table2 tr:last-child td {
 border-bottom: none;
 }
+=======
+#shimanager {
+    color: white;
+    border: 1px solid white;
+    font: bold 12px helvetica;
+    padding: 0;
+    margin-top:10px;
+    width: 100px;
+    -webkit-border-radius: 8px;
+    
+}
+
+#shimanager thead{
+	background-color: #0E74BC;
+}
+     
+#shimanager tr td {
+    color: white;
+    border-bottom: 1px solid #b4b4b4;
+    border-right: 1px solid #b4b4b4;
+    padding: 10px 10px 10px 10px;
+    background-image: -webkit-linear-gradient(top, blue, #eee);
+}
+         
+#shimanager tr td:last-child {
+    border-right: none;
+}
+
+#shimanager tr:last-child td {
+    border-bottom: none;
+}
+#emp_name{
+	background-color: #0E74BC;
+}
+
+>>>>>>> origin/master
 /* Stylesheet content from css/main.css in folder android */
 /*	 Licensed Materials - Property of IBM
 	 5725-I43 (C) Copyright IBM Corp. 2006, 2013. All Rights Reserved.

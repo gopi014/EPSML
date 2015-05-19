@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+<<<<<<< HEAD
 <head>
 <meta charset="UTF-8">
 <title>Thinkmatix</title>
@@ -63,6 +64,73 @@
 </div>
 </div>
 </div>
+=======
+    	<head>
+    		<meta charset="UTF-8">
+    		    		<title>Thinkmatix</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    		<link rel="shortcut icon" href="images/favicon.png">
+    		<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    		<link href="jqueryMobile/jquery.mobile-1.4.5.css" rel="stylesheet">
+    		<link rel="stylesheet" href="css/main.css">
+    		<script>window.$ = window.jQuery = WLJQ;</script>
+    		<script src="jqueryMobile/jquery.mobile-1.4.5.js"></script>
+    	</head>
+    	<body style="display: none;">
+    		<!--application UI goes here-->
+    	<div data-role="page" id="AuthBody" >    		
+  			<div data-role="main" class="ui-content">
+			<div style="text-align:center">
+				<img src="images/image.png"   width="80" height="80">
+			</div>
+			<h2 align="center" style="color: white" >THINKMATIX</h2>
+      		<div class="container">                                                                                            
+      			<div class="table-responsive">          
+     				 <table class="table" style="width:100%">
+      					<tbody> 
+      					<tr>          
+            				<td style="width:5%"><img src="images/image2.png"  width="40" vspace="7" hspace="5"></td>
+            				<td style="width:95%">
+            				<input type="text" name="username" id="usernameInputField" placeholder="Username"  style="opacity : 0.7; background: #00AEEF; color: white"/></td>
+        				</tr> 
+        				<tr>
+            				<td style="width:5%"> <img src="images/image3.png" width="40" hspace="5" vspace="7"></td>
+            				<td style="width:95%"><input type="password" name="password" id="passwordInputField" placeholder="Password" style="opacity : 0.7; background: #00AEEF; color: white"/></td>
+          				</tr>
+          				</tbody>
+      				</table>
+      					<div id="loginmesg" style="color:red"></div>
+      						 <button  id="loginButton" style="background: #1C75BC; color: white; font-weight: bold" >Login</button>
+
+    			</div>
+			</div>  
+			</div>
+ 				<div data-role="footer" data-id="fixedFooter" data-position="fixed" data-tap-toggle="false" style="background: #00AEEF ;text-align:center;border:none">
+   			 		<img src="images/image1.png"   width="60" />
+				</div>	
+		</div>
+		<div data-role="page"  id="AppBody"  >
+		<div id="teamname" style="display: none;"></div>
+		<div data-role="header">
+			<h1 class="Home">Home</h1>
+			<a href="#" data-role="button"data-direction="reverse" onclick="logout();" data-transition="slide" data-iconpos="notext" class="ui-btn-right btn-bg">
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
+		</div>
+   		<div data-role="main" class="ui-content">
+		<div class="ui-grid-a home-grid-a"> 
+			<div class="ui-block-a" id="semployee">
+			<div class="ui-bar ui-bar-a ui-home-bar">
+			<div class="menu-elem"> 
+			<a href="#" onclick="ShiftSchedule_user();">
+			<span class="menu-img"> 
+			<img src="images/shift.png" style="width: 50px;height: 55px;" > </span>
+			<span class="menu-text"> Shift Schedule </span>
+			</a> 
+			</div>
+			</div>
+			</div>
+>>>>>>> origin/master
 <div class="ui-block-a" style="display: none;" id="smanager">
 <div class="ui-bar ui-bar-a ui-home-bar">
 <div class="menu-elem"> <a href="#" onclick="teamchange();">
@@ -179,6 +247,10 @@ data-iconpos="notext" class="ui-btn-right btn-bg"><img src="images/logout.png" s
 </div>
 <div id="fragment-1" style="color:white" >
 <ul id="fragment-1ul" style="margin-left: -40px;">
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 </ul>
 </div>
 <div id="fragment-2" style="color:white" >
@@ -188,7 +260,11 @@ data-iconpos="notext" class="ui-btn-right btn-bg"><img src="images/logout.png" s
 </div>
 </div>
 </div>
+
+
+
 <div data-role="page" id="shiftmanager">
+<<<<<<< HEAD
 <div data-role="header">
 <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="home();"></a>
 <h1 class="Home">SHIFT SCHEDULE</h1>
@@ -208,4 +284,61 @@ data-iconpos="notext" class="ui-btn-right btn-bg"><img src="images/logout.png" s
 <script src="js/messages.js"></script>
 <script src="js/CustomAuthenticatorRealmChallengeHandler.js"></script>
 </body>
+=======
+   <div data-role="header">
+            <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="home();"></a>
+            <h1 class="Home">SHIFT SCHEDULE</h1>
+			<a href="#" data-direction="reverse" onclick="logout();" data-transition="slide" data-iconpos="notext" class="ui-btn-right btn-bg">
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
+		</div>
+    <div data-role="content"> 
+    <div class="ui-field-contain" style="position: static;">
+    <select name="select-custom-20" id="select-custom-20" data-native-menu="false" onchange="teamchange();">
+        <option value="Select">Select a Team</option>
+        <option value="SAPSM">SAPSM</option>
+        <option value="Emptoris">Emptoris</option>
+        <option value="SAPACCESS">SAPACCESS</option>
+        <option value="PESSYSTMAINT">PESSYSTMAINT</option>
+        <option value="SAPBI">SAPBI</option>
+        <option value="CSA">CSA</option>
+        <option value="WOI">WOI</option>
+            </select>
+</div>
+<table id="shimanager">
+</table>
+
+</div>
+</div>
+
+
+<div data-role="page" id="shiftschedule_userp">
+   <div data-role="header">
+            <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="home();"></a>
+            <h1 class="Home">SHIFT SCHEDULE</h1>
+			<a href="#" data-direction="reverse" onclick="logout();" data-transition="slide" data-iconpos="notext" class="ui-btn-right btn-bg">
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
+		</div>
+    <div data-role="content"> 
+     <table id="ssusertable">
+   
+   
+	</table>
+</div>
+</div>
+
+
+
+    		<script src="js/initOptions.js"></script>
+
+ </div>  
+  </div>		
+           <script src="js/initOptions.js"></script>
+
+    		<script src="js/main.js"></script>
+    		<script src="js/messages.js"></script>
+    		<script src="js/CustomAuthenticatorRealmChallengeHandler.js"></script>
+    	</body>
+>>>>>>> origin/master
 </html> 

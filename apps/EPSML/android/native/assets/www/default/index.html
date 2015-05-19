@@ -67,6 +67,7 @@
 </div>
         </div>
         <div data-role="page" id="AppBody">
+            <div id="teamname" style="display: none;"></div>
             <div data-role="header">
                 <h1 class="Home">Home</h1>
                 <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();">
@@ -77,12 +78,21 @@
                 <div class="ui-grid-a home-grid-a">
                     <div class="ui-block-a" id="semployee">
                         <div class="ui-bar ui-bar-a ui-home-bar">
+<<<<<<< HEAD
                             <div class="menu-elem">
                                 <a href="#">
 <span class="menu-img">
 <img src="images/shift.png" style="width: 50px;height: 55px;"> </span>
 <span class="menu-text"> Shift Schedule </span>
 </a>
+=======
+                            <div class="menu-elem"> 
+                                <a href="#" onclick="ShiftSchedule_user();">
+			<span class="menu-img"> 
+			<img src="images/shift.png" style="width: 50px;height: 55px;"> </span>
+			<span class="menu-text"> Shift Schedule </span>
+			</a> 
+>>>>>>> origin/master
                             </div>
                         </div>
                     </div>
@@ -232,6 +242,7 @@
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
                 <h1 class="Home">SHIFT SCHEDULE</h1>
                 <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-transition="slide" href="#" onclick="logout();">
+<<<<<<< HEAD
 <img src="images/logout.png" style="width: 25px;">
 </a>
             </div>
@@ -244,5 +255,45 @@
 <script src="js/main.js"></script>
 <script src="js/messages.js"></script>
 <script src="js/CustomAuthenticatorRealmChallengeHandler.js"></script>
+=======
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
+            </div>
+            <div data-role="content"> 
+                <div class="ui-field-contain" style="position: static;">
+                    <select data-native-menu="false" id="select-custom-20" name="select-custom-20" onchange="teamchange();">
+        <option value="Select">Select a Team</option>
+        <option value="SAPSM">SAPSM</option>
+        <option value="Emptoris">Emptoris</option>
+        <option value="SAPACCESS">SAPACCESS</option>
+        <option value="PESSYSTMAINT">PESSYSTMAINT</option>
+        <option value="SAPBI">SAPBI</option>
+        <option value="CSA">CSA</option>
+        <option value="WOI">WOI</option>
+            </select>
+                </div>
+                <table id="shimanager">
+                </table>
+            </div>
+        </div>
+        <div data-role="page" id="shiftschedule_userp">
+            <div data-role="header">
+                <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
+                <h1 class="Home">SHIFT SCHEDULE</h1>
+                <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-transition="slide" href="#" onclick="logout();">
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
+            </div>
+            <div data-role="content"> 
+                <table id="ssusertable">
+                </table>
+            </div>
+        </div>
+        <script src="js/initOptions.js"></script>
+           <script src="js/initOptions.js"></script>
+    		<script src="js/main.js"></script>
+    		<script src="js/messages.js"></script>
+    		<script src="js/CustomAuthenticatorRealmChallengeHandler.js"></script>
+>>>>>>> origin/master
     </body>
 </html>
