@@ -32,57 +32,57 @@
 		<script src="worklight/worklight.js"></script>
 		<script src="worklight/checksum.js"></script>
 		<script>window.$ = window.jQuery = WLJQ;</script>
-    		<script src="jqueryMobile/jquery.mobile-1.4.5.js"></script>
+<script src="jqueryMobile/jquery.mobile-1.4.5.js"></script>
     </head>
     <body style="display: none;">
-    		<!--application UI goes here-->
-        <div data-role="page" id="AuthBody">    		
+<!--application UI goes here-->
+        <div data-role="page" id="AuthBody">
             <div class="ui-content" data-role="main">
                 <div style="text-align:center">
                     <img height="80" src="images/image.png" width="80">
-			</div>
+</div>
                 <h2 align="center" style="color: white">THINKMATIX</h2>
-                <div class="container">                                                                                            
-                    <div class="table-responsive">          
+                <div class="container">
+                    <div class="table-responsive">
                         <table class="table" style="width:100%">
-                            <tbody> 
-                                <tr>          
+                            <tbody>
+                                <tr>
                                     <td style="width:5%"><img hspace="5" src="images/image2.png" vspace="7" width="40"></td>
-            				<td style="width:95%">
-            				<input id="usernameInputField" name="username" placeholder="Username" style="opacity : 0.7; background: #00AEEF; color: white" type="text"></td>
-                                </tr> 
+<td style="width:95%">
+<input id="usernameInputField" name="username" placeholder="Username" style="opacity : 0.7; background: #00AEEF; color: white" type="text"></td>
+                                </tr>
                                 <tr>
                                     <td style="width:5%"> <img hspace="5" src="images/image3.png" vspace="7" width="40"></td>
-            				<td style="width:95%"><input id="passwordInputField" name="password" placeholder="Password" style="opacity : 0.7; background: #00AEEF; color: white" type="password"></td>
+<td style="width:95%"><input id="passwordInputField" name="password" placeholder="Password" style="opacity : 0.7; background: #00AEEF; color: white" type="password"></td>
                                 </tr>
                             </tbody>
                         </table>
                         <div id="loginmesg" style="color:red"></div>
                         <button id="loginButton" style="background: #1C75BC; color: white; font-weight: bold">Login</button>
                     </div>
-                </div>  
+                </div>
             </div>
             <div data-id="fixedFooter" data-position="fixed" data-role="footer" data-tap-toggle="false" style="background: #00AEEF ;text-align:center;border:none">
                 <img src="images/image1.png" width="60">
-				</div>	
+</div>
         </div>
         <div data-role="page" id="AppBody">
             <div data-role="header">
                 <h1 class="Home">Home</h1>
                 <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();">
-			<img src="images/logout.png" style="width: 25px;">
-			</a>
+<img src="images/logout.png" style="width: 25px;">
+</a>
             </div>
             <div class="ui-content" data-role="main">
-                <div class="ui-grid-a home-grid-a"> 
+                <div class="ui-grid-a home-grid-a">
                     <div class="ui-block-a" id="semployee">
                         <div class="ui-bar ui-bar-a ui-home-bar">
-                            <div class="menu-elem"> 
+                            <div class="menu-elem">
                                 <a href="#">
-			<span class="menu-img"> 
-			<img src="images/shift.png" style="width: 50px;height: 55px;"> </span>
-			<span class="menu-text"> Shift Schedule </span>
-			</a> 
+<span class="menu-img">
+<img src="images/shift.png" style="width: 50px;height: 55px;"> </span>
+<span class="menu-text"> Shift Schedule </span>
+</a>
                             </div>
                         </div>
                     </div>
@@ -171,9 +171,9 @@
             <div data-role="header">
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
                 <h1 class="Home">Wiki Updates</h1>
-                <a class="ui-btn-right  btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();"><img src="images/logout.png" style="width: 25px;"></a>
+                <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();"><img src="images/logout.png" style="width: 25px;"></a>
             </div>
-            <div class="ui-content" role="main">
+            <div class="ui-content" data-role="main">
                 <div id="wikiContent">
                 </div>
             </div>
@@ -182,7 +182,7 @@
             <div data-role="header">
                 <a class="ui-btn ui-icon-arrow-l ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="back();"></a>
                 <h1 class="Home">Wiki Updates</h1>
-                <a class="ui-btn-right  btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();"><img src="images/logout.png" style="width: 25px;"></a>
+                <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();"><img src="images/logout.png" style="width: 25px;"></a>
             </div>
             <div class="ui-content" data-role="main">
                 <ul data-inset="true" data-role="listview" id="recentupdates1">
@@ -201,230 +201,48 @@
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
                 <h1 class="Home">WFH/Leave</h1>
                 <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-transition="slide" href="#" onclick="logout();">
-			<img src="images/logout.png" style="width: 25px;">
-			</a>
+<img src="images/logout.png" style="width: 25px;">
+</a>
             </div>
             <div class="ui-content" data-role="main">
                 <div data-role="tabs">
                     <div data-role="navbar">
-                        <ul>
+                        <ul id="leavetab">
                             <li>
-                                <a class="ui-btn-active" href="#fragment-1">WFH</a>
+                                <a class="ui-btn-active ui-state-persist" href="#fragment-1" id="sp1" onclick="sp1();">WFH</a>
                             </li>
                             <li>
-                                <a href="#fragment-2">LEAVE</a>
+                                <a href="#fragment-2" id="sp2" onclick="sp2();">LEAVE</a>
                             </li>
                         </ul>
                     </div>
                     <div id="fragment-1" style="color:white">
-                        <ul id="fragment-1ul">
+                        <ul id="fragment-1ul" style="margin-left: -40px;">
                         </ul>
                     </div>
                     <div id="fragment-2" style="color:white">
-                        <ul id="fragment-2ul">
+                        <ul id="fragment-2ul" style="margin-left: -40px;">
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
         <div data-role="page" id="shiftmanager">
-            <div data-role="header" data-theme="b">
-                <h1>Shift Schedule</h1>
+            <div data-role="header">
+                <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
+                <h1 class="Home">SHIFT SCHEDULE</h1>
+                <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-transition="slide" href="#" onclick="logout();">
+<img src="images/logout.png" style="width: 25px;">
+</a>
             </div>
-            <!-- /header -->
-            <div data-role="content"> 
-                <div class="ui-field-contain" style="position: static;">
-                    <select data-native-menu="false" id="select-custom-20" name="select-custom-20">
-        <option value="AL">Select Team</option>
-        <option value="SS">SAPSM</option>
-        <option value="EM">Emptoris</option>
-        <option value="SA">SAP ACCESS</option>
-        <option value="PE">PESSYSTMAINT</option>
-        <option value="SB">SAPBI</option>
-        <option value="CS">CSA</option>
-        <option value="WO">WOI</option>
-        <option value="FL">Florida</option>
-        <option value="GA">Georgia</option>
-        <option value="HI">Hawaii</option>
-    </select>
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-            <th>Apr 01</th>
-            <th>Apr 02</th>
-            <th>Apr 03</th>
-            <th>Apr 04</th>
-            <th>Apr 05</th>
-            <th>Apr 06</th>
-            <th>Apr 07</th>
-            <th>Apr 08</th>
-            <th>Apr 09</th>
-            <th>Apr 10</th>
-            <th>Apr 11</th>
-            <th>Apr 12</th>
-            <th>Apr 13</th>
-            <th>Apr 14</th>
-            <th>Apr 15</th>
-            <th>Apr 16</th>
-            <th>Apr 17</th>
-            <th>Apr 18</th>
-            <th>Apr 19</th>
-            <th>Apr 20</th>
-            <th>Apr 21</th>
-            <th>Apr 22</th>
-            <th>Apr 23</th>
-            <th>Apr 24</th>
-            <th>Apr 25</th>
-            <th>Apr 26</th>
-            <th>Apr 27</th>
-            <th>Apr 28</th>
-            <th>Apr 29</th>
-            <th>Apr 30</th>
-            <th>Apr 31</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #5858FA"></td>
-            <td style="background-color: #FA58F4"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #5858FA"></td>
-                        </tr> 
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-              <td style="background-color: #5858FA"></td>
-               <td style="background-color: #F4FA58"></td>
-                        </tr>    
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #58FAD0"></td>
-               <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-             <td style="background-color: #F4FA58"></td>
-              <td style="background-color: #5858FA"></td>
-              <td style="background-color: #82FA58"></td>
-                        </tr>     
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #5858FA"></td>
-            <td style="background-color: #FA58F4"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #5858FA"></td>
-                        </tr> 
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-              <td style="background-color: #5858FA"></td>
-               <td style="background-color: #F4FA58"></td>
-                        </tr>    
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #58FAD0"></td>
-               <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-             <td style="background-color: #F4FA58"></td>
-              <td style="background-color: #5858FA"></td>
-              <td style="background-color: #82FA58"></td>
-                        </tr> 
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #5858FA"></td>
-            <td style="background-color: #FA58F4"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #5858FA"></td>
-                        </tr> 
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-              <td style="background-color: #5858FA"></td>
-               <td style="background-color: #F4FA58"></td>
-                        </tr>    
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #58FAD0"></td>
-               <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-             <td style="background-color: #F4FA58"></td>
-              <td style="background-color: #5858FA"></td>
-              <td style="background-color: #82FA58"></td>
-                        </tr> 
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #5858FA"></td>
-            <td style="background-color: #FA58F4"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #5858FA"></td>
-                        </tr> 
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #58FAD0"></td>
-            <td style="background-color: #82FA58"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-              <td style="background-color: #5858FA"></td>
-               <td style="background-color: #F4FA58"></td>
-                        </tr>    
-                        <tr>
-                            <td id="emp_name">FirstName</td>
-            <td style="background-color: #58FAD0"></td>
-               <td style="background-color: #F4FA58"></td>
-            <td style="background-color: #F78181"></td>
-            <td style="background-color: #F78181"></td>
-             <td style="background-color: #FA58F4"></td>
-             <td style="background-color: #F4FA58"></td>
-              <td style="background-color: #5858FA"></td>
-              <td style="background-color: #82FA58"></td>
-                        </tr>   
-                    </tbody>
-                </table>
-                <script src="js/initOptions.js"></script>
-    		<script src="js/main.js"></script>
-    		<script src="js/messages.js"></script>
-    		<script src="js/CustomAuthenticatorRealmChallengeHandler.js"></script>
+            <div data-role="content">
+                <table class="table1" id="emp_name"></table>
+                <table class="table2" id="emp_data"></table>
             </div>
         </div>
+        <script src="js/initOptions.js"></script>
+<script src="js/main.js"></script>
+<script src="js/messages.js"></script>
+<script src="js/CustomAuthenticatorRealmChallengeHandler.js"></script>
     </body>
 </html>
