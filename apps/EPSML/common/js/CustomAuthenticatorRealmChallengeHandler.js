@@ -103,8 +103,6 @@ function getSecretData_Callback(response){
 		
 		$('#AppBody').show();
 		$('#AuthBody').hide();
-		$('#semployee').hide();
-		$('#smanager').show();
 		$('#start').hide();
 		$('#onshift').show();
 		busyIndicator.hide();
