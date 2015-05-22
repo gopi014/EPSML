@@ -77,9 +77,9 @@
 <!-- 1st elem -->
 <div class="ui-block-a" id="start">
 <div class="ui-bar ui-bar-a ui-home-bar">
-<div class="menu-elem"> <a href="#">
+<div class="menu-elem"> <a href="#" onclick="startshift();">
 <span class="menu-img"> <img src="images/start_x2F_stop.png" style="width: 50px;height: 55px;"> </span>
-<span class="menu-text"> Start/Stop shift </span>
+<span class="menu-text"> Start/Stop shift</span>
 </a> </div>
 </div>
 </div>
@@ -148,7 +148,6 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 <h2 id="wikiheader"></h2>
 <p id="wikiauthor"></p>
 <p id="wikidesc"></p>
-<p class="ui-li-aside" id="wikidate"></p>
 </li>
 </ul>
 </div>
@@ -194,9 +193,9 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 			</a>
 		</div>
     <div data-role="content"> 
-    <div class="ui-field-contain" style="position: static;">
+    <div class="ui-field-contain" id="team-select"style="position: static;">
     <select name="select-custom-20" id="select-custom-20" data-native-menu="false" onchange="teamchange();">
-        <option value="Select">Select a Team</option>
+        <option >Select a Team</option>
         <option value="SAPSM">SAPSM</option>
         <option value="Emptoris">Emptoris</option>
         <option value="SAPACCESS">SAPACCESS</option>
@@ -213,7 +212,24 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 
 </div>
 </div>
-
+<div data-role="page" id="startshift">
+   <div data-role="header">
+            <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="home();"></a>
+            <h1 class="Home">START/STOP SHIFT</h1>
+			<a href="#" data-direction="reverse" onclick="logout();" data-transition="slide" data-iconpos="notext" class="ui-btn-right btn-bg">
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
+		</div>
+		<div class="containing-element">
+	<select name="flip-min" id="flip-min" data-role="slider">
+		<option value="off">Stop</option>
+		<option value="on">Start</option>
+	</select></div>
+	<div class="center-wrapper">
+<a data-role="button" class="custom-btn">Shift Update</a>
+    		</div>
+			<textarea></textarea> 
+		</div>
 
 
     		

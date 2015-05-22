@@ -1,11 +1,11 @@
 
 /* Stylesheet content from css/main.css in folder common */
 [data-role="page"]{
-background: #00AEEF;
+	background: #00AEEF; 
 }
 [data-role="header"]{
-background:#0E74BC !important;
-color:white !important;
+	background:#0E74BC !important;
+	color:white !important;
 }
 .table-responsive {
 border: 0px solid #ddd !important;
@@ -40,7 +40,7 @@ margin: 0 auto;
 text-align: center;
 }
 .ui-grid-a span{
-display: block;
+	display: block;
 }
 .ui-home-bar a, .ui-home-bar a {
 width: 50%;
@@ -139,54 +139,23 @@ font-size: 0.8em !important;
 }
 .ui-bar-a{
 border-width: 0px !important;
-}
+} 
 .ui-shadow{
-box-shadow: none !important;
+	box-shadow: none !important;
 }
 .btn-bg{
-background: none !important;
+	background: none !important;
 }
 .ui-listview > li p{
-font-size: 0.9em;
-white-space: normal;
+	font-size: 0.9em;
+	white-space: normal;
 }
 .ui-btn-active{
-background-color: #38C !important;
+	background-color: #38C !important;
 border-color: #38C !important;
 color: #FFF !important;
 text-shadow: 0px 1px 0px #059 !important;
 }
-<<<<<<< HEAD
-th,td {
-    padding: 5px;
-    white-space: nowrap;
-    }
-
-.table1 {
-    float: left; 
-    border: 0px solid white;  
-    }        
-.table2 {
-    overflow: auto;  
-    border: 0px solid white;
-    }
-.table1,.table2 {
-color: white;
-font: bold 12px helvetica;
-}
-.table1 tr td:last-child {
-border-right: none;
-}
-.table1 tr:last-child td {
-border-bottom: none;
-}
-.table2 tr td:last-child {
-border-right: none;
-}
-.table2 tr:last-child td {
-border-bottom: none;
-}
-=======
 #shimanager {
     color: white;
     border: 1px solid white;
@@ -217,11 +186,42 @@ border-bottom: none;
 #shimanager tr:last-child td {
     border-bottom: none;
 }
-#emp_name{
-	background-color: #0E74BC;
-}
 
->>>>>>> origin/master
+th,td {
+    padding: 5px;
+    white-space: nowrap;
+    }
+
+.table1 {
+    float: left; 
+    border: 0px solid white;  
+    }        
+.table2 {
+    overflow: auto;  
+    border: 0px solid white;
+    }
+.table1,.table2 {
+color: white;
+font: bold 12px helvetica;
+}
+.table1 tr td,.table2 tr td{
+	padding: 10px 10px 10px 10px;
+}
+.table1 tr td:last-child {
+border-right: none;
+}
+.table1 tr:last-child td {
+border-bottom: none;
+}
+.table2 tr td:last-child {
+border-right: none;
+}
+.table2 tr:last-child td {
+border-bottom: none;
+} 
+.containing-element{
+	text-align: center !important;
+}
 /* Stylesheet content from css/main.css in folder android */
 /*	 Licensed Materials - Property of IBM
 	 5725-I43 (C) Copyright IBM Corp. 2006, 2013. All Rights Reserved.

@@ -6,11 +6,9 @@ function getfeeds(n,m){
         method : 'get',
         returnedContentType : 'XML',
         headers: {Authorization: "Basic"+' '+encodestring},
-        path : '/common/opensocial/basic/rest/activitystreams/urn:lsid:lconn.ibm.com:communities.community:0b04927e-b19e-45c3-8655-2c88556e26d8/@all/@all',
+        path : '/common/opensocial/basic/rest/activitystreams/urn:lsid:lconn.ibm.com:communities.community:0b04927e-b19e-45c3-8655-2c88556e26d8/@all/@all?rollup=true&shortStrings=true&format=atom',
         parameters : {
-            'rollup':'true',
-        	'shortStrings':'true',
-        	'format':'atom'
+            
         }
     };
     

@@ -32,71 +32,51 @@
 		<script src="worklight/worklight.js"></script>
 		<script src="worklight/checksum.js"></script>
 		<script>window.$ = window.jQuery = WLJQ;</script>
-<script src="jqueryMobile/jquery.mobile-1.4.5.js"></script>
+    		<script src="jqueryMobile/jquery.mobile-1.4.5.js"></script>
     </head>
     <body style="display: none;">
-<!--application UI goes here-->
-        <div data-role="page" id="AuthBody">
+    		<!--application UI goes here-->
+        <div data-role="page" id="AuthBody">    		
             <div class="ui-content" data-role="main">
                 <div style="text-align:center">
                     <img height="80" src="images/image.png" width="80">
-</div>
+			</div>
                 <h2 align="center" style="color: white">THINKMATIX</h2>
-                <div class="container">
-                    <div class="table-responsive">
+                <div class="container">                                                                                            
+                    <div class="table-responsive">          
                         <table class="table" style="width:100%">
-                            <tbody>
-                                <tr>
+                            <tbody> 
+                                <tr>          
                                     <td style="width:5%"><img hspace="5" src="images/image2.png" vspace="7" width="40"></td>
-<td style="width:95%">
-<input id="usernameInputField" name="username" placeholder="Username" style="opacity : 0.7; background: #00AEEF; color: white" type="text"></td>
-                                </tr>
+            				<td style="width:95%">
+            				<input id="usernameInputField" name="username" placeholder="Username" style="opacity : 0.7; background: #00AEEF; color: white" type="text"></td>
+                                </tr> 
                                 <tr>
                                     <td style="width:5%"> <img hspace="5" src="images/image3.png" vspace="7" width="40"></td>
-<td style="width:95%"><input id="passwordInputField" name="password" placeholder="Password" style="opacity : 0.7; background: #00AEEF; color: white" type="password"></td>
+            				<td style="width:95%"><input id="passwordInputField" name="password" placeholder="Password" style="opacity : 0.7; background: #00AEEF; color: white" type="password"></td>
                                 </tr>
                             </tbody>
                         </table>
                         <div id="loginmesg" style="color:red"></div>
                         <button id="loginButton" style="background: #1C75BC; color: white; font-weight: bold">Login</button>
                     </div>
-                </div>
+                </div>  
             </div>
             <div data-id="fixedFooter" data-position="fixed" data-role="footer" data-tap-toggle="false" style="background: #00AEEF ;text-align:center;border:none">
                 <img src="images/image1.png" width="60">
-</div>
+				</div>	
         </div>
         <div data-role="page" id="AppBody">
             <div id="teamname" style="display: none;"></div>
             <div data-role="header">
                 <h1 class="Home">Home</h1>
                 <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();">
-<img src="images/logout.png" style="width: 25px;">
-</a>
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
             </div>
             <div class="ui-content" data-role="main">
-                <div class="ui-grid-a home-grid-a">
-                    <div class="ui-block-a" id="semployee">
-                        <div class="ui-bar ui-bar-a ui-home-bar">
-<<<<<<< HEAD
-                            <div class="menu-elem">
-                                <a href="#">
-<span class="menu-img">
-<img src="images/shift.png" style="width: 50px;height: 55px;"> </span>
-<span class="menu-text"> Shift Schedule </span>
-</a>
-=======
-                            <div class="menu-elem"> 
-                                <a href="#" onclick="ShiftSchedule_user();">
-			<span class="menu-img"> 
-			<img src="images/shift.png" style="width: 50px;height: 55px;"> </span>
-			<span class="menu-text"> Shift Schedule </span>
-			</a> 
->>>>>>> origin/master
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui-block-a" id="smanager" style="display: none;">
+                <div class="ui-grid-a home-grid-a"> 
+                    <div class="ui-block-a" id="smanager">
                         <div class="ui-bar ui-bar-a ui-home-bar">
                             <div class="menu-elem"> 
                                 <a href="#" onclick="shift();">
@@ -122,9 +102,9 @@
                     <div class="ui-block-a" id="start">
                         <div class="ui-bar ui-bar-a ui-home-bar">
                             <div class="menu-elem"> 
-                                <a href="#">
+                                <a href="#" onclick="startshift();">
 <span class="menu-img"> <img src="images/start_x2F_stop.png" style="width: 50px;height: 55px;"> </span>
-<span class="menu-text"> Start/Stop shift </span>
+<span class="menu-text"> Start/Stop shift</span>
 </a> 
                             </div>
                         </div>
@@ -181,7 +161,7 @@
             <div data-role="header">
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
                 <h1 class="Home">Wiki Updates</h1>
-                <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();"><img src="images/logout.png" style="width: 25px;"></a>
+                <a class="ui-btn-right  btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();"><img src="images/logout.png" style="width: 25px;"></a>
             </div>
             <div class="ui-content" data-role="main">
                 <div id="wikiContent">
@@ -192,7 +172,7 @@
             <div data-role="header">
                 <a class="ui-btn ui-icon-arrow-l ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="back();"></a>
                 <h1 class="Home">Wiki Updates</h1>
-                <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();"><img src="images/logout.png" style="width: 25px;"></a>
+                <a class="ui-btn-right  btn-bg" data-direction="reverse" data-iconpos="notext" data-role="button" data-transition="slide" href="#" onclick="logout();"><img src="images/logout.png" style="width: 25px;"></a>
             </div>
             <div class="ui-content" data-role="main">
                 <ul data-inset="true" data-role="listview" id="recentupdates1">
@@ -211,8 +191,8 @@
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
                 <h1 class="Home">WFH/Leave</h1>
                 <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-transition="slide" href="#" onclick="logout();">
-<img src="images/logout.png" style="width: 25px;">
-</a>
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
             </div>
             <div class="ui-content" data-role="main">
                 <div data-role="tabs">
@@ -242,27 +222,13 @@
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
                 <h1 class="Home">SHIFT SCHEDULE</h1>
                 <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-transition="slide" href="#" onclick="logout();">
-<<<<<<< HEAD
-<img src="images/logout.png" style="width: 25px;">
-</a>
-            </div>
-            <div data-role="content">
-                <table class="table1" id="emp_name"></table>
-                <table class="table2" id="emp_data"></table>
-            </div>
-        </div>
-        <script src="js/initOptions.js"></script>
-<script src="js/main.js"></script>
-<script src="js/messages.js"></script>
-<script src="js/CustomAuthenticatorRealmChallengeHandler.js"></script>
-=======
 			<img src="images/logout.png" style="width: 25px;">
 			</a>
             </div>
             <div data-role="content"> 
-                <div class="ui-field-contain" style="position: static;">
+                <div class="ui-field-contain" id="team-select" style="position: static;">
                     <select data-native-menu="false" id="select-custom-20" name="select-custom-20" onchange="teamchange();">
-        <option value="Select">Select a Team</option>
+        <option>Select a Team</option>
         <option value="SAPSM">SAPSM</option>
         <option value="Emptoris">Emptoris</option>
         <option value="SAPACCESS">SAPACCESS</option>
@@ -272,28 +238,34 @@
         <option value="WOI">WOI</option>
             </select>
                 </div>
-                <table id="shimanager">
-                </table>
+                <table class="table1" id="emp_name"></table>
+                <div class="table2">
+                    <table id="emp_data"></table>
+                </div> 
             </div>
         </div>
-        <div data-role="page" id="shiftschedule_userp">
+        <div data-role="page" id="startshift">
             <div data-role="header">
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
-                <h1 class="Home">SHIFT SCHEDULE</h1>
+                <h1 class="Home">START/STOP SHIFT</h1>
                 <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-transition="slide" href="#" onclick="logout();">
 			<img src="images/logout.png" style="width: 25px;">
 			</a>
             </div>
-            <div data-role="content"> 
-                <table id="ssusertable">
-                </table>
+            <div class="containing-element">
+                <select data-role="slider" id="flip-min" name="flip-min">
+		<option value="off">Stop</option>
+		<option value="on">Start</option>
+	</select>
             </div>
+            <div class="center-wrapper">
+                <a class="custom-btn" data-role="button">Shift Update</a>
+            </div>
+            <textarea></textarea> 
         </div>
         <script src="js/initOptions.js"></script>
-           <script src="js/initOptions.js"></script>
     		<script src="js/main.js"></script>
     		<script src="js/messages.js"></script>
     		<script src="js/CustomAuthenticatorRealmChallengeHandler.js"></script>
->>>>>>> origin/master
     </body>
 </html>

@@ -45,9 +45,23 @@ function getSecretData_Callback(response){
 	//alert("getSecretData_Callback response :: " + JSON.stringify(response));
 }
 function shift(){
-	$('#AppBody').hide();
-	$.mobile.changePage( "#shiftmanager",{ changeHash: false });
-}
+	var tablesize1=$('#emp_name tr').length;
+	if(tablesize1 == 0){
+		$('#AppBody').hide();
+		$.mobile.changePage( "#shiftmanager",{ changeHash: false });
+	}
+	else{
+		$('#emp_name tr').remove();
+		$('#emp_data tr').remove();
+		var myselect = $("select#select-custom-20");
+		myselect[0].selectedIndex = 0;
+		myselect.selectmenu("refresh");
+		$('#AppBody').hide();
+		$.mobile.changePage( "#shiftmanager",{ changeHash: false });
+	}
+	
+	}
+	
 function home()
 {
 	$.mobile.changePage( "#AppBody",{ changeHash: false });
@@ -107,15 +121,18 @@ ul.setAttribute('class','ui-listview ui-listview-inset ui-corner-all ui-shadow')
 
 for(var i=0;i<length;i++)
 	{
-	
-var content = entry[i].content;
-var activityentry=content.activityEntry;
-var name=activityentry.actor.displayName;
-var title=activityentry.object.displayName;
-var publisheddate =activityentry.object.published;
-var newdate= new Date(publisheddate);
-var finaldate=newdate.toLocaleString();
-var summary = activityentry.object.summary;
+	if(!entry[i].summary.CDATA){
+		
+	}
+	else{
+//var content = entry[i].content;
+//var activityentry=entry[i].contentModifiedBy;
+var name=entry[i].author.name;
+var title=entry[i].title;
+//var publisheddate =entry[i].updated;
+//var newdate= new Date(publisheddate);
+//var finaldate=newdate.toLocaleString();
+var summary =entry[i].summary.CDATA;
 summ[i]=summary;
 var finalsummary=summary.substring(0,100)+'....';
 var li = document.createElement("li");
@@ -123,7 +140,7 @@ var a =document.createElement("a");
 var h2=document.createElement("h2");
 var p=document.createElement("p");
 var p1=document.createElement("p");
-var p3=document.createElement("p");
+//var p3=document.createElement("p");
 li.appendChild(document.createTextNode(""));
 a.setAttribute('href', "#");
 a.setAttribute('id', i);
@@ -135,15 +152,15 @@ p.innerHTML="<strong>"+name+"<strong>";
 p.setAttribute("id","wiauth"+i);
 p1.innerHTML="<b>Description<b>:<br>"+finalsummary;
 //p3.setAttribute("class","ui-li-aside");
-p3.innerHTML="<strong>Last update:"+finaldate+"<strong>";
-p3.setAttribute("id","widate"+i);
+//p3.innerHTML="<strong>Last update:"+finaldate+"<strong>";
+//p3.setAttribute("id","widate"+i);
 a.appendChild(h2);
 a.appendChild(p);
 a.appendChild(p1);
-a.appendChild(p3);
+//a.appendChild(p3);
 li.appendChild(a);
 ul.appendChild(li);
-
+	}
 	}
 div.appendChild(ul);
 	busy.hide();
@@ -164,7 +181,7 @@ function wikidetail(par){
 	$('#wikiheader').text(header);
 	$('#wikiauthor').text(author);
 	wikidesc.innerHTML='<b>Summary:</b><br>'+sum;
-	$('#wikidate').text(date);
+	
 	$.mobile.changePage( "#wikiBody1",{ changeHash: false });
 	
 }
@@ -412,4 +429,6 @@ function sp2() {
 	$('#sp2').addClass("ui-state-persist");
 	
 }
-
+function startshift(){
+	$.mobile.changePage( "#startshift",{ changeHash: false });
+}

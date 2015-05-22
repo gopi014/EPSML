@@ -92,8 +92,8 @@ background: #00AEEF !important;
 .Home {
 margin-top: 0px !important;
 text-align:center !important;
-font-size:2em !important;
-padding: 0em 0px !important;
+font-size:1em !important;
+padding: 0.6em 0px !important;
 }
 .myTable{
 border-spacing: 5px;
@@ -143,6 +143,7 @@ border-width: 0px !important;
 }
 .btn-bg{
 	background: none !important;
+	
 }
 .ui-listview > li p{
 	font-size: 0.9em;
@@ -217,3 +218,9 @@ border-right: none;
 .table2 tr:last-child td {
 border-bottom: none;
 } 
+.containing-element{
+	text-align: center !important;
+}
+.ui-header,.ui-title{
+	overflow: visible !important;
+}
