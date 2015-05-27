@@ -58,6 +58,7 @@
                             </tbody>
                         </table>
                         <div id="loginmesg" style="color:red"></div>
+                        <div id="userid" style="display: none;"></div>
                         <button id="loginButton" style="background: #1C75BC; color: white; font-weight: bold">Login</button>
                     </div>
                 </div>  
@@ -252,7 +253,7 @@
 			</a>
             </div>
             <div class="containing-element">
-                <select data-role="slider" id="flip-min" name="flip-min">
+                <select data-role="slider" id="flip-min" name="flip-min" onchange="startshiftprocess();">
 		<option value="off">Stop</option>
 		<option value="on">Start</option>
 	</select>

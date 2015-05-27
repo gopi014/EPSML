@@ -30,6 +30,10 @@
 	<!-- Replace this with appropriate procedures -->
 	<procedure name="validate"/>
 	<procedure name="smanager"/>
-	<procedure name="procedure1"/>
+	<procedure name="getshiftstarttime"/>
+    <procedure name="updateshiftactuals"/>
+    <procedure name="insertshiftactuals"/>
+    <procedure name="shiftactualsselect"/>
+	
 
 </wl:adapter>

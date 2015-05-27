@@ -61,6 +61,7 @@ customAuthenticatorRealmChallengeHandler.handleChallenge = function(response){
 			document.getElementById("teamname").value = team;
 			$('#AppBody').show();
 			$('#AuthBody').hide();
+			$('#userid').text(result[0].emp_id);
 			busyIndicator.hide();
 		}
 		}

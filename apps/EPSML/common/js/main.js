@@ -2,6 +2,7 @@ var busyIndicator;
 var busy;
 var summ=[];
 var connectstatus;
+var shifthold;
 var d = new Date();
 var month = new Array();
 month[0] = "January";
@@ -450,4 +451,192 @@ function sp2() {
 }
 function startshift(){
 	$.mobile.changePage( "#startshift",{ changeHash: false });
+}
+
+function startshiftprocess(){	
+	var buttonclicked = document.getElementById("flip-min").value;
+	if (buttonclicked == "on"){
+	var emp_id=$('#userid').text();
+	
+	var invocationData = {
+			adapter: "Validate",
+			procedure: "getshiftstarttime",
+			parameters: [emp_id]
+	};
+	WL.Client.invokeProcedure(invocationData,{
+        onSuccess : startshiftSuccess,
+        onFailure : startshiftFailure,
+    });
+	
+	}
+
+	else{
+		
+		//When stop button is clicked
+		//alert("this is for when stop is clicked")
+	}
+	}
+
+
+function startshiftSuccess(response){
+		var invocationResult = response.invocationResult;
+		var resultset = invocationResult.resultSet;
+		var timehold = resultset[0].start_time;
+		shifthold = resultset[0].shift_name;
+		
+		d = new Date();
+		var endHour = d.getUTCHours();
+		var endMinute = d.getUTCMinutes();
+		var endSecond =  d.getUTCSeconds();	
+		
+    	var startHour = timehold.substring(0,2);
+		var startHour = timehold.substring(3,5);
+		var startHour = timehold.substring(6,8); 		
+		
+		 
+		var startHour = 12;
+		var startMinute = 45;
+		var startSecond = 00;
+				
+		var endHour = 12;
+		var endMinute = 59;
+		var endSecond = 00;
+				
+		 
+		 //Create date object and set the time to that
+		 var startTimeObject = new Date();
+		 startTimeObject.setHours(startHour, startMinute, startSecond);
+
+		 //Create date object and set the time to that
+		 var endTimeObject = new Date(startTimeObject);
+		 endTimeObject.setHours(endHour, endMinute, endSecond);
+		 
+		 
+		 var difference = (((endTimeObject.setHours(endHour, endMinute, endSecond)) - (startTimeObject.setHours(startHour, startMinute, startSecond))) / 1000)/60;
+		//	alert (difference)	;	
+		 
+		 
+		 if ((difference > 0 && difference < 31) || difference == 0){
+			 var dayhold = "day" + new Date().getDate();
+			 
+			 var emp_id=$('#userid').text();
+			 
+				var invocationData = {
+						adapter: "Validate",
+						procedure: "shiftactualsselect",
+						parameters: [emp_id,currmonth]
+				};
+				WL.Client.invokeProcedure(invocationData,{
+			        onSuccess : selectshiftactualsSuccess,
+			        onFailure : selectshiftactualsFailure,
+			    });
+			 	
+		 }
+		 
+		 else {
+			 //conditions where they dint log in on time
+			 alert("not great");
+		 }
+		 
+
+		 
+	}
+	
+
+
+
+function selectshiftactualsSuccess(response){
+	
+	var invocationResult = response.invocationResult;
+	var results = invocationResult.resultSet;
+	
+	var len =  results.length;	
+	
+	
+	if (results.length > 0) {
+		var emp_id=$('#userid').text();
+		 
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "updateshiftactuals",
+				parameters: [shifthold, emp_id,currmonth]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : UpdateshiftactualsSuccess,
+	        onFailure : UpdateshiftactualsFailure,
+	    });
+	 
+		
+	}
+	
+	else {
+		var emp_id=$('#userid').text();
+		 
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "insertshiftactuals",
+				parameters: [emp_id,currmonth]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : insertshiftactualsSuccess,
+	        onFailure : insertshiftactualsFailure,
+	    });
+	 
+				
+	}
+	
+	
+	
+	
+}
+
+function selectshiftactualsFailure(response){
+	alert("Failure in selectshiftactuals");
+
+}
+
+function insertshiftactualsSuccess(response){
+	var emp_id=$('#userid').text();
+	 
+	var invocationData = {
+			adapter: "Validate",
+			procedure: "updateshiftactuals",
+			parameters: [shifthold, emp_id,currmonth]
+	};
+	WL.Client.invokeProcedure(invocationData,{
+        onSuccess : completeStartSuccess,
+        onFailure : completeStartFailure,
+    });
+
+}
+
+function insertshiftactualsFailure(response){
+	
+alert ("Insert query has failed");
+}
+
+
+
+function startshiftFailure(response){
+		alert("Failure in startshift ");
+	}
+
+
+function UpdateshiftactualsSuccess(response){
+	alert("UpdateShift is a success");
+}
+
+function UpdateshiftactualsFailure(response){
+	alert("UpdateShift is a failure");
+
+}
+
+function completeStartSuccess(response){
+	alert("Updated the shift! Now get to Work ");
+	
+}
+
+function completeStartFailure(response){
+	alert("completefailure");
+	
 }
