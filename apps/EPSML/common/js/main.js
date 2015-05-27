@@ -1,6 +1,7 @@
 var busyIndicator;
 var busy;
 var summ=[];
+var connectstatus;
 var d = new Date();
 var month = new Array();
 month[0] = "January";
@@ -18,12 +19,29 @@ month[11] = "December";
 var currmonth = month[d.getMonth()]; 
 var currday=d.getDate();
 function wlCommonInit(){
+	WL.Client.setHeartBeatInterval(5);
+	document.addEventListener(WL.Events.WORKLIGHT_IS_CONNECTED, connectDetected, false); 
+	document.addEventListener(WL.Events.WORKLIGHT_IS_DISCONNECTED, disconnectDetected , false);
+		getSecretData();
+		WL.ClientMessages.loading = "Authenticating";
+		busyIndicator = new WL.BusyIndicator ();
 	
-    getSecretData();
-	WL.ClientMessages.loading = "Authenticating";
-	busyIndicator = new WL.BusyIndicator ();
+	
+    
+}
+function connectionFailure(){
+	alert("Could not connect to the MobileFirst Server.");
+	
 }
 
+function disconnectDetected(){
+	connectstatus="disconnected";
+	
+}
+
+function connectDetected(){
+	connectstatus="connected";
+}
 function getSecretData(){
 	
 	//busyIndicator = new WL.BusyIndicator ("", {text: "Please wait..."});
@@ -299,6 +317,7 @@ function leaveSuccess(response){
         }
 });
 	busy.hide();
+	$('#AppBody').hide();
 	$.mobile.changePage( "#wfhleave",{ changeHash: false });	
 }
 function leaveFailure(response){

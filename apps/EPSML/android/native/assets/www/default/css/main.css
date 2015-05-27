@@ -94,8 +94,8 @@ background: #00AEEF !important;
 .Home {
 margin-top: 0px !important;
 text-align:center !important;
-font-size:2em !important;
-padding: 0em 0px !important;
+font-size:1em !important;
+padding: 0.6em 0px !important;
 }
 .myTable{
 border-spacing: 5px;
@@ -145,6 +145,7 @@ border-width: 0px !important;
 }
 .btn-bg{
 	background: none !important;
+	
 }
 .ui-listview > li p{
 	font-size: 0.9em;
@@ -222,6 +223,15 @@ border-bottom: none;
 .containing-element{
 	text-align: center !important;
 }
+.ui-header,.ui-title{
+	overflow: visible !important;
+}
+.ui-listview > li h1, .ui-listview > li h2, 
+.ui-listview > li h3, .ui-listview > li h4, 
+.ui-listview > li h5, .ui-listview > li h6{
+	white-space: normal;
+}
+
 /* Stylesheet content from css/main.css in folder android */
 /*	 Licensed Materials - Property of IBM
 	 5725-I43 (C) Copyright IBM Corp. 2006, 2013. All Rights Reserved.

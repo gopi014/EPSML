@@ -30,6 +30,6 @@
 	<!-- Replace this with appropriate procedures -->
 	<procedure name="validate"/>
 	<procedure name="smanager"/>
-	<procedure name="getUserShiftSchedule"/>
+	<procedure name="procedure1"/>
 
 </wl:adapter>

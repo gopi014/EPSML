@@ -3,6 +3,7 @@
 var busyIndicator;
 var busy;
 var summ=[];
+var connectstatus;
 var d = new Date();
 var month = new Array();
 month[0] = "January";
@@ -20,12 +21,29 @@ month[11] = "December";
 var currmonth = month[d.getMonth()]; 
 var currday=d.getDate();
 function wlCommonInit(){
+	WL.Client.setHeartBeatInterval(5);
+	document.addEventListener(WL.Events.WORKLIGHT_IS_CONNECTED, connectDetected, false); 
+	document.addEventListener(WL.Events.WORKLIGHT_IS_DISCONNECTED, disconnectDetected , false);
+		getSecretData();
+		WL.ClientMessages.loading = "Authenticating";
+		busyIndicator = new WL.BusyIndicator ();
 	
-    getSecretData();
-	WL.ClientMessages.loading = "Authenticating";
-	busyIndicator = new WL.BusyIndicator ();
+	
+    
+}
+function connectionFailure(){
+	alert("Could not connect to the MobileFirst Server.");
+	
 }
 
+function disconnectDetected(){
+	connectstatus="disconnected";
+	
+}
+
+function connectDetected(){
+	connectstatus="connected";
+}
 function getSecretData(){
 	
 	//busyIndicator = new WL.BusyIndicator ("", {text: "Please wait..."});
@@ -121,17 +139,20 @@ ul.setAttribute('data-inset','true');
 ul.setAttribute('id','recentupdates');
 ul.setAttribute('class','ui-listview ui-listview-inset ui-corner-all ui-shadow');
 
-for(var i=0;i<9;i++)
+for(var i=0;i<length;i++)
 	{
-	
-var content = entry[i].content;
+	if(!entry[i].summary.CDATA){
+		
+	}
+	else{
+//var content = entry[i].content;
 //var activityentry=entry[i].contentModifiedBy;
 var name=entry[i].author.name;
-var title=entry[i].title.CDATA;
-var publisheddate =entry[i].updated;
-var newdate= new Date(publisheddate);
-var finaldate=newdate.toLocaleString();
-var summary =content.CDATA;
+var title=entry[i].title;
+//var publisheddate =entry[i].updated;
+//var newdate= new Date(publisheddate);
+//var finaldate=newdate.toLocaleString();
+var summary =entry[i].summary.CDATA;
 summ[i]=summary;
 var finalsummary=summary.substring(0,100)+'....';
 var li = document.createElement("li");
@@ -139,7 +160,7 @@ var a =document.createElement("a");
 var h2=document.createElement("h2");
 var p=document.createElement("p");
 var p1=document.createElement("p");
-var p3=document.createElement("p");
+//var p3=document.createElement("p");
 li.appendChild(document.createTextNode(""));
 a.setAttribute('href', "#");
 a.setAttribute('id', i);
@@ -151,15 +172,15 @@ p.innerHTML="<strong>"+name+"<strong>";
 p.setAttribute("id","wiauth"+i);
 p1.innerHTML="<b>Description<b>:<br>"+finalsummary;
 //p3.setAttribute("class","ui-li-aside");
-p3.innerHTML="<strong>Last update:"+finaldate+"<strong>";
-p3.setAttribute("id","widate"+i);
+//p3.innerHTML="<strong>Last update:"+finaldate+"<strong>";
+//p3.setAttribute("id","widate"+i);
 a.appendChild(h2);
 a.appendChild(p);
 a.appendChild(p1);
-a.appendChild(p3);
+//a.appendChild(p3);
 li.appendChild(a);
 ul.appendChild(li);
-
+	}
 	}
 div.appendChild(ul);
 	busy.hide();
@@ -180,7 +201,7 @@ function wikidetail(par){
 	$('#wikiheader').text(header);
 	$('#wikiauthor').text(author);
 	wikidesc.innerHTML='<b>Summary:</b><br>'+sum;
-	$('#wikidate').text(date);
+	
 	$.mobile.changePage( "#wikiBody1",{ changeHash: false });
 	
 }
@@ -298,6 +319,7 @@ function leaveSuccess(response){
         }
 });
 	busy.hide();
+	$('#AppBody').hide();
 	$.mobile.changePage( "#wfhleave",{ changeHash: false });	
 }
 function leaveFailure(response){
