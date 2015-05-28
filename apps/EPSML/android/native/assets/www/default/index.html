@@ -189,7 +189,7 @@
 <!--application UI goes here-->
             <div data-role="header">
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
-                <h1 class="Home">WFH/Leave</h1>
+                <h1 class="Home">Leave/WFH</h1>
                 <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-transition="slide" href="#" onclick="logout();">
 			<img src="images/logout.png" style="width: 25px;">
 			</a>
@@ -226,8 +226,8 @@
 			</a>
             </div>
             <div data-role="content"> 
-                <div class="ui-field-contain" id="team-select" style="position: static;">
-                    <select data-native-menu="false" id="select-custom-20" name="select-custom-20" onchange="teamchange();">
+                <div class="ui-field-contain" data-role="fieldcontain" id="team-select" style="position: static;">
+                    <select id="select-custom-20" name="select-custom-20" onchange="teamchange();">
         <option>Select a Team</option>
         <option value="SAPSM">SAPSM</option>
         <option value="Emptoris">Emptoris</option>
@@ -259,9 +259,9 @@
 	</select>
             </div>
             <div class="center-wrapper">
-                <a class="custom-btn" data-role="button">Shift Update</a>
+                <a custom-btn="" data-role="button" id="shiftupdate" style="display: none;class=">Shift Update</a>
             </div>
-            <textarea></textarea> 
+            <textarea id="prevupdate" style="display: none;"></textarea> 
         </div>
         <script src="js/initOptions.js"></script>
     		<script src="js/main.js"></script>

@@ -62,6 +62,7 @@ customAuthenticatorRealmChallengeHandler.handleChallenge = function(response){
 			$('#AppBody').show();
 			$('#AuthBody').hide();
 			$('#userid').text(result[0].emp_id);
+			useremp_id=$('#userid').text();
 			busyIndicator.hide();
 		}
 		}
@@ -78,7 +79,7 @@ customAuthenticatorRealmChallengeHandler.submitLoginFormCallback = function(resp
 
 $('#loginButton').bind('click', function () {
 	if(connectstatus =="disconnected")	{
-		$('#loginmesg').text("Please connect to Internet and try again");
+		$('#loginmesg').text("Could not connect to Server.");
 	}
 	else{
 	busyIndicator.show();
@@ -123,7 +124,7 @@ function getSecretData_Callback(response){
 	
 	if(length == 0)
 		{
-		$('#loginmesg').text("*Sorry!You Don't have permission to view this application");
+		$('#loginmesg').text("Sorry!You Don't have permission to view this application");
 		busyIndicator.hide();
 		}
 	else{
@@ -140,7 +141,7 @@ function getSecretData_Callback(response){
 	
 }
 function getSecretData_Callback1(response){
-	$('#loginmesg').text("*Database error.please contact your DBA");
+	$('#loginmesg').text("Database error.please contact your DBA");
 	busyIndicator.hide();
 }
 function logoutSuccess(response){

@@ -159,3 +159,10 @@ function insertshiftactuals(emp_id, currmonth) {
 		parameters : [emp_id, currmonth]
 	});
 }
+var stopudaptequery=WL.Server.createSQLStatement("select "+x1+ " from shift_update");
+function stopupdate(){
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : stopudaptequery,
+		parameters : []
+	});
+}

@@ -157,7 +157,7 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 <!--application UI goes here-->
 <div data-role="header">
             <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="home();"></a>
-            <h1 class="Home">WFH/Leave</h1>
+            <h1 class="Home">Leave/WFH</h1>
 			<a href="#" data-direction="reverse" onclick="logout();" data-transition="slide" data-iconpos="notext" class="ui-btn-right btn-bg">
 			<img src="images/logout.png" style="width: 25px;">
 			</a>
@@ -194,8 +194,8 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 			</a>
 		</div>
     <div data-role="content"> 
-    <div class="ui-field-contain" id="team-select"style="position: static;">
-    <select name="select-custom-20" id="select-custom-20" data-native-menu="false" onchange="teamchange();">
+    <div class="ui-field-contain" data-role="fieldcontain" id="team-select"style="position: static;">
+    <select name="select-custom-20" id="select-custom-20"  onchange="teamchange();">
         <option >Select a Team</option>
         <option value="SAPSM">SAPSM</option>
         <option value="Emptoris">Emptoris</option>
@@ -227,9 +227,9 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 		<option value="on">Start</option>
 	</select></div>
 	<div class="center-wrapper">
-<a data-role="button" class="custom-btn">Shift Update</a>
+<a data-role="button" id="shiftupdate" style="display: none;class="custom-btn">Shift Update</a>
     		</div>
-			<textarea></textarea> 
+			<textarea id="prevupdate" style="display: none;"></textarea> 
 		</div>
 
 

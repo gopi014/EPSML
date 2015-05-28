@@ -5,6 +5,10 @@ var connectstatus;
 var shifthold;
 var d = new Date();
 var month = new Array();
+var teamname1;
+var useremp_id;
+var n;
+var m;
 month[0] = "January";
 month[1] = "February";
 month[2] = "March";
@@ -46,6 +50,7 @@ function connectDetected(){
 function getSecretData(){
 	
 	//busyIndicator = new WL.BusyIndicator ("", {text: "Please wait..."});
+	
 	var invocationData = {
 			adapter: "LoginAdapter",
 			procedure: "getSecretData",
@@ -88,18 +93,22 @@ function home()
 	}
 
 function wiki(){
+	if(connectstatus =="disconnected")	{
+		alert("Could not connect to Server.");
+	}
+	else{
 	var ullength=$("#recentupdates li").length;
 	if(ullength == 0)
 		{
 	WL.ClientMessages.loading = "Loading!Please wait...";
 	busy = new WL.BusyIndicator ();
 	busy.show();
-	var n='gopinathrk@in.ibm.com';
-	var m='gopi4ibm';
+	var lusername=$('#usernameInputField').val();
+	var lpassword=$('#passwordInputField').val();
 	var invocationData = {
 			adapter: "WikiUpdates",
 			procedure: "getfeeds",
-			parameters: [n,m]
+			parameters: [lusername,lpassword]
 	};
 	WL.Client.invokeProcedure(invocationData,{
         onSuccess : feedsSuccess,
@@ -111,17 +120,18 @@ function wiki(){
 		WL.ClientMessages.loading = "Loading!Please wait...";
 		busy = new WL.BusyIndicator ();
 		busy.show();
-		var n='gopinathrk@in.ibm.com';
-		var m='gopi4ibm';
+		var lusername=$('#usernameInputField').val();
+		var lpassword=$('#passwordInputField').val();
 		var invocationData = {
 				adapter: "WikiUpdates",
 				procedure: "getfeeds",
-				parameters: [n,m]
+				parameters: [lusername,lpassword]
 		};
 		WL.Client.invokeProcedure(invocationData,{
 	        onSuccess : feedsSuccess,
 	        onFailure : feedsFailure,
 	    });
+	}
 	}
 }
 function feedsSuccess(response){
@@ -196,7 +206,6 @@ function wikidetail(par){
 	var header=$("#wihead"+par).text();
 	var author=$("#wiauth"+par).text();
 	var sum=summ[par];
-	var date=$("#widate"+par).text();
 	$('#wikiheader').text(header);
 	$('#wikiauthor').text(author);
 	wikidesc.innerHTML='<b>Summary:</b><br>'+sum;
@@ -218,16 +227,19 @@ function logout(){
 }
 function getleavewfh()
 {
+	if(connectstatus =="disconnected")	{
+		alert("Could not connect to Server.");
+	}
+	else{
 	var ullength=$("#fragment-2ul li").length;
 	var ullength1=$("#fragment-1ul li").length;
 	if((ullength == 0) ){
 		if((ullength1 == 0)){
-				
+			n=$('#usernameInputField').val();
+			m=$('#passwordInputField').val();		
 		WL.ClientMessages.loading = "Loading!Please wait...";
 		busy = new WL.BusyIndicator ();
 		busy.show();
-		var n='gopinathrk@in.ibm.com';
-		var m='gopi4ibm';
 		var invocationData = {
 				adapter: "Leavewfh",
 				procedure: "getleavewfh",
@@ -241,10 +253,10 @@ function getleavewfh()
 		else{
 			$('#fragment-1ul li').remove();
 			WL.ClientMessages.loading = "Loading!Please wait...";
+			n=$('#usernameInputField').val();
+			m=$('#passwordInputField').val();
 			busy = new WL.BusyIndicator ();
 			busy.show();
-			var n='gopinathrk@in.ibm.com';
-			var m='gopi4ibm';
 			var invocationData = {
 					adapter: "Leavewfh",
 					procedure: "getleavewfh",
@@ -260,12 +272,11 @@ function getleavewfh()
 		$('#fragment-2ul li').remove();
 		$('#fragment-1ul li').remove();
 		
-		
+		n=$('#usernameInputField').val();
+		m=$('#passwordInputField').val();
 		WL.ClientMessages.loading = "Loading!Please wait...";
 		busy = new WL.BusyIndicator ();
 		busy.show();
-		var n='gopinathrk@in.ibm.com';
-		var m='gopi4ibm';
 		var invocationData = {
 				adapter: "Leavewfh",
 				procedure: "getleavewfh",
@@ -275,6 +286,7 @@ function getleavewfh()
 	        onSuccess : leaveSuccess,
 	        onFailure : leaveFailure,
 	    });
+	}
 	}
 	}
 function leaveSuccess(response){
@@ -326,12 +338,17 @@ function leaveFailure(response){
 	alert("Faliure");
 }
 function teamchange(){
+	if(connectstatus =="disconnected")	{
+		alert("Could not connect to Server.");
+	}
+	else{
+		
 	WL.ClientMessages.loading = "Loading!Please wait...";
 	busy = new WL.BusyIndicator ();
 	var teamname = document.getElementById("select-custom-20").value;
 	var tablesize=$('#emp_name tr').length;
 	if(tablesize == 0){
-		
+		teamname1=teamname;
 	
 	var invocationData = {
 			adapter: "Validate",
@@ -344,18 +361,23 @@ function teamchange(){
     });
 	}
 	else{
+		if(teamname == teamname1){
+			$.mobile.changePage( "#shiftmanager",{ changeHash: false });	
+		}
+		else{
+		teamname1=teamname;
 		$('#emp_name tr').remove();
 		$('#emp_data tr').remove();
-		var invocationData = {
+		var invocationData1 = {
 				adapter: "Validate",
 				procedure: "smanager",
 				parameters: [teamname,currmonth]
 		};
-		WL.Client.invokeProcedure(invocationData,{
+		WL.Client.invokeProcedure(invocationData1,{
 	        onSuccess : teamchangeSuccess,
 	        onFailure : teamchangeFailure,
 	    });
-		
+		}
 	}
 }
 function teamchangeSuccess(response)
@@ -374,8 +396,8 @@ function teamchangeSuccess(response)
 			var name = resultset[k].emp_name;
 			}
 		else{
-			var name = resultset[k-1].emp_name;
-			var nameRow = tableName.insertRow(k);
+			 name = resultset[k-1].emp_name;
+			nameRow = tableName.insertRow(k);
 			cell1 = nameRow.insertCell(0);
 			cell1.innerHTML = name;
 			cell1.setAttribute("style", "background-color: #0E74BC;");
@@ -396,7 +418,7 @@ function teamchangeSuccess(response)
 				currentdate1++;
 				}
 		}else{
-			for(var j=0;j<(32-currday);j++){
+			for(j=0;j<(32-currday);j++){
 				var shiftCell = dataRow.insertCell(j);
 				//alert(resultset[i]['day'+currentdate1]);
 				if(resultset[i-1]['day'+currentdate2] =='First' ){
@@ -430,6 +452,7 @@ function teamchangeSuccess(response)
 	}
 busy.hide();
 $.mobile.changePage( "#shiftmanager",{ changeHash: false });
+}
 } 
 function teamchangeFailure(response)
 {
@@ -490,17 +513,17 @@ function startshiftSuccess(response){
 		var endSecond =  d.getUTCSeconds();	
 		
     	var startHour = timehold.substring(0,2);
-		var startHour = timehold.substring(3,5);
-		var startHour = timehold.substring(6,8); 		
+		var startMinute = timehold.substring(3,5);
+		var startSecond = timehold.substring(6,8); 		
 		
 		 
-		var startHour = 12;
-		var startMinute = 45;
-		var startSecond = 00;
-				
-		var endHour = 12;
-		var endMinute = 59;
-		var endSecond = 00;
+//		var startHour = 12;
+//		var startMinute = 45;
+//		var startSecond = 00;
+//				
+//		var endHour = 12;
+//		var endMinute = 59;
+//		var endSecond = 00;
 				
 		 
 		 //Create date object and set the time to that
@@ -517,8 +540,6 @@ function startshiftSuccess(response){
 		 
 		 
 		 if ((difference > 0 && difference < 31) || difference == 0){
-			 var dayhold = "day" + new Date().getDate();
-			 
 			 var emp_id=$('#userid').text();
 			 
 				var invocationData = {
@@ -537,22 +558,11 @@ function startshiftSuccess(response){
 			 //conditions where they dint log in on time
 			 alert("not great");
 		 }
-		 
-
-		 
-	}
-	
-
-
-
+}
 function selectshiftactualsSuccess(response){
 	
 	var invocationResult = response.invocationResult;
 	var results = invocationResult.resultSet;
-	
-	var len =  results.length;	
-	
-	
 	if (results.length > 0) {
 		var emp_id=$('#userid').text();
 		 
@@ -584,10 +594,7 @@ function selectshiftactualsSuccess(response){
 	 
 				
 	}
-	
-	
-	
-	
+
 }
 
 function selectshiftactualsFailure(response){
@@ -624,6 +631,8 @@ function startshiftFailure(response){
 
 function UpdateshiftactualsSuccess(response){
 	alert("UpdateShift is a success");
+	$('#shiftupdate').show();
+	$('#prevupdate').show();
 }
 
 function UpdateshiftactualsFailure(response){
@@ -633,6 +642,8 @@ function UpdateshiftactualsFailure(response){
 
 function completeStartSuccess(response){
 	alert("Updated the shift! Now get to Work ");
+	$('#shiftupdate').show();
+	$('#prevupdate').show();
 	
 }
 
@@ -640,3 +651,16 @@ function completeStartFailure(response){
 	alert("completefailure");
 	
 }
+document.addEventListener("backbutton", function(e){
+    if($.mobile.activePage.is('#AppBody')){
+       
+        navigator.app.exitApp();
+    }
+    else if($.mobile.activePage.is('#wikiBody1')){
+    	$.mobile.changePage( "#wikiBody",{ changeHash: false });
+    }
+    else {
+    	$.mobile.changePage( "#AppBody",{ changeHash: false });
+    	$('#AppBody').show();
+    }
+}, false);
