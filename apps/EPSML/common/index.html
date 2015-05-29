@@ -167,7 +167,7 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 <div data-role="navbar">
 <ul id="leavetab">
 <li><a href="#fragment-1" class="ui-btn-active ui-state-persist" id="sp1" onclick="sp1();">WFH</a></li>
-<li><a href="#fragment-2" id="sp2" onclick="sp2();">LEAVE</a></li>
+<li><a href="#fragment-2" id="sp2" onclick="sp2();">Leave</a></li>
 </ul>
 </div>
 <div id="fragment-1" style="color:white" >
@@ -188,7 +188,7 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 <div data-role="page" id="shiftmanager">
    <div data-role="header">
             <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="home();"></a>
-            <h1 class="Home">SHIFT SCHEDULE</h1>
+            <h1 class="Home">Shift Schedule</h1>
 			<a href="#" data-direction="reverse" onclick="logout();" data-transition="slide" data-iconpos="notext" class="ui-btn-right btn-bg">
 			<img src="images/logout.png" style="width: 25px;">
 			</a>
@@ -216,7 +216,7 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 <div data-role="page" id="startshift">
    <div data-role="header">
             <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="home();"></a>
-            <h1 class="Home">START/STOP SHIFT</h1>
+            <h1 class="Home">Start/Stop Shift</h1>
 			<a href="#" data-direction="reverse" onclick="logout();" data-transition="slide" data-iconpos="notext" class="ui-btn-right btn-bg">
 			<img src="images/logout.png" style="width: 25px;">
 			</a>
@@ -227,7 +227,7 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 		<option value="on">Start</option>
 	</select></div>
 	<div class="center-wrapper">
-<a data-role="button" id="shiftupdate" style="display: none;class="custom-btn">Update Shift Activities</a>
+<a data-role="button" id="shiftupdate" style="display: none; background:#0E74BC;color:white;" data-inline="true"class="custom-btn" onclick="doshiftupdate();">Update Shift Activities</a>
     		</div>
 			<p id="prevupdate" style="display: none;"></p> 
 		</div>
@@ -239,7 +239,7 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
   </div>
 <textarea id="updateshift"></textarea>
 	<div class="center-wrapper">
-<a data-role="button"style="background:#0E74BC;color:white;">Send update to next shift person</a>
+<a data-role="button"style="background:#0E74BC;color:white; " onclick="updactivityhandover();">Send update to next shift person</a>
     		</div>
 </div>
     		

@@ -229,3 +229,6 @@ border-bottom: none;
 .ui-listview > li h5, .ui-listview > li h6{
 	white-space: normal;
 }
+.center-wrapper{
+  text-align: center;
+} 

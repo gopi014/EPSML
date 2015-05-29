@@ -61,12 +61,12 @@ function insertshiftactuals(emp_id, currmonth) {
 		parameters : [emp_id, currmonth]
 	});
 }
-var stopudaptequery=WL.Server.createSQLStatement("select "+x1+" from shift_update where emp_id=?");
-function stopupdate(emp_id){
+var stopudaptequery=WL.Server.createSQLStatement("select "+x1+" from shift_update where emp_id=? and shift_month=?");
+function stopupdate(emp_id,currmonth){
 	
 	return WL.Server.invokeSQLStatement({
 		preparedStatement : stopudaptequery,
-		parameters : [emp_id]
+		parameters : [emp_id,currmonth]
 	});
 }
 var getuserstoptimequery=WL.Server.createSQLStatement("select st.end_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss."+x1+" =st.shift_name and ss.emp_id=?");
@@ -77,3 +77,20 @@ function getuserstoptime(emp_id){
 	});
 	
 }
+var procedure10Statement = WL.Server.createSQLStatement("UPDATE shift_update SET " + x1 + " = ? WHERE emp_id= ? and shift_month = ?");
+function updateshiftupdates(shiftupdates,emp_id,month) {
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : procedure10Statement,
+		parameters : [shiftupdates,emp_id,month]
+	});
+}
+
+var queryhold1 = "INSERT INTO shift_update(emp_id, shift_month, day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day15, day16, day17, day18, day19, day20, day21, day22, day23, day24, day25, day26, day27, day28, day29, day30, day31 ) VALUES (? ,?, 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc','NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc','NonDesc','NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc','NonDesc', 'NonDesc', 'NonDesc', 'NonDesc')";
+var procedure11Statement = WL.Server.createSQLStatement(queryhold1);
+function insertshiftupdates(emp_id,currmonth) {
+
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : procedure11Statement,
+		parameters : [emp_id,currmonth]
+	});
+} 

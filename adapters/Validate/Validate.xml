@@ -36,5 +36,6 @@
     <procedure name="shiftactualsselect"/>
     <procedure name="getuserstoptime"/>
     <procedure name="stopupdate"/>
-
+    <procedure name="updateshiftupdates"/>
+    <procedure name="insertshiftupdates"/>
 </wl:adapter>

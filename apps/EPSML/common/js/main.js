@@ -11,6 +11,7 @@ var useremp_id;
 var n;
 var m;
 var flag=0;
+
 month[0] = "January";
 month[1] = "February";
 month[2] = "March";
@@ -574,6 +575,17 @@ function startshiftSuccess(response){
 		 else {
 			 //conditions where they dint log in on time
 			 alert("Please come on time to shift");
+			 var emp_id=$('#userid').text();
+			 
+				var invocationData = {
+						adapter: "Validate",
+						procedure: "shiftactualsselect",
+						parameters: [emp_id,currmonth]
+				};
+				WL.Client.invokeProcedure(invocationData,{
+			        onSuccess : selectshiftactualsSuccess,
+			        onFailure : selectshiftactualsFailure,
+			    });
 			 
 		 }
 }
@@ -694,7 +706,7 @@ function stopshiftSuccess(response){
 	var endSecond =  d.getUTCSeconds();	
 	
 	var currdate =d.getDate();
-	var currmonth=d.getMonth();
+	var currmonth1=d.getMonth();
 	var curryear =d.getFullYear();
 	
 	var startHour = timehold.substring(0,2);
@@ -710,7 +722,7 @@ function stopshiftSuccess(response){
 	var subMinute = 30;
 	var subSecond = 00;
 			
-	var olddate = new Date(curryear,currmonth,currdate, startHour,startMinute,startSecond, 0); 
+	var olddate = new Date(curryear,currmonth1,currdate, startHour,startMinute,startSecond, 0); 
 	var subbed = new Date(olddate - 30*60*1000);
 	var stophour=subbed.getHours();
 	var stopminute=subbed.getMinutes();
@@ -727,12 +739,13 @@ function stopshiftSuccess(response){
 	             
 	var difference = (((endTimeObject.setHours(endHour, endMinute, endSecond)) - (startTimeObject.setHours(stophour, stopminute, stopseconds))) / 1000)/60;
 	if(difference>0){
-		alert("stopping shift");
+		$('#shiftupdate').hide();
+		flag=0;
 		var emp_id=$('#userid').text();
 		var invocationData = {
 				adapter: "Validate",
 				procedure: "stopupdate",
-				parameters: [emp_id]
+				parameters: [emp_id,currmonth]
 		};
 		WL.Client.invokeProcedure(invocationData,{
 	        onSuccess : StopupdateSuccess,
@@ -750,11 +763,23 @@ function stopshiftSuccess(response){
 function stopshiftFailure(response){
 	alert("Failure in stopshift ");
 }
+function doshiftupdate(){
+	var emp_id=$('#userid').text();
+	var invocationData = {
+			adapter: "Validate",
+			procedure: "stopupdate",
+			parameters: [emp_id,currmonth]
+	};
+	WL.Client.invokeProcedure(invocationData,{
+        onSuccess : StopupdateSuccess,
+        onFailure : StopupdateFailure,
+    });
+}
 function StopupdateSuccess(response){
 	var resultset =response.invocationResult.resultSet;
 	var length=resultset.length;
 	if(length==0){
-		alert("length is 0");
+		$.mobile.changePage( "#shiftdialog",{ changeHash: false });
 	}
 	else{
 		var currentday=new Date().getDate();
@@ -770,6 +795,117 @@ function StopupdateFailure(response){
 function updatecancel(){
 	$.mobile.changePage( "#startshift",{ changeHash: false });
 	flag =1;
+	$('#shiftupdate').show();
 	$('#flip-min').val('on').slider("refresh");
 	
 }
+//Start of Activity Handover - User Story 924135
+function updactivityhandover(){       
+
+	emp_id = $('#userid').text();
+	//shiftupdates = prompt("Enter your Updates Please");
+	shiftupdates= $("#updateshift").val();
+	if(shiftupdates==''){
+		alert("Please enter an update");
+	}
+	else{
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "stopupdate",
+				parameters: [emp_id,currmonth]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : shiftupdateSuccess,
+	        onFailure : shiftupdateFailure,
+	    });  
+	}
+}
+
+
+
+
+
+
+function shiftupdateSuccess(response){
+	var invocationResult = response.invocationResult;
+	var allres = invocationResult.resultSet;
+	
+
+	if (allres.length > 0) {
+		
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "updateshiftupdates",
+				parameters: [shiftupdates,emp_id,currmonth]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : completeShiftUpdatesSuccess,
+	        onFailure : UpdateshiftPopupFailure,
+	    });
+
+
+	}
+
+	else {	
+		
+		var invocationData = {
+
+				adapter: "Validate",
+				procedure: "insertshiftupdates",
+				parameters: [emp_id,currmonth]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : insertshiftUpdatesSuccess,
+	        onFailure : insertshiftUpdatesFailure,
+	    });	
+
+		
+
+	}
+
+}
+
+function insertshiftUpdatesSuccess(response){
+	
+	   emp_id = $('#userid').text();
+
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "updateshiftupdates",
+				parameters: [shiftupdates, emp_id,currmonth]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : completeShiftUpdatesSuccess,
+	        onFailure : completeShiftUpdatesFailure,
+	    });
+}
+
+
+
+
+function shiftupdateFailure(response){
+   alert("Failure in shift update");
+}
+
+
+function UpdateshiftPopupFailure(response){
+   alert("Failure in UpdateshiftPopup");
+}
+
+function insertshiftUpdatesFailure(response){
+   alert("Failure in InsertShift");
+   }
+
+
+
+
+function completeShiftUpdatesSuccess(response){
+	$.mobile.changePage( "#startshift",{ changeHash: false });
+   alert("Shift Updated Successfully");
+}
+
+function completeShiftUpdatesFailure(response){
+   alert("Failure in complete Shift Updates Failure");
+}
+
+//End of Activity Handover - User Story 924135
