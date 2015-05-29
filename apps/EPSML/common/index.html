@@ -227,12 +227,21 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 		<option value="on">Start</option>
 	</select></div>
 	<div class="center-wrapper">
-<a data-role="button" id="shiftupdate" style="display: none;class="custom-btn">Shift Update</a>
+<a data-role="button" id="shiftupdate" style="display: none;class="custom-btn">Update Shift Activities</a>
     		</div>
-			<textarea id="prevupdate" style="display: none;"></textarea> 
+			<p id="prevupdate" style="display: none;"></p> 
 		</div>
 
-
+<div data-role="page" data-dialog="true" id="shiftdialog">
+  <div data-role="header"  style="background:#0E74BC;color:white;">
+  <a href="#" class="ui-btn ui-icon-delete ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="updatecancel();"></a>
+    <h1>Shift Update!</h1>
+  </div>
+<textarea id="updateshift"></textarea>
+	<div class="center-wrapper">
+<a data-role="button"style="background:#0E74BC;color:white;">Send update to next shift person</a>
+    		</div>
+</div>
     		
            <script src="js/initOptions.js"></script>
 

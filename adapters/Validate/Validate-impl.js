@@ -1,3 +1,4 @@
+var x1 = "day"+new Date().getDate();
 var procedure4Statement = WL.Server.createSQLStatement("select team, emp_id from user_team where emp_id=(select id from user_name where intranet_id=?)");
 function validate(email) {
 	return WL.Server.invokeSQLStatement({
@@ -20,106 +21,7 @@ function getUserShiftSchedule(team,month) {
 	});
 }
 
-
-
-var d = new Date().getDate();
-switch(d) 
-{
-case 1: 	
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day1 =st.shift_name and ss.emp_id=?");
-	break;
-case 2:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day2 =st.shift_name and ss.emp_id=?");
-	break;
-case 3:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day3 =st.shift_name and ss.emp_id=?");
-	break;
-case 4:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day4 =st.shift_name and ss.emp_id=?");
-	break;
-case 5:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day5 =st.shift_name and ss.emp_id=?");
-	break;
-case 6:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day6 =st.shift_name and ss.emp_id=?");
-	break;
-case 7:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day7 =st.shift_name and ss.emp_id=?");
-	break;
-case 8:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day8 =st.shift_name and ss.emp_id=?");
-	break;
-case 9:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day9 =st.shift_name and ss.emp_id=?");
-	break;
-case 10:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day10 =st.shift_name and ss.emp_id=?");
-	break;
-case 11:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day11 =st.shift_name and ss.emp_id=?");
-	break;
-case 12:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day12 =st.shift_name and ss.emp_id=?");
-	break;
-case 13:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day13 =st.shift_name and ss.emp_id=?");
-	break;
-case 14:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day14 =st.shift_name and ss.emp_id=?");
-	break;
-case 15:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day15 =st.shift_name and ss.emp_id=?");
-	break;
-case 16:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day16 =st.shift_name and ss.emp_id=?");
-	break;
-case 17:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day17 =st.shift_name and ss.emp_id=?");
-	break;
-case 18:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day18 =st.shift_name and ss.emp_id=?");
-	break;
-case 19:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day19 =st.shift_name and ss.emp_id=?");
-	break;
-case 20:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day20 =st.shift_name and ss.emp_id=?");
-	break;
-case 21:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day21 =st.shift_name and ss.emp_id=?");
-	break;
-case 22:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day22 =st.shift_name and ss.emp_id=?");
-	break;
-case 23:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day23 =st.shift_name and ss.emp_id=?");
-	break;
-case 24:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day24 =st.shift_name and ss.emp_id=?");
-	break;
-case 25:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day25 =st.shift_name and ss.emp_id=?");
-    break;
-
-case 26:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day26 =st.shift_name and ss.emp_id=?");
-    break;
-case 27:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day27 =st.shift_name and ss.emp_id=?");
-	break;
-case 28:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day28 =st.shift_name and ss.emp_id=?");
-    break;
-case 29:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day29 =st.shift_name and ss.emp_id=?");
-	break;
-case 30:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day30 =st.shift_name and ss.emp_id=?");
-    break;
-case 31:
-	var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss.day31 =st.shift_name and ss.emp_id=?");
-	break;
-}
+var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss."+x1+" =st.shift_name and ss.emp_id=?");
 
 function getshiftstarttime(emp_id) {
 	return WL.Server.invokeSQLStatement({
@@ -129,7 +31,7 @@ function getshiftstarttime(emp_id) {
 }
 
 
-var x1 = "day"+new Date().getDate();
+
 var procedure6Statement = WL.Server.createSQLStatement("UPDATE shift_actuals SET " + x1 + " = ? WHERE emp_id= ? and shift_month = ?");
 function updateshiftactuals(shifthold,emp_id,month) {
 	return WL.Server.invokeSQLStatement({
@@ -159,10 +61,19 @@ function insertshiftactuals(emp_id, currmonth) {
 		parameters : [emp_id, currmonth]
 	});
 }
-var stopudaptequery=WL.Server.createSQLStatement("select "+x1+ " from shift_update");
-function stopupdate(){
+var stopudaptequery=WL.Server.createSQLStatement("select "+x1+" from shift_update where emp_id=?");
+function stopupdate(emp_id){
+	
 	return WL.Server.invokeSQLStatement({
 		preparedStatement : stopudaptequery,
-		parameters : []
+		parameters : [emp_id]
 	});
+}
+var getuserstoptimequery=WL.Server.createSQLStatement("select st.end_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss."+x1+" =st.shift_name and ss.emp_id=?");
+function getuserstoptime(emp_id){
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : getuserstoptimequery,
+		parameters : [emp_id]
+	});
+	
 }
