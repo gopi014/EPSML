@@ -38,4 +38,6 @@
     <procedure name="stopupdate"/>
     <procedure name="updateshiftupdates"/>
     <procedure name="insertshiftupdates"/>
+    <procedure name="getmyteammembers" />
+    <procedure name="swapingshiftupdate" />
 </wl:adapter>

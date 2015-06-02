@@ -56,7 +56,7 @@ customAuthenticatorRealmChallengeHandler.handleChallenge = function(response){
 			busyIndicator.hide();
 			}
 		else{
-			document.getElementById("teamname").value = team;
+			$("#teamname").val(team);
 			$('#AppBody').show();
 			$('#AuthBody').hide();
 			$('#userid').text(result[0].emp_id);

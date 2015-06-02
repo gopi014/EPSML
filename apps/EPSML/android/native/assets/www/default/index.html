@@ -202,7 +202,7 @@
                                 <a class="ui-btn-active ui-state-persist" href="#fragment-1" id="sp1" onclick="sp1();">WFH</a>
                             </li>
                             <li>
-                                <a href="#fragment-2" id="sp2" onclick="sp2();">LEAVE</a>
+                                <a href="#fragment-2" id="sp2" onclick="sp2();">Leave</a>
                             </li>
                         </ul>
                     </div>
@@ -220,7 +220,7 @@
         <div data-role="page" id="shiftmanager">
             <div data-role="header">
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
-                <h1 class="Home">SHIFT SCHEDULE</h1>
+                <h1 class="Home">Shift Schedule</h1>
                 <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-transition="slide" href="#" onclick="logout();">
 			<img src="images/logout.png" style="width: 25px;">
 			</a>
@@ -247,7 +247,7 @@
         <div data-role="page" id="startshift">
             <div data-role="header">
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
-                <h1 class="Home">START/STOP SHIFT</h1>
+                <h1 class="Home">Start/Stop Shift</h1>
                 <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-transition="slide" href="#" onclick="logout();">
 			<img src="images/logout.png" style="width: 25px;">
 			</a>
@@ -259,9 +259,19 @@
 	</select>
             </div>
             <div class="center-wrapper">
-                <a custom-btn="" data-role="button" id="shiftupdate" style="display: none;class=">Shift Update</a>
+                <a class="custom-btn" data-inline="true" data-role="button" id="shiftupdate" onclick="doshiftupdate();" style="display: none; background:#0E74BC;color:white;">Update Shift Activities</a>
             </div>
-            <textarea id="prevupdate" style="display: none;"></textarea> 
+            <p id="prevupdate" style="display: none;"></p> 
+        </div>
+        <div data-dialog="true" data-role="page" id="shiftdialog">
+            <div data-role="header" style="background:#0E74BC;color:white;">
+                <a class="ui-btn ui-icon-delete ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="updatecancel();"></a>
+                <h1>Shift Update!</h1>
+            </div>
+            <textarea id="updateshift"></textarea>
+            <div class="center-wrapper">
+                <a data-role="button" onclick="updactivityhandover();" style="background:#0E74BC;color:white; ">Send update to next shift person</a>
+            </div>
         </div>
         <script src="js/initOptions.js"></script>
     		<script src="js/main.js"></script>

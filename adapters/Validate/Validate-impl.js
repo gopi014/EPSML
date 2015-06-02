@@ -1,4 +1,5 @@
 var x1 = "day"+new Date().getDate();
+var x2=new Date().getDate();
 var procedure4Statement = WL.Server.createSQLStatement("select team, emp_id from user_team where emp_id=(select id from user_name where intranet_id=?)");
 function validate(email) {
 	return WL.Server.invokeSQLStatement({
@@ -85,7 +86,7 @@ function updateshiftupdates(shiftupdates,emp_id,month) {
 	});
 }
 
-var queryhold1 = "INSERT INTO shift_update(emp_id, shift_month, day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day15, day16, day17, day18, day19, day20, day21, day22, day23, day24, day25, day26, day27, day28, day29, day30, day31 ) VALUES (? ,?, 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc','NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc','NonDesc','NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc','NonDesc', 'NonDesc', 'NonDesc', 'NonDesc')";
+var queryhold1 = "INSERT INTO shift_update(emp_id, shift_month, day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day15, day16, day17, day18, day19, day20, day21, day22, day23, day24, day25, day26, day27, day28, day29, day30, day31 ) VALUES (? ,?, '', '', '', '', '','','','', '', '', '', '', '', '', '', '', '', '', '','','', '', '', '', '', '', '','', '', '', '')";
 var procedure11Statement = WL.Server.createSQLStatement(queryhold1);
 function insertshiftupdates(emp_id,currmonth) {
 
@@ -94,3 +95,42 @@ function insertshiftupdates(emp_id,currmonth) {
 		parameters : [emp_id,currmonth]
 	});
 } 
+
+var getteammembersquery=WL.Server.createSQLStatement("SELECT un.emp_name FROM user_name un, user_team ut WHERE un.id = ut.emp_id AND ut.team = ? AND ut.emp_id != ? ");
+function getmyteammembers(team,emp_id){
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : getteammembersquery,
+		parameters : [team,emp_id]
+	});
+	
+}
+var queryforswap=WL.Server.createSQLStatement("select "+x1+" from shift_schedule where emp_id=(select id from user_name where emp_name=?) and shift_month = ?");
+function swapingshift(emp_name,currmonth){
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : queryforswap,
+		parameters : [emp_name,currmonth]
+	});
+}
+var swapupdateuser=WL.Server.createSQLStatement("UPDATE shift_schedule SET " + x1 + " = ? WHERE emp_id= ? and shift_month = ?");
+function updatemyshift(shiftname,emp_id,currmonth){
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : swapupdateuser,
+		parameters : [shiftname,emp_id,currmonth]
+	});
+}
+updateswapperson=WL.Server.createSQLStatement("UPDATE shift_schedule SET " + x1 + " = ? WHERE emp_id= (select id from user_name where emp_name=?) and shift_month = ?");
+function swapingshiftupdate(myshift,emp_name,emp_id,currmonth){
+	var swapshift=swapingshift(emp_name,currmonth);
+	var shiftname=swapshift.resultSet[0]['day'+x2];
+	var updateshift= updatemyshift(shiftname,emp_id,currmonth);
+		if(updateshift.isSuccessful==true){
+		return WL.Server.invokeSQLStatement({
+			preparedStatement : updateswapperson,
+			parameters : [myshift,emp_name,currmonth]
+		});	
+		
+	}
+		else{
+			return updateshift;
+		}
+}

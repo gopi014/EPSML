@@ -2,6 +2,7 @@
 /* JavaScript content from js/main.js in folder common */
 var busyIndicator;
 var busy;
+var busy1;
 var summ=[];
 var connectstatus;
 var shifthold;
@@ -11,6 +12,8 @@ var teamname1;
 var useremp_id;
 var n;
 var m;
+var flag=0;
+
 month[0] = "January";
 month[1] = "February";
 month[2] = "March";
@@ -49,6 +52,7 @@ function disconnectDetected(){
 function connectDetected(){
 	connectstatus="connected";
 }
+//login module start
 function getSecretData(){
 	
 	//busyIndicator = new WL.BusyIndicator ("", {text: "Please wait..."});
@@ -70,6 +74,8 @@ function getSecretData_Callback(response){
 	busyIndicator.hide();
 	//alert("getSecretData_Callback response :: " + JSON.stringify(response));
 }
+//login module end
+//shift schedule start
 function shift(){
 	var tablesize1=$('#emp_name tr').length;
 	if(tablesize1 == 0){
@@ -347,6 +353,7 @@ function teamchange(){
 		
 	WL.ClientMessages.loading = "Loading!Please wait...";
 	busy = new WL.BusyIndicator ();
+	busy.show();
 	var teamname = document.getElementById("select-custom-20").value;
 	var tablesize=$('#emp_name tr').length;
 	if(tablesize == 0){
@@ -475,12 +482,13 @@ function sp2() {
 	
 }
 function startshift(){
+	$('#AppBody').hide();
 	$.mobile.changePage( "#startshift",{ changeHash: false });
 }
 
 function startshiftprocess(){	
 	var buttonclicked = document.getElementById("flip-min").value;
-	if (buttonclicked == "on"){
+	if (buttonclicked == "on" && flag==0){
 	var emp_id=$('#userid').text();
 	
 	var invocationData = {
@@ -498,7 +506,17 @@ function startshiftprocess(){
 	else{
 		
 		//When stop button is clicked
-		//alert("this is for when stop is clicked")
+		var emp_id=$('#userid').text();
+		
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "getuserstoptime",
+				parameters: [emp_id]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : stopshiftSuccess,
+	        onFailure : stopshiftFailure,
+	    });
 	}
 	}
 
@@ -555,10 +573,36 @@ function startshiftSuccess(response){
 			    });
 			 	
 		 }
-		 
+		 else if(difference < 0){
+			 // condition for shift swap 
+			 var emp_id=$('#userid').text();
+			 var team = $('#teamname').value();
+			 var invocationData = {
+						adapter: "Validate",
+						procedure: "getteammembers",
+						parameters: [emp_id,team]
+				};
+				WL.Client.invokeProcedure(invocationData,{
+			        onSuccess : swapshiftSuccess,
+			        onFailure : swapshiftFailure,
+			    });
+			 
+		 }
 		 else {
 			 //conditions where they dint log in on time
-			 alert("not great");
+			 alert("Please come on time to shift");
+			 var emp_id=$('#userid').text();
+			 
+				var invocationData = {
+						adapter: "Validate",
+						procedure: "shiftactualsselect",
+						parameters: [emp_id,currmonth]
+				};
+				WL.Client.invokeProcedure(invocationData,{
+			        onSuccess : selectshiftactualsSuccess,
+			        onFailure : selectshiftactualsFailure,
+			    });
+			 
 		 }
 }
 function selectshiftactualsSuccess(response){
@@ -666,7 +710,227 @@ document.addEventListener("backbutton", function(e){
     	$('#AppBody').show();
     }
 }, false);
+function stopshiftSuccess(response){
+	var invocationResult = response.invocationResult;
+	var resultset = invocationResult.resultSet;
+	var timehold = resultset[0].end_time;
+	shifthold = resultset[0].shift_name;
+	
+	d = new Date();
+	var endHour = d.getUTCHours();
+	var endMinute = d.getUTCMinutes();
+	var endSecond =  d.getUTCSeconds();	
+	
+	var currdate =d.getDate();
+	var currmonth1=d.getMonth();
+	var curryear =d.getFullYear();
+	
+	var startHour = timehold.substring(0,2);
+	var startMinute = timehold.substring(3,5);
+	var startSecond = timehold.substring(6,8); 		
+	
+	 
+//	var startHour = 12;
+//	var startMinute = 45;
+//	var startSecond = 00;
+//			
+	var subHour = 00;
+	var subMinute = 30;
+	var subSecond = 00;
+			
+	var olddate = new Date(curryear,currmonth1,currdate, startHour,startMinute,startSecond, 0); 
+	var subbed = new Date(olddate - 30*60*1000);
+	var stophour=subbed.getHours();
+	var stopminute=subbed.getMinutes();
+	var stopseconds=subbed.getSeconds();
+	
+	//Create date object and set the time to that
+	 var startTimeObject = new Date();
+	 startTimeObject.setHours(stophour, stopminute, stopseconds);
 
+	 //Create date object and set the time to that
+	 var endTimeObject = new Date(startTimeObject);
+	 endTimeObject.setHours(endHour, endMinute, endSecond);
+ 
+	             
+	var difference = (((endTimeObject.setHours(endHour, endMinute, endSecond)) - (startTimeObject.setHours(stophour, stopminute, stopseconds))) / 1000)/60;
+	if(difference>0){
+		$('#shiftupdate').hide();
+		flag=0;
+		var emp_id=$('#userid').text();
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "stopupdate",
+				parameters: [emp_id,currmonth]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : StopupdateSuccess,
+	        onFailure : StopupdateFailure,
+	    });
+		
+	}
+	else{
+		alert("you are not allowed to end you shift before your end time");
+		flag =1;
+		$('#flip-min').val('on').slider("refresh");
+		
+	}
+}
+function stopshiftFailure(response){
+	alert("Failure in stopshift ");
+}
+function doshiftupdate(){
+	var emp_id=$('#userid').text();
+	var invocationData = {
+			adapter: "Validate",
+			procedure: "stopupdate",
+			parameters: [emp_id,currmonth]
+	};
+	WL.Client.invokeProcedure(invocationData,{
+        onSuccess : StopupdateSuccess,
+        onFailure : StopupdateFailure,
+    });
+}
+function StopupdateSuccess(response){
+	var resultset =response.invocationResult.resultSet;
+	var length=resultset.length;
+	if(length==0){
+		$.mobile.changePage( "#shiftdialog",{ changeHash: false });
+	}
+	else{
+		var currentday=new Date().getDate();
+		var update= resultset[0]['day'+currentday];
+	    $("#updateshift").val(update);
+		$.mobile.changePage( "#shiftdialog",{ changeHash: false });
+	}
+}
+function StopupdateFailure(response){
+	alert("in failure");
+	
+}
+function updatecancel(){
+	$.mobile.changePage( "#startshift",{ changeHash: false });
+	flag =1;
+	$('#shiftupdate').show();
+	$('#flip-min').val('on').slider("refresh");
+	
+}
+//Start of Activity Handover - User Story 924135
+function updactivityhandover(){       
+
+	emp_id = $('#userid').text();
+	//shiftupdates = prompt("Enter your Updates Please");
+	shiftupdates= $("#updateshift").val();
+	if(shiftupdates==''){
+		alert("Please enter an update");
+	}
+	else{
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "stopupdate",
+				parameters: [emp_id,currmonth]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : shiftupdateSuccess,
+	        onFailure : shiftupdateFailure,
+	    });  
+	}
+}
+
+
+
+
+
+
+function shiftupdateSuccess(response){
+	var invocationResult = response.invocationResult;
+	var allres = invocationResult.resultSet;
+	
+
+	if (allres.length > 0) {
+		
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "updateshiftupdates",
+				parameters: [shiftupdates,emp_id,currmonth]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : completeShiftUpdatesSuccess,
+	        onFailure : UpdateshiftPopupFailure,
+	    });
+
+
+	}
+
+	else {	
+		
+		var invocationData = {
+
+				adapter: "Validate",
+				procedure: "insertshiftupdates",
+				parameters: [emp_id,currmonth]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : insertshiftUpdatesSuccess,
+	        onFailure : insertshiftUpdatesFailure,
+	    });	
+
+		
+
+	}
+
+}
+
+function insertshiftUpdatesSuccess(response){
+	
+	   emp_id = $('#userid').text();
+
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "updateshiftupdates",
+				parameters: [shiftupdates, emp_id,currmonth]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : completeShiftUpdatesSuccess,
+	        onFailure : completeShiftUpdatesFailure,
+	    });
+}
+
+
+
+
+function shiftupdateFailure(response){
+   alert("Failure in shift update");
+}
+
+
+function UpdateshiftPopupFailure(response){
+   alert("Failure in UpdateshiftPopup");
+}
+
+function insertshiftUpdatesFailure(response){
+   alert("Failure in InsertShift");
+   }
+
+
+
+
+function completeShiftUpdatesSuccess(response){
+	$.mobile.changePage( "#startshift",{ changeHash: false });
+   alert("Shift Updated Successfully");
+}
+
+function completeShiftUpdatesFailure(response){
+   alert("Failure in complete Shift Updates Failure");
+}
+
+//End of Activity Handover - User Story 924135
+function swapshiftSuccess(response){
+	alert("in swap success");
+}
+function swapshiftFailure(response){
+	alert("in swap failure");
+}
 /* JavaScript content from js/main.js in folder android */
 // This method is invoked after loading the main HTML and successful initialization of the IBM MobileFirst Platform runtime.
 function wlEnvInit(){

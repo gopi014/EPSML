@@ -348,7 +348,7 @@ function teamchange(){
 		alert("Could not connect to Server.");
 	}
 	else{
-		
+	
 	WL.ClientMessages.loading = "Loading!Please wait...";
 	busy = new WL.BusyIndicator ();
 	busy.show();
@@ -356,7 +356,7 @@ function teamchange(){
 	var tablesize=$('#emp_name tr').length;
 	if(tablesize == 0){
 		teamname1=teamname;
-	
+		$('#select-custom-20 option[value="select"]').remove();	   
 	var invocationData = {
 			adapter: "Validate",
 			procedure: "smanager",
@@ -571,7 +571,21 @@ function startshiftSuccess(response){
 			    });
 			 	
 		 }
-		 
+		 else if(difference < 0){
+			 // condition for shift swap 
+			 var emp_id=$('#userid').text();
+			 var team = $('#teamname').val();
+			 var invocationData = {
+						adapter: "Validate",
+						procedure: "getmyteammembers",
+						parameters: [team,emp_id]
+				};
+				WL.Client.invokeProcedure(invocationData,{
+			        onSuccess : swapshiftSuccess,
+			        onFailure : swapshiftFailure,
+			    });
+			 
+		 }
 		 else {
 			 //conditions where they dint log in on time
 			 alert("Please come on time to shift");
@@ -909,3 +923,75 @@ function completeShiftUpdatesFailure(response){
 }
 
 //End of Activity Handover - User Story 924135
+function swapshiftSuccess(response){
+	    $('#swapmembershift').hide();
+		var optionsAsString = "<option value='0'>Select Team Member</option>";
+		var invocationresult=response.invocationResult;
+		var resultset=invocationresult.resultSet;
+		var length =resultset.length;
+		for(var i=0; i<length;i++){
+	  optionsAsString += "<option value='" + resultset[i].emp_name + "'>" + resultset[i].emp_name + "</option>";
+			
+		}
+		$("select[name='swapselect']").find('option').remove().end().append($(optionsAsString));
+		$.mobile.changePage( "#swapdialog",{ changeHash: false });
+}
+function swapshiftFailure(response){
+	alert("in swap failure");
+}
+function swapselect(){
+	$('#swapselect option[value="0"]').remove();
+	var teammembername = document.getElementById("swapselect").value;
+	$('#swapmembertext').text("Please select the shift for "+teammembername);
+	$('#swapmembershift').show();
+}
+function swapcancel(){
+	$.mobile.changePage( "#startshift",{ changeHash: false });
+	flag =0;
+	$('#flip-min').val('off').slider("refresh");
+	
+}
+function swapmembershift(){
+	$('#swapmembershift1 option[value="0"]').remove();
+	$('#swapreason1').show();
+	$('#swapreason').show();
+}
+function swapmyshift(){
+	WL.ClientMessages.loading = "Loading!Please wait...";
+	busy = new WL.BusyIndicator ();
+	busy.show();
+	var myshift=document.getElementById("swapmembershift1").value;
+	var emp_name=document.getElementById("swapselect").value;
+	var emp_id=$('#userid').text();
+	
+	var invocationData = {
+			adapter: "Validate",
+			procedure: "swapingshiftupdate",
+			parameters: [myshift,emp_name,emp_id,currmonth]
+	};
+	WL.Client.invokeProcedure(invocationData,{
+        onSuccess : swapmyshiftSuccess,
+        onFailure : swapmyshiftFailure,
+    });
+	
+}
+function swapmyshiftSuccess(response){
+	alert("Swaped Successfully");
+	$.mobile.changePage( "#startshift",{ changeHash: false });	
+	busy.hide();
+var emp_id=$('#userid').text();
+	
+	var invocationData = {
+			adapter: "Validate",
+			procedure: "getshiftstarttime",
+			parameters: [emp_id]
+	};
+	WL.Client.invokeProcedure(invocationData,{
+        onSuccess : startshiftSuccess,
+        onFailure : startshiftFailure,
+    });
+}
+function swapmyshiftFailure(response){
+	alert("Swap Failure");
+	busy.hide();
+}
