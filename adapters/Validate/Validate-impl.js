@@ -22,8 +22,7 @@ function getUserShiftSchedule(team,month) {
 	});
 }
 
-var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss."+x1+" =st.shift_name and ss.emp_id=?");
-
+var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name, st.end_time from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss."+x1+" =st.shift_name and ss.emp_id=?");
 function getshiftstarttime(emp_id) {
 	return WL.Server.invokeSQLStatement({
 		preparedStatement : procedure5Statement,

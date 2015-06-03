@@ -350,7 +350,7 @@ function teamchange(){
 		alert("Could not connect to Server.");
 	}
 	else{
-		
+	
 	WL.ClientMessages.loading = "Loading!Please wait...";
 	busy = new WL.BusyIndicator ();
 	busy.show();
@@ -358,7 +358,7 @@ function teamchange(){
 	var tablesize=$('#emp_name tr').length;
 	if(tablesize == 0){
 		teamname1=teamname;
-	
+		$('#select-custom-20 option[value="select"]').remove();	   
 	var invocationData = {
 			adapter: "Validate",
 			procedure: "smanager",
@@ -524,27 +524,60 @@ function startshiftprocess(){
 function startshiftSuccess(response){
 		var invocationResult = response.invocationResult;
 		var resultset = invocationResult.resultSet;
+		if (resultset.length > 0) {
 		var timehold = resultset[0].start_time;
 		shifthold = resultset[0].shift_name;
+		var timestophold = resultset[0].end_time;
 		
+		alert("here")
 		d = new Date();
-		var endHour = d.getUTCHours();
-		var endMinute = d.getUTCMinutes();
-		var endSecond =  d.getUTCSeconds();	
+		//var endHour = d.getUTCHours();
+		//var endMinute = d.getUTCMinutes();
+		//var endSecond =  d.getUTCSeconds();	
+		var endyear = d.getUTCFullYear();
 		
-    	var startHour = timehold.substring(0,2);
-		var startMinute = timehold.substring(3,5);
-		var startSecond = timehold.substring(6,8); 		
+    	//var dbHour = timehold.substring(0,2);
+		//var dbMinute = timehold.substring(3,5);
+		//var dbSecond = timehold.substring(6,8); 		
 		
 		 
-//		var startHour = 12;
-//		var startMinute = 45;
-//		var startSecond = 00;
-//				
-//		var endHour = 12;
-//		var endMinute = 59;
-//		var endSecond = 00;
+		var dbHour = 12;
+		var dbMinute = 45;
+		var dbSecond = 00;
+			
+		var endHour = 11;
+	    var endMinute = 59;
+		var endSecond = 00;
+		/*
+		var subHour = 00;
+		var subMinute = 30;
+		var subSecond = 00;
+		*/
+		
+		alert (endyear);
+		alert(currmonth);
+		alert(currday);
+		alert(dbHour);
+		alert(dbMinute);
+		alert(dbSecond);
+		
+		
+		var subHour = 00;
+		var subMinute = 30;
+		var subSecond = 00;
 				
+		var olddate = new Date(endyear,currmonth,currday, dbHour,dbMinute,dbSecond, 0); 
+		var subbed = new Date(olddate - 30*60*1000);
+		
+	
+		
+		var startHour=subbed.getHours();
+		var startMinute=subbed.getMinutes();
+		var startSecond=subbed.getSeconds();
+				
+		 alert(startHour);
+		 alert(startMinute);
+		 alert(startSecond);
 		 
 		 //Create date object and set the time to that
 		 var startTimeObject = new Date();
@@ -556,10 +589,10 @@ function startshiftSuccess(response){
 		 
 		 
 		 var difference = (((endTimeObject.setHours(endHour, endMinute, endSecond)) - (startTimeObject.setHours(startHour, startMinute, startSecond))) / 1000)/60;
-		//	alert (difference)	;	
+		
 		 
-		 
-		 if ((difference > 0 && difference < 31) || difference == 0){
+		 alert(difference);
+		 if ((difference > 0 && difference < 61) || difference == 0){
 			 var emp_id=$('#userid').text();
 			 
 				var invocationData = {
@@ -573,14 +606,16 @@ function startshiftSuccess(response){
 			    });
 			 	
 		 }
+		 
+		 
 		 else if(difference < 0){
 			 // condition for shift swap 
 			 var emp_id=$('#userid').text();
-			 var team = $('#teamname').value();
+			 var team = $('#teamname').val();
 			 var invocationData = {
 						adapter: "Validate",
-						procedure: "getteammembers",
-						parameters: [emp_id,team]
+						procedure: "getmyteammembers",
+						parameters: [team,emp_id]
 				};
 				WL.Client.invokeProcedure(invocationData,{
 			        onSuccess : swapshiftSuccess,
@@ -589,8 +624,28 @@ function startshiftSuccess(response){
 			 
 		 }
 		 else {
-			 //conditions where they dint log in on time
-			 alert("Please come on time to shift");
+			//conditions where they dint log in on time
+			
+			   d1 = new Date();
+				var endHour1 = 02;
+				var endMinute1 = 00;
+				var endSecond1 = 00 ;	
+				 
+				//var endHour1= d1.getUTCHours();
+				//	var endMinute1 = d1.getUTCMinutes();
+				//var endSecond1 =  d1.getUTCSeconds();
+				
+		    	var startHour1 = timestophold.substring(0,2);
+				var startMinute1 = timestophold.substring(3,5);
+				var startSecond1 = timestophold.substring(6,8); 		 
+				
+				 alert (startHour1);
+		         var difference1 = (((endTimeObject.setHours(endHour1, endMinute1, endSecond1)) - (startTimeObject.setHours(startHour1, startMinute1, startSecond1))) / 1000)/60;
+				alert (difference1);
+				
+				if(difference1 < 0 ){
+				//log in to shift before end of shift.
+			 alert("Please come on time to shift.");
 			 var emp_id=$('#userid').text();
 			 
 				var invocationData = {
@@ -602,8 +657,20 @@ function startshiftSuccess(response){
 			        onSuccess : selectshiftactualsSuccess,
 			        onFailure : selectshiftactualsFailure,
 			    });
+				}
+				else{
+					//log into shift after end of shift
+					alert("You cannot log into your shift now!!");
+					$('#flip-min').val('off').slider("refresh");
+				}
 			 
 		 }
+		}
+		else{
+			//PL or SL or Weekoff or Location Holiday
+			alert("You are not scheduled to work today!!");
+			$('#flip-min').val('off').slider("refresh");
+		}
 }
 function selectshiftactualsSuccess(response){
 	
@@ -926,10 +993,76 @@ function completeShiftUpdatesFailure(response){
 
 //End of Activity Handover - User Story 924135
 function swapshiftSuccess(response){
-	alert("in swap success");
+	    $('#swapmembershift').hide();
+		var optionsAsString = "<option value='0'>Select Team Member</option>";
+		var invocationresult=response.invocationResult;
+		var resultset=invocationresult.resultSet;
+		var length =resultset.length;
+		for(var i=0; i<length;i++){
+	  optionsAsString += "<option value='" + resultset[i].emp_name + "'>" + resultset[i].emp_name + "</option>";
+			
+		}
+		$("select[name='swapselect']").find('option').remove().end().append($(optionsAsString));
+		$.mobile.changePage( "#swapdialog",{ changeHash: false });
 }
 function swapshiftFailure(response){
 	alert("in swap failure");
+}
+function swapselect(){
+	$('#swapselect option[value="0"]').remove();
+	var teammembername = document.getElementById("swapselect").value;
+	$('#swapmembertext').text("Please select the shift for "+teammembername);
+	$('#swapmembershift').show();
+}
+function swapcancel(){
+	$.mobile.changePage( "#startshift",{ changeHash: false });
+	flag =0;
+	$('#flip-min').val('off').slider("refresh");
+	
+}
+function swapmembershift(){
+	$('#swapmembershift1 option[value="0"]').remove();
+	$('#swapreason1').show();
+	$('#swapreason').show();
+}
+function swapmyshift(){
+	WL.ClientMessages.loading = "Loading!Please wait...";
+	busy = new WL.BusyIndicator ();
+	busy.show();
+	var myshift=document.getElementById("swapmembershift1").value;
+	var emp_name=document.getElementById("swapselect").value;
+	var emp_id=$('#userid').text();
+	
+	var invocationData = {
+			adapter: "Validate",
+			procedure: "swapingshiftupdate",
+			parameters: [myshift,emp_name,emp_id,currmonth]
+	};
+	WL.Client.invokeProcedure(invocationData,{
+        onSuccess : swapmyshiftSuccess,
+        onFailure : swapmyshiftFailure,
+    });
+	
+}
+function swapmyshiftSuccess(response){
+	alert("Swaped Successfully");
+	$.mobile.changePage( "#startshift",{ changeHash: false });	
+	busy.hide();
+var emp_id=$('#userid').text();
+	
+	var invocationData = {
+			adapter: "Validate",
+			procedure: "getshiftstarttime",
+			parameters: [emp_id]
+	};
+	WL.Client.invokeProcedure(invocationData,{
+        onSuccess : startshiftSuccess,
+        onFailure : startshiftFailure,
+    });
+}
+function swapmyshiftFailure(response){
+	alert("Swap Failure");
+	busy.hide();
 }
 /* JavaScript content from js/main.js in folder android */
 // This method is invoked after loading the main HTML and successful initialization of the IBM MobileFirst Platform runtime.

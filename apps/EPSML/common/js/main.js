@@ -522,26 +522,39 @@ function startshiftprocess(){
 function startshiftSuccess(response){
 		var invocationResult = response.invocationResult;
 		var resultset = invocationResult.resultSet;
+		if (resultset.length > 0) {
 		var timehold = resultset[0].start_time;
 		shifthold = resultset[0].shift_name;
+		var timestophold = resultset[0].end_time;
 		
+		alert("here")
 		d = new Date();
 		var endHour = d.getUTCHours();
 		var endMinute = d.getUTCMinutes();
 		var endSecond =  d.getUTCSeconds();	
+		var endyear = d.getUTCFullYear();
 		
-    	var startHour = timehold.substring(0,2);
-		var startMinute = timehold.substring(3,5);
-		var startSecond = timehold.substring(6,8); 		
+    	var dbHour = timehold.substring(0,2);
+		var dbMinute = timehold.substring(3,5);
+		var dbSecond = timehold.substring(6,8); 		
 		
 		 
-//		var startHour = 12;
-//		var startMinute = 45;
-//		var startSecond = 00;
-//				
-//		var endHour = 12;
-//		var endMinute = 59;
-//		var endSecond = 00;
+		//var dbHour = 12;
+		//var dbMinute = 45;
+		//var dbSecond = 00;
+			
+		//var endHour = 11;
+	   // var endMinute = 30;
+		//var endSecond = 00;
+		
+		var currmonth1=d.getMonth();		
+		var olddate = new Date(endyear,currmonth1,currday, dbHour,dbMinute,dbSecond, 0); 
+		var subbed = new Date(olddate - 30*60*1000);
+	
+		
+		var startHour=subbed.getHours();
+		var startMinute=subbed.getMinutes();
+		var startSecond=subbed.getSeconds();
 				
 		 
 		 //Create date object and set the time to that
@@ -554,10 +567,10 @@ function startshiftSuccess(response){
 		 
 		 
 		 var difference = (((endTimeObject.setHours(endHour, endMinute, endSecond)) - (startTimeObject.setHours(startHour, startMinute, startSecond))) / 1000)/60;
-		//	alert (difference)	;	
+		
 		 
-		 
-		 if ((difference > 0 && difference < 31) || difference == 0){
+		 alert(difference);
+		 if ((difference > 0 && difference < 61) || difference == 0){
 			 var emp_id=$('#userid').text();
 			 
 				var invocationData = {
@@ -571,6 +584,8 @@ function startshiftSuccess(response){
 			    });
 			 	
 		 }
+		 
+		 
 		 else if(difference < 0){
 			 // condition for shift swap 
 			 var emp_id=$('#userid').text();
@@ -587,8 +602,23 @@ function startshiftSuccess(response){
 			 
 		 }
 		 else {
-			 //conditions where they dint log in on time
-			 alert("Please come on time to shift");
+			//conditions where they dint log in on time
+			
+			    d1 = new Date();
+				var endHour1= d1.getUTCHours();
+				var endMinute1 = d1.getUTCMinutes();
+				var endSecond1 =  d1.getUTCSeconds();
+				
+		    	var startHour1 = timestophold.substring(0,2);
+				var startMinute1 = timestophold.substring(3,5);
+				var startSecond1 = timestophold.substring(6,8); 		 
+				
+				
+		        var difference1 = (((endTimeObject.setHours(endHour1, endMinute1, endSecond1)) - (startTimeObject.setHours(startHour1, startMinute1, startSecond1))) / 1000)/60;
+								
+				if(difference1 < 0 ){
+				//log in to shift before end of shift.
+			 alert("Please come on time to shift.");
 			 var emp_id=$('#userid').text();
 			 
 				var invocationData = {
@@ -600,9 +630,22 @@ function startshiftSuccess(response){
 			        onSuccess : selectshiftactualsSuccess,
 			        onFailure : selectshiftactualsFailure,
 			    });
-			 
-		 }
+				}
+				else{
+					//log into shift after end of shift
+					alert("You cannot log into your shift now!!");
+					$('#flip-min').val('off').slider("refresh");
+				}			 
+		    }
+		}
+		else{
+			//PL or SL or Weekoff or Location Holiday
+			alert("You are not scheduled to work today!!");
+			$('#flip-min').val('off').slider("refresh");
+		}
 }
+
+
 function selectshiftactualsSuccess(response){
 	
 	var invocationResult = response.invocationResult;
@@ -674,7 +717,7 @@ function startshiftFailure(response){
 
 
 function UpdateshiftactualsSuccess(response){
-	alert("UpdateShift is a success");
+	alert("Update Shift is a Success");
 	$('#shiftupdate').show();
 	$('#prevupdate').show();
 }
@@ -708,6 +751,7 @@ document.addEventListener("backbutton", function(e){
     	$('#AppBody').show();
     }
 }, false);
+
 function stopshiftSuccess(response){
 	var invocationResult = response.invocationResult;
 	var resultset = invocationResult.resultSet;

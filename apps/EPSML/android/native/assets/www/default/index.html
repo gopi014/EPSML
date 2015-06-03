@@ -228,7 +228,7 @@
             <div data-role="content"> 
                 <div class="ui-field-contain" data-role="fieldcontain" id="team-select" style="position: static;">
                     <select id="select-custom-20" name="select-custom-20" onchange="teamchange();">
-        <option>Select a Team</option>
+        <option value="select">Select a Team</option>
         <option value="SAPSM">SAPSM</option>
         <option value="Emptoris">Emptoris</option>
         <option value="SAPACCESS">SAPACCESS</option>
@@ -271,6 +271,36 @@
             <textarea id="updateshift"></textarea>
             <div class="center-wrapper">
                 <a data-role="button" onclick="updactivityhandover();" style="background:#0E74BC;color:white; ">Send update to next shift person</a>
+            </div>
+        </div>
+        <div data-dialog="true" data-role="page" id="swapdialog">
+            <div data-role="header" style="background:#0E74BC;color:white;">
+                <a class="ui-btn ui-icon-delete ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="swapcancel();"></a>
+                <h1>Swap Shift!</h1>
+            </div>
+            <div data-role="content"> 
+                <div class="ui-field-contain" data-role="fieldcontain" id="teammember-select" style="position: static;">
+                    <p>Select the team member with whom you would like to swap your shift with</p>
+                    <select id="swapselect" name="swapselect" onchange="swapselect();">
+    </select>
+                    <p id="swapmembertext"></p>
+                    <div id="swapmembershift" style="display:none">
+                        <select id="swapmembershift1" name="swapmembershift1" onclick="swapmembershift();">
+     <option value="0">Select</option>
+        <option value="PL">PL</option>
+        <option value="Sick Leave">Sick Leave</option>
+        <option value="First">First</option>
+        <option value="Second">Second</option>
+        <option value="Third">Third</option>
+        <option value="General">General</option>
+            </select>
+                    </div>
+                    <p id="swapreason1" style="display:none"> Reason for swap</p>      
+                    <textarea id="swapreason" style="display:none"></textarea>
+                </div>
+            </div>
+            <div class="center-wrapper">
+                <a data-role="button" onclick="swapmyshift();" style="background:#0E74BC;color:white;">Swap My Shift</a>
             </div>
         </div>
         <script src="js/initOptions.js"></script>
