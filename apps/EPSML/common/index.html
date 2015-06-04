@@ -229,7 +229,14 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 	<div class="center-wrapper">
 <a data-role="button" id="shiftupdate" style="display: none; background:#0E74BC;color:white;" data-inline="true"class="custom-btn" onclick="doshiftupdate();">Update Shift Activities</a>
     		</div>
-			<p id="prevupdate" style="display: none;"></p> 
+    		<ul data-role="listview" id="prevupdate" style="display: none;" data-inset="true" >
+<li class="wikia">
+<h2 id="updateheader">Previous Shift Update</h2>
+<p id="updatecontent"></p>
+
+</li>
+</ul>
+			
 		</div>
 
 <div data-role="page" data-dialog="true" id="shiftdialog">

@@ -488,19 +488,81 @@ function sp2() {
 	
 }
 function startshift(){
-	$('#AppBody').hide();
-	$.mobile.changePage( "#startshift",{ changeHash: false });
+	if(connectstatus =="disconnected")	{
+		alert("Could not connect to Server.");
+	}
+	else{
+		WL.ClientMessages.loading = "Loading!Please wait...";
+		busy = new WL.BusyIndicator ();
+		busy.show();
+		var emp_id=$('#userid').text();
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "checkavailablity",
+				parameters: [emp_id,currmonth]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : availablitySuccess,
+	        onFailure : availablityFailure,
+	    });
+		
+	}
+	
 }
+function availablitySuccess(response){
+	var invocationResult = response.invocationResult;
+	var resultset = invocationResult.resultSet;
+	var length=resultset.length;
+	
+	if(length == 0 || (resultset[0].availablity=='Not Available')){
+		$('#AppBody').hide();
+		$.mobile.changePage( "#startshift",{ changeHash: false });
+		busy.hide();
+	}
+	else{
+		
+		$('#AppBody').hide();
+		$.mobile.changePage( "#startshift",{ changeHash: false });
+		flag=1;
+		starttime=resultset[0].start_time;
+		$('#flip-min').val('on').slider("refresh");
+		$('#shiftupdate').show();
+		$('#prevupdate').show();
+		var team= $('#teamname').val();
+		var invocationData = {
+		        adapter : 'Validate',
+		        procedure : 'procedure2',
+		        parameters : [team,currmonth]
+		    
+		    };
+		    
+		    WL.Client.invokeProcedure(invocationData,{
+		        onSuccess : shiftupdateemptySuccess,
+		        onFailure : shiftupdateemptyFailure,
+		    });
 
+	}
+}
+function availablityFailure(response){
+	busy.hide();
+	alert("couldnot start shift");
+}
 function startshiftprocess(){	
+	if(connectstatus =="disconnected")	{
+		alert("Could not connect to Server.");
+	}
+	else{
 	var buttonclicked = document.getElementById("flip-min").value;
 	if (buttonclicked == "on" && flag==0){
+		WL.ClientMessages.loading = "Loading!Please wait...";
+		busy = new WL.BusyIndicator ();
+		busy.show();
 	var emp_id=$('#userid').text();
 	
 	var invocationData = {
 			adapter: "Validate",
 			procedure: "getshiftstarttime",
-			parameters: [emp_id]
+			parameters: [emp_id,currmonth]
 	};
 	WL.Client.invokeProcedure(invocationData,{
         onSuccess : startshiftSuccess,
@@ -517,12 +579,13 @@ function startshiftprocess(){
 		var invocationData = {
 				adapter: "Validate",
 				procedure: "getuserstoptime",
-				parameters: [emp_id]
+				parameters: [emp_id,currmonth]
 		};
 		WL.Client.invokeProcedure(invocationData,{
 	        onSuccess : stopshiftSuccess,
 	        onFailure : stopshiftFailure,
 	    });
+	}
 	}
 	}
 
@@ -536,7 +599,7 @@ function startshiftSuccess(response){
 		shifthold = resultset[0].shift_name;
 		var timestophold = resultset[0].end_time;
 		
-		alert("here")
+		
 		d = new Date();
 		var endHour = d.getUTCHours();
 		var endMinute = d.getUTCMinutes();
@@ -548,14 +611,7 @@ function startshiftSuccess(response){
 		var dbSecond = timehold.substring(6,8); 		
 		
 		 
-		//var dbHour = 12;
-		//var dbMinute = 45;
-		//var dbSecond = 00;
 			
-		//var endHour = 11;
-	   // var endMinute = 30;
-		//var endSecond = 00;
-		
 		var currmonth1=d.getMonth();		
 		var olddate = new Date(endyear,currmonth1,currday, dbHour,dbMinute,dbSecond, 0); 
 		var subbed = new Date(olddate - 30*60*1000);
@@ -578,7 +634,7 @@ function startshiftSuccess(response){
 		 var difference = (((endTimeObject.setHours(endHour, endMinute, endSecond)) - (startTimeObject.setHours(startHour, startMinute, startSecond))) / 1000)/60;
 		
 		 
-		 alert(difference);
+		
 		 if ((difference > 0 && difference < 61) || difference == 0){
 			 var emp_id=$('#userid').text();
 			 
@@ -642,6 +698,7 @@ function startshiftSuccess(response){
 				}
 				else{
 					//log into shift after end of shift
+					busy.hide();
 					alert("You cannot log into your shift now!!");
 					$('#flip-min').val('off').slider("refresh");
 				}			 
@@ -649,6 +706,7 @@ function startshiftSuccess(response){
 		}
 		else{
 			//PL or SL or Weekoff or Location Holiday
+			busy.hide();
 			alert("You are not scheduled to work today!!");
 			$('#flip-min').val('off').slider("refresh");
 		}
@@ -668,7 +726,7 @@ function selectshiftactualsSuccess(response){
 				parameters: [shifthold, emp_id,currmonth]
 		};
 		WL.Client.invokeProcedure(invocationData,{
-	        onSuccess : UpdateshiftactualsSuccess,
+	        onSuccess : completeStartSuccess,
 	        onFailure : UpdateshiftactualsFailure,
 	    });
 	 
@@ -694,6 +752,7 @@ function selectshiftactualsSuccess(response){
 }
 
 function selectshiftactualsFailure(response){
+	busy.hide();
 	alert("Failure in selectshiftactuals");
 
 }
@@ -714,13 +773,14 @@ function insertshiftactualsSuccess(response){
 }
 
 function insertshiftactualsFailure(response){
-	
+	busy.hide();	
 alert ("Insert query has failed");
 }
 
 
 
 function startshiftFailure(response){
+	busy.hide();
 		alert("Failure in startshift ");
 	}
 
@@ -751,8 +811,8 @@ function shiftupdateemptySuccess(response)
 	
 	
 	if (resultset.length <= 0) {
-		
-		alert ("your the first person from your team");
+		busy.hide();
+		$('#updatecontent').text("You are the first person from your team. No updates to show");
 	}
 	else
 		{
@@ -773,7 +833,7 @@ function Procedure1Success(response)
 	var invocationResult = response.invocationResult;
 	var resultset = invocationResult.resultSet;
 	
-	alert (resultset.length + "Procedure1Success");
+	
 	
 	
 	for (var r=0; r<resultset.length; r++)
@@ -783,15 +843,11 @@ function Procedure1Success(response)
 		
 		  if (resultset[r].start_time == starttime) {
 		    index = r;
-		    alert (index);
-		    
-		    
-		    
 		    if (index>0)
 		    	{
 		    	
 			    var emphold= resultset[r-1].emp_id;
-		    	alert ("greater than 0");
+		    	
 		    	var invocationData = {
 						adapter: "Validate",
 						procedure: "getshiftupdate",
@@ -804,7 +860,7 @@ function Procedure1Success(response)
 		    	
 		    	}
 		    else 
-		    {	alert ("equal to 0");
+		    {	
 		    var team =$('#teamname').val();
 		    	var invocationData = {
 						adapter: "Validate",
@@ -827,36 +883,41 @@ function getshiftupdateSuccess(response)
 	var invocationResult = response.invocationResult;
 	var resultset = invocationResult.resultSet;
 	
-	alert (resultset.length + "ShiftupdateSuccess");
+	
 	var update= resultset[0]['day'+currday];
-	$('#prevupdate').text(update);
+	$('#updatecontent').text(update);
+	busy.hide();
 }
 function getshiftupdateprevSuccess(response)
 {
 	var invocationResult = response.invocationResult;
 	var resultset = invocationResult.resultSet;
-	alert (resultset.length + "ShiftupdatePREVSuccess");
 	var updateprev= resultset[0]['day'+prev];
-	$('#prevupdate').text(updateprev);
+	$('#updatecontent').text(updateprev);
+	busy.hide();
 }
 function getshiftupdateprevFailure(response)
 {
-	
+	busy.hide();
 	alert ("getshiftupdateprevFailure");
 }
 function getshiftupdateFailure(response)
 {
+	busy.hide();
 	alert ("getshiftupdateFailure");
 }
 function Procedure1Failure(response)
 {
+	busy.hide();
 alert ("Procedure1 failure");	
 }
 function shiftupdateemptyFailure(response)
 {
+	busy.hide();
 	alert ("Failure in getting the shift update");
 }
 function UpdateshiftactualsFailure(response){
+	busy.hide();
 	alert("UpdateShift is a failure");
 
 }
@@ -881,6 +942,7 @@ function completeStartSuccess(response){
 }
 
 function completeStartFailure(response){
+	busy.hide();
 	alert("completefailure");
 	
 }
@@ -944,17 +1006,18 @@ function stopshiftSuccess(response){
 	var difference = (((endTimeObject.setHours(endHour, endMinute, endSecond)) - (startTimeObject.setHours(stophour, stopminute, stopseconds))) / 1000)/60;
 	if(difference>0){
 		$('#shiftupdate').hide();
-		flag=0;
+		$('#prevupdate').hide();
 		var emp_id=$('#userid').text();
+		//At stop of shift, availability flag in shift actuals tables has to be set to "Not Available"
 		var invocationData = {
 				adapter: "Validate",
-				procedure: "stopupdate",
+				procedure: "stopshiftavailablityupdate",
 				parameters: [emp_id,currmonth]
 		};
 		WL.Client.invokeProcedure(invocationData,{
-	        onSuccess : StopupdateSuccess,
-	        onFailure : StopupdateFailure,
-	    });
+	        onSuccess : stopshiftavailablityupdateSuccess,
+	        onFailure : stopshiftavailablityupdateFailure,
+	    }); 
 		
 	}
 	else{
@@ -968,6 +1031,10 @@ function stopshiftFailure(response){
 	alert("Failure in stopshift ");
 }
 function doshiftupdate(){
+	if(connectstatus =="disconnected")	{
+		alert("Could not connect to Server.");
+	}
+	else{
 	var emp_id=$('#userid').text();
 	var invocationData = {
 			adapter: "Validate",
@@ -978,6 +1045,7 @@ function doshiftupdate(){
         onSuccess : StopupdateSuccess,
         onFailure : StopupdateFailure,
     });
+	}
 }
 function StopupdateSuccess(response){
 	var resultset =response.invocationResult.resultSet;
@@ -991,6 +1059,7 @@ function StopupdateSuccess(response){
 	    $("#updateshift").val(update);
 		$.mobile.changePage( "#shiftdialog",{ changeHash: false });
 	}
+
 }
 function StopupdateFailure(response){
 	alert("in failure");
@@ -1000,6 +1069,7 @@ function updatecancel(){
 	$.mobile.changePage( "#startshift",{ changeHash: false });
 	flag =1;
 	$('#shiftupdate').show();
+	$('#prevupdate').show();
 	$('#flip-min').val('on').slider("refresh");
 	
 }
@@ -1115,6 +1185,7 @@ function completeShiftUpdatesFailure(response){
 //End of Activity Handover - User Story 924135
 function swapshiftSuccess(response){
 	    $('#swapmembershift').hide();
+	    busy.hide();
 		var optionsAsString = "<option value='0'>Select Team Member</option>";
 		var invocationresult=response.invocationResult;
 		var resultset=invocationresult.resultSet;
@@ -1147,6 +1218,10 @@ function swapmembershift(){
 	$('#swapreason').show();
 }
 function swapmyshift(){
+	if($('#userid').text()==''){
+		alert("reason for swap is mandatory..!");
+	}
+	else{
 	WL.ClientMessages.loading = "Loading!Please wait...";
 	busy = new WL.BusyIndicator ();
 	busy.show();
@@ -1163,7 +1238,7 @@ function swapmyshift(){
         onSuccess : swapmyshiftSuccess,
         onFailure : swapmyshiftFailure,
     });
-	
+	}	
 }
 function swapmyshiftSuccess(response){
 	alert("Swaped Successfully");
@@ -1174,7 +1249,7 @@ var emp_id=$('#userid').text();
 	var invocationData = {
 			adapter: "Validate",
 			procedure: "getshiftstarttime",
-			parameters: [emp_id]
+			parameters: [emp_id,currmonth]
 	};
 	WL.Client.invokeProcedure(invocationData,{
         onSuccess : startshiftSuccess,
@@ -1186,3 +1261,30 @@ function swapmyshiftFailure(response){
 	busy.hide();
 }
 
+function stopshiftavailablityupdateSuccess(response){
+	flag=0;
+	var emp_id=$('#userid').text();
+	var invocationData = {
+			adapter: "Validate",
+			procedure: "stopupdate",
+			parameters: [emp_id,currmonth]
+	};
+	WL.Client.invokeProcedure(invocationData,{
+        onSuccess : StopupdateSuccess,
+        onFailure : StopupdateFailure,
+    });
+}
+
+
+function stopshiftavailablityupdateFailure(response){
+	alert("Failure in stopshiftavailablityupdateFailure ");
+}
+function StopSuccess(response){
+	alert("Stopped Shift Successfully");
+
+}
+
+
+function StopFailure(response){
+	alert("Stopped Shift Failure");
+}

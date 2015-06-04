@@ -49,17 +49,17 @@ function getUserShiftSchedule(team,month) {
 	});
 }
 
-var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name, st.end_time from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss."+x1+" =st.shift_name and ss.emp_id=?");
-function getshiftstarttime(emp_id) {
+var procedure5Statement = WL.Server.createSQLStatement("select st.start_time, st.shift_name, st.end_time from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss."+x1+" =st.shift_name and ss.emp_id=? and ss.shift_month=?");
+function getshiftstarttime(emp_id,currmonth) {
 	return WL.Server.invokeSQLStatement({
 		preparedStatement : procedure5Statement,
-		parameters : [emp_id]
+		parameters : [emp_id,currmonth]
 	});
 }
 
 
 
-var procedure6Statement = WL.Server.createSQLStatement("UPDATE shift_actuals SET " + x1 + " = ? WHERE emp_id= ? and shift_month = ?");
+var procedure6Statement = WL.Server.createSQLStatement("UPDATE shift_actuals SET " + x1 + " = ? , availablity = 'Available' WHERE emp_id= ? and shift_month = ?");
 function updateshiftactuals(shifthold,emp_id,month) {
 	return WL.Server.invokeSQLStatement({
 		preparedStatement : procedure6Statement,
@@ -78,7 +78,7 @@ function shiftactualsselect(emp_id,currmonth) {
 
 
 
-var queryhold = "INSERT INTO shift_actuals(emp_id, shift_month, day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day15, day16, day17, day18, day19, day20, day21, day22, day23, day24, day25, day26, day27, day28, day29, day30, day31 ) VALUES (? ,?, 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc','NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc','NonDesc','NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc','NonDesc', 'NonDesc', 'NonDesc', 'NonDesc')";
+var queryhold = "INSERT INTO shift_actuals(availablity, emp_id, shift_month, day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day15, day16, day17, day18, day19, day20, day21, day22, day23, day24, day25, day26, day27, day28, day29, day30, day31 ) VALUES ('Available', ? ,?, 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc','NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc','NonDesc','NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc', 'NonDesc','NonDesc', 'NonDesc', 'NonDesc', 'NonDesc')";
 
 var procedure8Statement = WL.Server.createSQLStatement(queryhold);
 function insertshiftactuals(emp_id, currmonth) {
@@ -96,11 +96,11 @@ function stopupdate(emp_id,currmonth){
 		parameters : [emp_id,currmonth]
 	});
 }
-var getuserstoptimequery=WL.Server.createSQLStatement("select st.end_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss."+x1+" =st.shift_name and ss.emp_id=?");
-function getuserstoptime(emp_id){
+var getuserstoptimequery=WL.Server.createSQLStatement("select st.end_time, st.shift_name from shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss."+x1+" =st.shift_name and ss.emp_id=? and ss.shift_month=?");
+function getuserstoptime(emp_id,currmonth){
 	return WL.Server.invokeSQLStatement({
 		preparedStatement : getuserstoptimequery,
-		parameters : [emp_id]
+		parameters : [emp_id,currmonth]
 	});
 	
 }
@@ -202,4 +202,18 @@ function getshiftupdateprev(team) {
 		});
 	}
 	
+}
+var checkavailablityquery=WL.Server.createSQLStatement("select sa.availablity,st.start_time, st.shift_name from shift_actuals sa,shift_schedule ss, shift_time st where ss.emp_id= st.emp_id and ss."+x1+" =st.shift_name and ss.emp_id=? and sa.shift_month=?");
+function checkavailablity(emp_id,currmonth){
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : checkavailablityquery,
+		parameters : [emp_id,currmonth]
+	});
+}
+var procedurestop =WL.Server.createSQLStatement("UPDATE shift_actuals SET availablity = 'Not Available' WHERE emp_id= ? and shift_month = ?");
+function stopshiftavailablityupdate(emp_id,currmonth){
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : procedurestop,
+		parameters : [emp_id,currmonth]
+	});
 }
