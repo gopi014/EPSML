@@ -2,6 +2,7 @@ var busyIndicator;
 var busy;
 var busy1;
 var summ=[];
+var starttime;
 var connectstatus;
 var shifthold;
 var d = new Date();
@@ -11,7 +12,14 @@ var useremp_id;
 var n;
 var m;
 var flag=0;
-
+if(d.getDay() == 1){
+var prevday= new Date(new Date().setDate(new Date().getDate()-3));
+var prev=prevday.getDate();
+}
+else{
+	var prevday= new Date(new Date().setDate(new Date().getDate()-1));
+	var prev=prevday.getDate();
+}
 month[0] = "January";
 month[1] = "February";
 month[2] = "March";
@@ -524,6 +532,7 @@ function startshiftSuccess(response){
 		var resultset = invocationResult.resultSet;
 		if (resultset.length > 0) {
 		var timehold = resultset[0].start_time;
+		starttime=resultset[0].start_time;
 		shifthold = resultset[0].shift_name;
 		var timestophold = resultset[0].end_time;
 		
@@ -718,10 +727,135 @@ function startshiftFailure(response){
 
 function UpdateshiftactualsSuccess(response){
 	alert("Update Shift is a Success");
+	var team =$('#teamname').val();
+	 var invocationData = {
+			        adapter : 'Validate',
+			        procedure : 'procedure2',
+			        parameters : [team,currmonth]
+			    
+			    };
+			    
+			    WL.Client.invokeProcedure(invocationData,{
+			        onSuccess : shiftupdateemptySuccess,
+			        onFailure : shiftupdateemptyFailure,
+			    });
+	
 	$('#shiftupdate').show();
 	$('#prevupdate').show();
 }
-
+function shiftupdateemptySuccess(response)
+{
+	var invocationResult = response.invocationResult;
+	var resultset = invocationResult.resultSet;
+	var length =resultset.length;
+	
+	
+	if (resultset.length <= 0) {
+		
+		alert ("your the first person from your team");
+	}
+	else
+		{
+		var team =$('#teamname').val();
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "procedure1",
+				parameters: [team,currmonth]
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : Procedure1Success,
+	        onFailure : Procedure1Failure,
+	    });
+		}
+}
+function Procedure1Success(response)
+{
+	var invocationResult = response.invocationResult;
+	var resultset = invocationResult.resultSet;
+	
+	alert (resultset.length + "Procedure1Success");
+	
+	
+	for (var r=0; r<resultset.length; r++)
+		{
+		
+		var index;
+		
+		  if (resultset[r].start_time == starttime) {
+		    index = r;
+		    alert (index);
+		    
+		    
+		    
+		    if (index>0)
+		    	{
+		    	
+			    var emphold= resultset[r-1].emp_id;
+		    	alert ("greater than 0");
+		    	var invocationData = {
+						adapter: "Validate",
+						procedure: "getshiftupdate",
+						parameters: [currmonth,emphold]
+				};
+				WL.Client.invokeProcedure(invocationData,{
+			        onSuccess : getshiftupdateSuccess,
+			        onFailure : getshiftupdateFailure,
+			    });
+		    	
+		    	}
+		    else 
+		    {	alert ("equal to 0");
+		    var team =$('#teamname').val();
+		    	var invocationData = {
+						adapter: "Validate",
+						procedure: "getshiftupdateprev",
+						parameters: [team]
+				};
+				WL.Client.invokeProcedure(invocationData,{
+			        onSuccess : getshiftupdateprevSuccess,
+			        onFailure : getshiftupdateprevFailure,
+			    });
+		    }
+		  
+		}
+		}
+	
+		
+	}
+function getshiftupdateSuccess(response)
+{
+	var invocationResult = response.invocationResult;
+	var resultset = invocationResult.resultSet;
+	
+	alert (resultset.length + "ShiftupdateSuccess");
+	var update= resultset[0]['day'+currday];
+	$('#prevupdate').text(update);
+}
+function getshiftupdateprevSuccess(response)
+{
+	var invocationResult = response.invocationResult;
+	var resultset = invocationResult.resultSet;
+	alert (resultset.length + "ShiftupdatePREVSuccess");
+	var updateprev= resultset[0]['day'+prev];
+	$('#prevupdate').text(updateprev);
+}
+function getshiftupdateprevFailure(response)
+{
+	
+	alert ("getshiftupdateprevFailure");
+}
+function getshiftupdateFailure(response)
+{
+	alert ("getshiftupdateFailure");
+}
+function Procedure1Failure(response)
+{
+alert ("Procedure1 failure");	
+}
+function shiftupdateemptyFailure(response)
+{
+	alert ("Failure in getting the shift update");
+}
 function UpdateshiftactualsFailure(response){
 	alert("UpdateShift is a failure");
 
@@ -729,6 +863,18 @@ function UpdateshiftactualsFailure(response){
 
 function completeStartSuccess(response){
 	alert("Updated the shift! Now get to Work ");
+	var team =$('#teamname').val();
+	 var invocationData = {
+			        adapter : 'Validate',
+			        procedure : 'procedure2',
+			        parameters : [team,currmonth]
+			    
+			    };
+			    
+			    WL.Client.invokeProcedure(invocationData,{
+			        onSuccess : shiftupdateemptySuccess,
+			        onFailure : shiftupdateemptyFailure,
+			    });
 	$('#shiftupdate').show();
 	$('#prevupdate').show();
 	
@@ -1039,3 +1185,4 @@ function swapmyshiftFailure(response){
 	alert("Swap Failure");
 	busy.hide();
 }
+

@@ -1,5 +1,32 @@
+var month = new Array();
+month[0] = "January";
+month[1] = "February";
+month[2] = "March";
+month[3] = "April";
+month[4] = "May";
+month[5] = "June";
+month[6] = "July";
+month[7] = "August";
+month[8] = "September";
+month[9] = "October";
+month[10] = "November";
+month[11] = "December";
 var x1 = "day"+new Date().getDate();
 var x2=new Date().getDate();
+
+var d = new Date();
+if(d.getDay() == 1){
+	var n= new Date(new Date().setDate(new Date().getDate()-3));
+	var x=n.getDate();
+	var currmonth = month[n.getMonth()]; 
+	
+}
+else{
+	var n=new Date(new Date().setDate(new Date().getDate()-1));
+	var x=n.getDate();
+	var currmonth = month[n.getMonth()];
+}
+var x3= "day"+x;
 var procedure4Statement = WL.Server.createSQLStatement("select team, emp_id from user_team where emp_id=(select id from user_name where intranet_id=?)");
 function validate(email) {
 	return WL.Server.invokeSQLStatement({
@@ -132,4 +159,47 @@ function swapingshiftupdate(myshift,emp_name,emp_id,currmonth){
 		else{
 			return updateshift;
 		}
+}
+
+var procedure2Statement = WL.Server.createSQLStatement("select * from user_team ut, shift_update su where ut.emp_id= su.emp_id and ut.team= ? and su.shift_month=?");
+function procedure2(team,currmonth) {
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : procedure2Statement,
+		parameters : [team,currmonth]
+	});
+}
+
+var getteamshiftquery = WL.Server.createSQLStatement("select ss.emp_id, ut.team, ss."+x1+", st.start_time from shift_schedule ss, user_team ut, shift_time st where ut.emp_id= ss.emp_id and ss."+x1+"= st.shift_name and ss.emp_id=st.emp_id and ut.team= ? and ss.shift_month=? ORDER BY st.start_time");
+function procedure1(team,currmonth) {
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : getteamshiftquery,
+		parameters : [team,currmonth]
+	});
+}
+var getpreviousupdatequery = WL.Server.createSQLStatement("select "+x1+ " from shift_update where shift_month=?  and emp_id=?");
+function getshiftupdate(currmonth,emphold) {
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : getpreviousupdatequery,
+		parameters : [currmonth,emphold]
+	});
+}
+var getprevdaylastshiftquery=WL.Server.createSQLStatement("select ss.emp_id, ut.team, ss.shift_month,ss."+x3+", st.start_time from shift_schedule ss, user_team ut, shift_time st where ut.emp_id= ss.emp_id and ss."+x3+"= st.shift_name and ss.emp_id=st.emp_id and ut.team= ? and ss.shift_month='"+currmonth+"' ORDER BY st.start_time DESC ");
+function getprevdaylastshift(team){
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : getprevdaylastshiftquery,
+		parameters : [team]
+	});
+	
+}
+var getshiftupdateprevquery = WL.Server.createSQLStatement("select su."+x3+ " from shift_schedule ss, user_team ut, shift_time st, shift_update su where ut.emp_id= ss.emp_id and ss.emp_id=st.emp_id and ss."+x3+"= st.shift_name and ss.emp_id= su.emp_id and ut.team=? and ss."+x3+"=? and su.shift_month='"+currmonth+"' ");
+function getshiftupdateprev(team) {
+	var prevdaylastshift=getprevdaylastshift(team);
+	if(prevdaylastshift.isSuccessful==true){
+		var prevshift=prevdaylastshift.resultSet[0]['day'+x];
+		return WL.Server.invokeSQLStatement({
+			preparedStatement : getshiftupdateprevquery,
+			parameters : [team,prevshift]
+		});
+	}
+	
 }
