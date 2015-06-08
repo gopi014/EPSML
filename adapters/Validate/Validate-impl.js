@@ -145,16 +145,27 @@ function updatemyshift(shiftname,emp_id,currmonth){
 	});
 }
 updateswapperson=WL.Server.createSQLStatement("UPDATE shift_schedule SET " + x1 + " = ? WHERE emp_id= (select id from user_name where emp_name=?) and shift_month = ?");
+function swapmyshiftupdate(myshift,emp_name,currmonth){
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : updateswapperson,
+		parameters : [myshift,emp_name,currmonth]
+	});	
+}
+getemailidquery=WL.Server.createSQLStatement("select intranet_id from user_name where emp_name in (?) or id in (select emp_id from user_team where team in ('Manager'))");
 function swapingshiftupdate(myshift,emp_name,emp_id,currmonth){
 	var swapshift=swapingshift(emp_name,currmonth);
 	var shiftname=swapshift.resultSet[0]['day'+x2];
 	var updateshift= updatemyshift(shiftname,emp_id,currmonth);
 		if(updateshift.isSuccessful==true){
-		return WL.Server.invokeSQLStatement({
-			preparedStatement : updateswapperson,
-			parameters : [myshift,emp_name,currmonth]
-		});	
+		var swapmshift= swapmyshiftupdate(myshift,emp_name,currmonth);
+		if(swapmshift.isSuccessful==true){
+			
 		
+		return WL.Server.invokeSQLStatement({
+			preparedStatement : getemailidquery,
+			parameters : [emp_name]
+		});
+		}
 	}
 		else{
 			return updateshift;

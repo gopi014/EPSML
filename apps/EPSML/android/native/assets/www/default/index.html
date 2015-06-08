@@ -105,7 +105,7 @@
                             <div class="menu-elem"> 
                                 <a href="#" onclick="startshift();">
 <span class="menu-img"> <img src="images/start_x2F_stop.png" style="width: 50px;height: 55px;"> </span>
-<span class="menu-text"> Start/Stop shift</span>
+<span class="menu-text"> Start/Stop Shift</span>
 </a> 
                             </div>
                         </div>
@@ -261,7 +261,12 @@
             <div class="center-wrapper">
                 <a class="custom-btn" data-inline="true" data-role="button" id="shiftupdate" onclick="doshiftupdate();" style="display: none; background:#0E74BC;color:white;">Update Shift Activities</a>
             </div>
-            <p id="prevupdate" style="display: none;"></p> 
+            <ul data-inset="true" data-role="listview" id="prevupdate" style="display: none;">
+                <li class="wikia">
+                    <h2 id="updateheader">Previous Shift Update</h2>
+                    <p id="updatecontent"></p>
+                </li>
+            </ul>
         </div>
         <div data-dialog="true" data-role="page" id="shiftdialog">
             <div data-role="header" style="background:#0E74BC;color:white;">

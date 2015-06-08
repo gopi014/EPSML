@@ -395,6 +395,7 @@ function teamchange(){
 		}
 	}
 }
+}
 function teamchangeSuccess(response)
 {
 	var invocationResult = response.invocationResult;
@@ -468,7 +469,7 @@ function teamchangeSuccess(response)
 busy.hide();
 $.mobile.changePage( "#shiftmanager",{ changeHash: false });
 }
-} 
+
 function teamchangeFailure(response)
 {
 	alert('falure');
@@ -884,16 +885,20 @@ function getshiftupdateSuccess(response)
 	var resultset = invocationResult.resultSet;
 	
 	
-	var update= resultset[0]['day'+currday];
-	$('#updatecontent').text(update);
+	var update1= resultset[0]['day'+currday];
+	var update=update1.nl2br();
+	var updatecont=document.getElementById('updatecontent');
+	updatecont.innerHTML=update;
 	busy.hide();
 }
 function getshiftupdateprevSuccess(response)
 {
 	var invocationResult = response.invocationResult;
 	var resultset = invocationResult.resultSet;
-	var updateprev= resultset[0]['day'+prev];
-	$('#updatecontent').text(updateprev);
+	var updateprev1= resultset[0]['day'+prev];
+	var updateprev=updateprev1.nl2br();
+	updatecont=document.getElementById('updatecontent');
+	updatecont.innerHTML=updateprev;
 	busy.hide();
 }
 function getshiftupdateprevFailure(response)
@@ -1218,7 +1223,7 @@ function swapmembershift(){
 	$('#swapreason').show();
 }
 function swapmyshift(){
-	if($('#userid').text()==''){
+	if($('#swapreason').val()==''){
 		alert("reason for swap is mandatory..!");
 	}
 	else{
@@ -1242,8 +1247,36 @@ function swapmyshift(){
 }
 function swapmyshiftSuccess(response){
 	alert("Swaped Successfully");
+	var invocationResult = response.invocationResult;
+	var resultset = invocationResult.resultSet;
+	var length=resultset.length;
+	var toid='';
+	var j=1;
+	for (var i=0;i<length;i++){
+		toid +=resultset[i].intranet_id;
+		if(j<length){
+			toid +=',';
+			j++;
+		}
+	}
+	var emailid=$('#usernameInputField').val();
+	var subject="shift swap notification";
+	var content=$('#swapreason').val();
+	var invocationData = {
+			adapter: "Mailer",
+			procedure: "sendMail",
+			parameters: [toid,emailid,subject,content]
+	};
+	WL.Client.invokeProcedure(invocationData,{
+        onSuccess : swapmailSuccess,
+        onFailure : swapmailFailure,
+    });
+	
+}
+function swapmailSuccess(response){
 	$.mobile.changePage( "#startshift",{ changeHash: false });	
 	busy.hide();
+	
 var emp_id=$('#userid').text();
 	
 	var invocationData = {
@@ -1255,6 +1288,9 @@ var emp_id=$('#userid').text();
         onSuccess : startshiftSuccess,
         onFailure : startshiftFailure,
     });
+}
+function swapmailFailure(response){
+	alert("swap mail notification failure");
 }
 function swapmyshiftFailure(response){
 	alert("Swap Failure");
@@ -1288,3 +1324,7 @@ function StopSuccess(response){
 function StopFailure(response){
 	alert("Stopped Shift Failure");
 }
+String.prototype.nl2br = function()
+{
+    return this.replace(/\n/g, "<br />");
+};
