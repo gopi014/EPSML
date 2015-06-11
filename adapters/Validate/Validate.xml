@@ -46,4 +46,5 @@
 	<procedure name= "getshiftupdateprev"/>
 	<procedure name= "checkavailablity"/>
 	<procedure name="stopshiftavailablityupdate"/> 
+	<procedure name="onshiftupdates"/> 
 </wl:adapter>

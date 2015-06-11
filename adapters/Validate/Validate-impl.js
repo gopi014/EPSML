@@ -228,3 +228,10 @@ function stopshiftavailablityupdate(emp_id,currmonth){
 		parameters : [emp_id,currmonth]
 	});
 }
+var procedure12Statement = WL.Server.createSQLStatement("select un.emp_name, ut.team from user_name un inner join user_team ut on un.id =ut.emp_id where un.id in (select emp_id from shift_actuals where availablity='Available') ");
+function onshiftupdates(){
+	return WL.Server.invokeSQLStatement({
+		preparedStatement : procedure12Statement,
+		parameters : []
+	});
+}

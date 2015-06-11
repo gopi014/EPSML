@@ -86,7 +86,11 @@ function shift(){
 	var tablesize1=$('#emp_name tr').length;
 	if(tablesize1 == 0){
 		$('#AppBody').hide();
-		$.mobile.changePage( "#shiftmanager",{ changeHash: false });
+		$.mobile.changePage( "#shiftmanager",{ changeHash: false,
+			allowSamePageTransition : true,
+		      transition              : 'none',
+		      showLoadMsg             : false,
+		      reloadPage              : false});
 	}
 	else{
 		$('#emp_name tr').remove();
@@ -95,14 +99,22 @@ function shift(){
 		myselect[0].selectedIndex = 0;
 		myselect.selectmenu("refresh");
 		$('#AppBody').hide();
-		$.mobile.changePage( "#shiftmanager",{ changeHash: false });
+		$.mobile.changePage( "#shiftmanager",{ changeHash: false,
+			allowSamePageTransition : true,
+		      transition              : 'none',
+		      showLoadMsg             : false,
+		      reloadPage              : false});
 	}
 	
 	}
 	
 function home()
 {
-	$.mobile.changePage( "#AppBody",{ changeHash: false });
+	$.mobile.changePage( "#AppBody",{ changeHash: false,
+		allowSamePageTransition : true,
+	      transition              : 'none',
+	      showLoadMsg             : false,
+	      reloadPage              : false});
 	$('#AppBody').show();
 	}
 
@@ -208,7 +220,11 @@ ul.appendChild(li);
 div.appendChild(ul);
 	busy.hide();
 	$('#AppBody').hide();
-	$.mobile.changePage( "#wikiBody",{ changeHash: false });
+	$.mobile.changePage( "#wikiBody",{ changeHash: false,
+		allowSamePageTransition : true,
+	      transition              : 'none',
+	      showLoadMsg             : false,
+	      reloadPage              : false});
 	
 }
 function feedsFailure(response){
@@ -224,11 +240,19 @@ function wikidetail(par){
 	$('#wikiauthor').text(author);
 	wikidesc.innerHTML='<b>Summary:</b><br>'+sum;
 	
-	$.mobile.changePage( "#wikiBody1",{ changeHash: false });
+	$.mobile.changePage( "#wikiBody1",{ changeHash: false,
+		allowSamePageTransition : true,
+	      transition              : 'none',
+	      showLoadMsg             : false,
+	      reloadPage              : false});
 	
 }
 function back(){
-	$.mobile.changePage( "#wikiBody",{ changeHash: false });
+	$.mobile.changePage( "#wikiBody",{ changeHash: false,
+		allowSamePageTransition : true,
+	      transition              : 'none',
+	      showLoadMsg             : false,
+	      reloadPage              : false});
 	}
 function wfhleave(){
 	
@@ -345,7 +369,11 @@ function leaveSuccess(response){
 });
 	busy.hide();
 	$('#AppBody').hide();
-	$.mobile.changePage( "#wfhleave",{ changeHash: false });	
+	$.mobile.changePage( "#wfhleave",{ changeHash: false,
+		allowSamePageTransition : true,
+	      transition              : 'none',
+	      showLoadMsg             : false,
+	      reloadPage              : false});	
 }
 function leaveFailure(response){
 	
@@ -377,7 +405,11 @@ function teamchange(){
 	}
 	else{
 		if(teamname == teamname1){
-			$.mobile.changePage( "#shiftmanager",{ changeHash: false });	
+			$.mobile.changePage( "#shiftmanager",{ changeHash: false,
+				allowSamePageTransition : true,
+			      transition              : 'none',
+			      showLoadMsg             : false,
+			      reloadPage              : false});	
 		}
 		else{
 		teamname1=teamname;
@@ -467,7 +499,11 @@ function teamchangeSuccess(response)
 		currentdate2=currday;
 	}
 busy.hide();
-$.mobile.changePage( "#shiftmanager",{ changeHash: false });
+$.mobile.changePage( "#shiftmanager",{ changeHash: false,
+	allowSamePageTransition : true,
+    transition              : 'none',
+    showLoadMsg             : false,
+    reloadPage              : false});
 }
 
 function teamchangeFailure(response)
@@ -517,13 +553,21 @@ function availablitySuccess(response){
 	
 	if(length == 0 || (resultset[0].availablity=='Not Available')){
 		$('#AppBody').hide();
-		$.mobile.changePage( "#startshift",{ changeHash: false });
+		$.mobile.changePage( "#startshift",{ changeHash: false,
+			allowSamePageTransition : true,
+		      transition              : 'none',
+		      showLoadMsg             : false,
+		      reloadPage              : false});
 		busy.hide();
 	}
 	else{
 		
 		$('#AppBody').hide();
-		$.mobile.changePage( "#startshift",{ changeHash: false });
+		$.mobile.changePage( "#startshift",{ changeHash: false,
+			allowSamePageTransition : true,
+		      transition              : 'none',
+		      showLoadMsg             : false,
+		      reloadPage              : false});
 		flag=1;
 		starttime=resultset[0].start_time;
 		$('#flip-min').val('on').slider("refresh");
@@ -554,7 +598,10 @@ function startshiftprocess(){
 	}
 	else{
 	var buttonclicked = document.getElementById("flip-min").value;
-	if (buttonclicked == "on" && flag==0){
+	if (buttonclicked == "off" && flag==2){
+		flag=0;
+	}
+	else if (buttonclicked == "on" && (flag==0 || flag==2)){
 		WL.ClientMessages.loading = "Loading!Please wait...";
 		busy = new WL.BusyIndicator ();
 		busy.show();
@@ -957,10 +1004,18 @@ document.addEventListener("backbutton", function(e){
         navigator.app.exitApp();
     }
     else if($.mobile.activePage.is('#wikiBody1')){
-    	$.mobile.changePage( "#wikiBody",{ changeHash: false });
+    	$.mobile.changePage( "#wikiBody",{ changeHash: false,
+    		allowSamePageTransition : true,
+  	      transition              : 'none',
+  	      showLoadMsg             : false,
+  	      reloadPage              : false});
     }
     else {
-    	$.mobile.changePage( "#AppBody",{ changeHash: false });
+    	$.mobile.changePage( "#AppBody",{ changeHash: false,
+    		allowSamePageTransition : true,
+  	      transition              : 'none',
+  	      showLoadMsg             : false,
+  	      reloadPage              : false});
     	$('#AppBody').show();
     }
 }, false);
@@ -1056,13 +1111,21 @@ function StopupdateSuccess(response){
 	var resultset =response.invocationResult.resultSet;
 	var length=resultset.length;
 	if(length==0){
-		$.mobile.changePage( "#shiftdialog",{ changeHash: false });
+		$.mobile.changePage( "#shiftdialog",{ changeHash: false,
+			allowSamePageTransition : true,
+		      transition              : 'none',
+		      showLoadMsg             : false,
+		      reloadPage              : false});
 	}
 	else{
 		var currentday=new Date().getDate();
 		var update= resultset[0]['day'+currentday];
 	    $("#updateshift").val(update);
-		$.mobile.changePage( "#shiftdialog",{ changeHash: false });
+		$.mobile.changePage( "#shiftdialog",{ changeHash: false,
+			allowSamePageTransition : true,
+		      transition              : 'none',
+		      showLoadMsg             : false,
+		      reloadPage              : false});
 	}
 
 }
@@ -1071,7 +1134,11 @@ function StopupdateFailure(response){
 	
 }
 function updatecancel(){
-	$.mobile.changePage( "#startshift",{ changeHash: false });
+	$.mobile.changePage( "#startshift",{ changeHash: false,
+		allowSamePageTransition : true,
+	      transition              : 'none',
+	      showLoadMsg             : false,
+	      reloadPage              : false});
 	flag =1;
 	$('#shiftupdate').show();
 	$('#prevupdate').show();
@@ -1179,7 +1246,11 @@ function insertshiftUpdatesFailure(response){
 
 
 function completeShiftUpdatesSuccess(response){
-	$.mobile.changePage( "#startshift",{ changeHash: false });
+	$.mobile.changePage( "#startshift",{ changeHash: false,
+		allowSamePageTransition : true,
+	      transition              : 'none',
+	      showLoadMsg             : false,
+	      reloadPage              : false});
    alert("Shift Updated Successfully");
 }
 
@@ -1190,7 +1261,32 @@ function completeShiftUpdatesFailure(response){
 //End of Activity Handover - User Story 924135
 function swapshiftSuccess(response){
 	    $('#swapmembershift').hide();
+	    $('#swapreason1').hide();
+		$('#swapreason').hide();
 	    busy.hide();
+	    var selectlength=$('#swapselect').has('option').length;
+	    if(selectlength > 0){
+	    	$('#swapselect').find('option').remove();
+	    	$('#swapmembertext').hide();
+	    	var optionsAsString = "<option value='0'>Select Team Member</option>";
+			var invocationresult=response.invocationResult;
+			var resultset=invocationresult.resultSet;
+			var length =resultset.length;
+			for(var i=0; i<length;i++){
+		  optionsAsString += "<option value='" + resultset[i].emp_name + "'>" + resultset[i].emp_name + "</option>";
+				
+			}
+			$("select[name='swapselect']").find('option').remove().end().append($(optionsAsString));
+			$.mobile.changePage( "#swapdialog",{ changeHash: false,
+				allowSamePageTransition : true,
+			      transition              : 'none',
+			      showLoadMsg             : false,
+			      reloadPage              : false});
+	    	var myselect = $("#swapselect");
+	    	myselect[0].selectedIndex =0;
+	    	$('#swapselect').selectmenu('refresh', true);
+	    }
+	    else{
 		var optionsAsString = "<option value='0'>Select Team Member</option>";
 		var invocationresult=response.invocationResult;
 		var resultset=invocationresult.resultSet;
@@ -1200,20 +1296,41 @@ function swapshiftSuccess(response){
 			
 		}
 		$("select[name='swapselect']").find('option').remove().end().append($(optionsAsString));
-		$.mobile.changePage( "#swapdialog",{ changeHash: false });
-}
+		$.mobile.changePage( "#swapdialog",{ changeHash: false,
+			allowSamePageTransition : true,
+		      transition              : 'none',
+		      showLoadMsg             : false,
+		      reloadPage              : false});
+	    }
+	    }
 function swapshiftFailure(response){
 	alert("in swap failure");
 }
 function swapselect(){
+	$('#swapmembershift').hide();
+	$('#swapreason1').hide();
+	$('#swapreason').hide();
+	$('#swapmembertext').show();
 	$('#swapselect option[value="0"]').remove();
 	var teammembername = document.getElementById("swapselect").value;
 	$('#swapmembertext').text("Please select the shift for "+teammembername);
+	var optionsAsString = "<option value='0'>Select </option>";
+	$("#swapmembershift1 option:first").before($(optionsAsString));
+	var myselect = $("#swapmembershift1");
+	myselect[0].selectedIndex =0;
+		$("#swapmembershift1").selectmenu('refresh', true);
+	
+	
 	$('#swapmembershift').show();
 }
 function swapcancel(){
-	$.mobile.changePage( "#startshift",{ changeHash: false });
-	flag =0;
+	$.mobile.changePage( "#startshift",{ changeHash: false,
+		allowSamePageTransition : true,
+	      transition              : 'none',
+	      showLoadMsg             : false,
+	      reloadPage              : false});
+	
+	flag =2;
 	$('#flip-min').val('off').slider("refresh");
 	
 }
@@ -1224,7 +1341,7 @@ function swapmembershift(){
 }
 function swapmyshift(){
 	if($('#swapreason').val()==''){
-		alert("reason for swap is mandatory..!");
+		alert("Reason for swap is mandatory..!");
 	}
 	else{
 	WL.ClientMessages.loading = "Loading!Please wait...";
@@ -1274,7 +1391,11 @@ function swapmyshiftSuccess(response){
 	
 }
 function swapmailSuccess(response){
-	$.mobile.changePage( "#startshift",{ changeHash: false });	
+	$.mobile.changePage( "#startshift",{ changeHash: false,
+		allowSamePageTransition : true,
+	      transition              : 'none',
+	      showLoadMsg             : false,
+	      reloadPage              : false});	
 	busy.hide();
 	
 var emp_id=$('#userid').text();
@@ -1328,3 +1449,218 @@ String.prototype.nl2br = function()
 {
     return this.replace(/\n/g, "<br />");
 };
+function onshift(){
+	if(connectstatus =="disconnected")	{
+		alert("Could not connect to Server.");
+	}
+
+	else{
+	WL.ClientMessages.loading = "Loading!Please wait...";
+	busy = new WL.BusyIndicator ();
+	busy.show();
+	
+	//var childcount=$('#SAPSM').children().length;
+	if(($('#SAPSM').children().length > 0) || ($('#SAPACCESS').children().length > 0) || ($('#CSA').children().length > 0) || ($('#WOI').children().length > 0) || ($('#SAPBI').children().length > 0) || ($('#PESSYSTMAINT').children().length > 0) || ($('#PESACCESSADMIN').children().length > 0)|| ($('#PESTRANSPORT').children().length > 0|| ($('#EMTORIES').children().length > 0)|| ($('#PESINFRA').children().length > 0)|| ($('#BOND').children().length > 0)))	
+	{
+		$( "#smcollapse" ).collapsible( "collapse" );
+		$( "#accesscollapse" ).collapsible( "collapse" );
+		$( "#systcollapse" ).collapsible( "collapse" );
+		$( "#bicollapse" ).collapsible( "collapse" );
+		$( "#csacollapse" ).collapsible( "collapse" );
+		$( "#woicollapse" ).collapsible( "collapse" );
+		$( "#pesadmincollapse" ).collapsible( "collapse" );
+		$( "#bondcollapse" ).collapsible( "collapse" );
+		$( "#transportcollapse" ).collapsible( "collapse" );
+		$( "#emtoriescollapse" ).collapsible( "collapse" );
+		$( "#infracollapse" ).collapsible( "collapse" );
+		$('#SAPSM').children().remove();
+		$('#SAPACCESS').children().remove();
+		$('#CSA').children().remove();
+		$('#WOI').children().remove();
+		$('#SAPBI').children().remove();
+		$('#PESSYSTMAINT').children().remove();
+		$('#PESACCESSADMIN').children().remove();
+		$('#PESTRANSPORT').children().remove();
+		$('#PESINFRA').children().remove();
+		$('#EMTORIES').children().remove();
+		$('#BOND').children().remove();
+		document.getElementById("sapsmCount").innerHTML=0;
+		document.getElementById("SAPACCESScount").innerHTML=0;
+		document.getElementById("PESSYSTMAINTcount").innerHTML=0;
+		document.getElementById("SAPBIcount").innerHTML=0;
+		document.getElementById("WOIcount").innerHTML=0;
+		document.getElementById("CSAcount").innerHTML=0;
+		document.getElementById("PESACCESSADMINcount").innerHTML=0;
+		document.getElementById("BONDcount").innerHTML=0;
+		document.getElementById("PESTRANSPORTcount").innerHTML=0;
+		document.getElementById("EMTORIEScount").innerHTML=0;
+		document.getElementById("PESINFRAcount").innerHTML=0;
+	var invocationData = {
+				adapter: "Validate",
+				procedure: "onshiftupdates",
+				parameters: []
+		};
+		WL.Client.invokeProcedure(invocationData,{
+	        onSuccess : onShiftSuccess,
+	        onFailure : onShiftFailure,
+	    });
+	}
+	else{
+
+
+	var invocationData = {
+			adapter: "Validate",
+			procedure: "onshiftupdates",
+			parameters: []
+	};
+	WL.Client.invokeProcedure(invocationData,{
+        onSuccess : onShiftSuccess,
+        onFailure : onShiftFailure,
+    });
+	}
+	}
+}
+function onShiftSuccess(response){
+	var invocationResult = response.invocationResult;
+	var resultset = invocationResult.resultSet;
+	var sapsm = document.getElementById("SAPSM").value;
+	var length =resultset.length;
+	var tablelength=length;
+	if(tablelength==0){
+		sapsm1=sapsm;
+
+	}
+	var countHolder;
+	var span;
+	var p=null;
+	var sapCount = 0;
+	var sapaccesscount=0;
+	var pessycount=0;
+	var sapbicount=0;
+	var csacount=0;
+	var woicount=0;
+	var pesaccessadmincount=0;
+	var Bondcount=0;
+	var pestransportcount=0;
+	var emtoriescount=0;
+	var pesinfracount=0;
+
+	//document.getElementById("SAPACCESS").innerHTML='';
+
+	for (var i=0;i<length;i++){
+	 if(resultset[i].team=="SAPSM"){
+			sapCount++;
+		span = document.getElementById("SAPSM");
+		p = document.createElement("p");
+		p.innerHTML = resultset[i].emp_name;
+		span.appendChild(p);
+		countHolder = document.getElementById("sapsmCount");
+		countHolder.innerHTML = sapCount;
+
+		}else if(resultset[i].team=="SAPACCESS"){
+		sapaccesscount++;
+		span = document.getElementById("SAPACCESS");
+		p = document.createElement("p");
+		p.innerHTML = resultset[i].emp_name;
+		span.appendChild(p);
+		countHolder = document.getElementById("SAPACCESScount");
+		countHolder.innerHTML = sapaccesscount;
+		}
+		else if(resultset[i].team=="PESSYSTMAINT"){
+			pessycount++;
+			span = document.getElementById("PESSYSTMAINT");
+			p = document.createElement("p");
+			p.innerHTML = resultset[i].emp_name;
+			span.appendChild(p);
+			countHolder = document.getElementById("PESSYSTMAINTcount");
+			countHolder.innerHTML = pessycount;
+			}
+			else if(resultset[i].team=="SAPBI"){
+			sapbicount++;
+			span = document.getElementById("SAPBI");
+			p = document.createElement("p");
+			p.innerHTML = resultset[i].emp_name;
+			span.appendChild(p);
+			countHolder = document.getElementById("SAPBIcount");
+			countHolder.innerHTML = sapbicount;
+			}
+			else
+			if(resultset[i].team=="CSA"){
+			csacount++;
+			span = document.getElementById("CSA");
+			p = document.createElement("p");
+			p.innerHTML = resultset[i].emp_name;
+			span.appendChild(p);
+			countHolder = document.getElementById("CSAcount");
+			countHolder.innerHTML = csacount;
+			}
+		    else if(resultset[i].team=="WOI"){
+		    woicount++;
+			span = document.getElementById("WOI");
+			p = document.createElement("p");
+			p.innerHTML = resultset[i].emp_name;
+			span.appendChild(p);
+			countHolder = document.getElementById("WOIcount");
+			countHolder.innerHTML = woicount;
+			}
+			else if(resultset[i].team=="PESACCESSADMIN"){
+			pesaccessadmincount++;
+			span = document.getElementById("PESACCESSADMIN");
+			p = document.createElement("p");
+			p.innerHTML = resultset[i].emp_name;
+			span.appendChild(p);
+			countHolder = document.getElementById("PESACCESSADMINcount");
+			countHolder.innerHTML = pesaccessadmincount;
+			}
+			else if(resultset[i].team=="BOND"){
+			 Bondcount++;
+			 span = document.getElementById("BOND");
+			 p = document.createElement("p");
+			 p.innerHTML = resultset[i].emp_name;
+			 span.appendChild(p);
+			 countHolder = document.getElementById("BONDcount");
+			 countHolder.innerHTML = Bondcount;
+			 }
+			else if(resultset[i].team=="PESTRANSPORT"){
+			pestransportcount++;
+			span = document.getElementById("PESTRANSPORT");
+			p = document.createElement("p");
+			p.innerHTML = resultset[i].emp_name;
+			span.appendChild(p);
+			countHolder = document.getElementById("PESTRANSPORTcount");
+			countHolder.innerHTML = pestransportcount;
+			}
+			else if(resultset[i].team=="EMTORIES"){
+			emtoriescount++;
+			span = document.getElementById("EMTORIES");
+			p = document.createElement("p");
+			p.innerHTML = resultset[i].emp_name;
+			span.appendChild(p);
+			countHolder = document.getElementById("EMTORIEScount");
+			countHolder.innerHTML = emtoriescount;
+			}
+			else if(resultset[i].team=="PESINFRA"){
+			pesinfracount++;
+			span = document.getElementById("PESINFRA");
+			p = document.createElement("p");
+			p.innerHTML = resultset[i].emp_name;
+			span.appendChild(p);
+			countHolder = document.getElementById("PESINFRAcount");
+			countHolder.innerHTML = pesinfracount;
+			}
+
+	}
+	$('#AppBody').hide();
+	$.mobile.changePage( "#onshiftmanager",{ changeHash: false,
+		allowSamePageTransition : true,
+	      transition              : 'none',
+	      showLoadMsg             : false,
+	      reloadPage              : false
+});
+	busy.hide();
+}
+function onShiftFailure(response)
+{
+	busy.hide();
+	alert('falure');
+	}

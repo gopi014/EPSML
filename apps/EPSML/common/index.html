@@ -10,6 +10,7 @@
     		<link rel="stylesheet" href="css/main.css">
     		<script>window.$ = window.jQuery = WLJQ;</script>
     		<script src="jqueryMobile/jquery.mobile-1.4.5.js"></script>
+    		
     	</head>
     	<body style="display: none;">
     		<!--application UI goes here-->
@@ -86,9 +87,9 @@
 </div>
 <div class="ui-block-a" id="onshift" style="display: none;">
 <div class="ui-bar ui-bar-a ui-home-bar">
-<div class="menu-elem"> <a href="#">
+<div class="menu-elem"> <a href="#" onclick="onshift();">
 <span class="menu-img"> <img src="images/start_x2F_stop.png" style="width: 50px;height: 55px;"> </span>
-<span class="menu-text"> On shift </span>
+<span class="menu-text"> On Shift </span>
 </a> </div>
 </div>
 </div>
@@ -198,7 +199,7 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
     <select name="select-custom-20" id="select-custom-20"  onchange="teamchange();">
         <option value="select">Select a Team</option>
         <option value="SAPSM">SAPSM</option>
-        <option value="Emptoris">Emptoris</option>
+        <option value="EMTORIES">EMTORIES</option>
         <option value="SAPACCESS">SAPACCESS</option>
         <option value="PESSYSTMAINT">PESSYSTMAINT</option>
         <option value="SAPBI">SAPBI</option>
@@ -263,8 +264,8 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
     </select>
      <p id="swapmembertext"></p>
      <div id="swapmembershift" style="display:none">
-     <select name="swapmembershift1" id="swapmembershift1"  onclick="swapmembershift();">
-     <option value="0">Select</option>
+     <select name="swapmembershift1" id="swapmembershift1"  onchange="swapmembershift();">
+     
         <option value="PL">PL</option>
         <option value="Sick Leave">Sick Leave</option>
         <option value="First">First</option>
@@ -283,8 +284,74 @@ data-iconpos="notext" class="ui-btn-right  btn-bg"><img src="images/logout.png" 
 <a data-role="button"style="background:#0E74BC;color:white;" onclick="swapmyshift();">Swap My Shift</a>
     		</div>
 </div>
-    		
-           <script src="js/initOptions.js"></script>
+ <div data-role="page" id="onshiftmanager">
+   <div data-role="header">
+            <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" onclick="home();"></a>
+            <h1 class="Home">On Shift</h1>
+
+			<a href="#" data-direction="reverse" onclick="logout();" data-transition="slide" data-iconpos="notext" class="ui-btn-right btn-bg">
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
+		</div>
+    <div data-role="main" >
+        <div id="smcollapse" data-role="collapsible"  style="background: #1C75BC;" data-collapsed="true" data-theme="b" data-content-theme="b" >
+             <h4 >SAPSM <span class="ui-li-count" id="sapsmCount" >0</span></h4>
+			<span id="SAPSM" ></span>
+        </div>
+        <div id="accesscollapse" data-role="collapsible"  data-collapsed="true" data-theme="b" data-content-theme="b">
+             <h4>SAPACCESS<span class="ui-li-count" id="SAPACCESScount">0</span></h4>
+<span id="SAPACCESS"></span>
+
+        </div>
+        <div id="systcollapse"data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="b" >
+             <h4>PESSYSTMAINT<span class="ui-li-count" id="PESSYSTMAINTcount">0</span></h4>
+<span id="PESSYSTMAINT"></span>
+
+        </div>
+                <div id="bicollapse"data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="b" >
+             <h4>SAPBI<span class="ui-li-count" id="SAPBIcount">0</span></h4>
+<span id="SAPBI"></span>
+
+        </div>
+                <div id="csacollapse"data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="b" >
+             <h4>CSA<span class="ui-li-count" id="CSAcount">0</span></h4>
+<span id="CSA"></span>
+
+        </div>
+               <div id="woicollapse" data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="b" >
+             <h4>WOI<span class="ui-li-count" id="WOIcount">0</span></h4>
+<span id="WOI"></span>
+
+
+        </div>
+        <div id="pesadmincollapse"data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="b" >
+             <h4>PESACCESSADMIN<span class="ui-li-count" id="PESACCESSADMINcount">0</span></h4>
+<span id="PESACCESSADMIN"></span>
+
+        </div>
+        <div id="bondcollapse" data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="b" >
+             <h4>Bond<span class="ui-li-count" id="BONDcount">0</span></h4>
+<span id="BOND"></span>
+
+        </div>
+        <div id="transportcollapse" data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="b" >
+             <h4>PESTRANSPORT<span class="ui-li-count" id="PESTRANSPORTcount">0</span></h4>
+<span id="PESTRANSPORT"></span>
+
+        </div>
+        <div id="emtoriescollapse" data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="b" >
+             <h4>EMTORIES<span class="ui-li-count" id="EMTORIEScount">0</span></h4>
+<span id="EMTORIES"></span>
+
+        </div>
+        <div id="infracollapse" data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="b" >
+             <h4>PESINFRA<span class="ui-li-count" id="PESINFRAcount">0</span></h4>
+<span id="PESINFRA"></span>
+
+        </div>
+    </div>   		
+    </div>      
+     <script src="js/initOptions.js"></script>
 
     		<script src="js/main.js"></script>
     		<script src="js/messages.js"></script>

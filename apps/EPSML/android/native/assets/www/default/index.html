@@ -113,9 +113,9 @@
                     <div class="ui-block-a" id="onshift" style="display: none;">
                         <div class="ui-bar ui-bar-a ui-home-bar">
                             <div class="menu-elem"> 
-                                <a href="#">
+                                <a href="#" onclick="onshift();">
 <span class="menu-img"> <img src="images/start_x2F_stop.png" style="width: 50px;height: 55px;"> </span>
-<span class="menu-text"> On shift </span>
+<span class="menu-text"> On Shift </span>
 </a> 
                             </div>
                         </div>
@@ -230,7 +230,7 @@
                     <select id="select-custom-20" name="select-custom-20" onchange="teamchange();">
         <option value="select">Select a Team</option>
         <option value="SAPSM">SAPSM</option>
-        <option value="Emptoris">Emptoris</option>
+        <option value="EMTORIES">EMTORIES</option>
         <option value="SAPACCESS">SAPACCESS</option>
         <option value="PESSYSTMAINT">PESSYSTMAINT</option>
         <option value="SAPBI">SAPBI</option>
@@ -290,8 +290,7 @@
     </select>
                     <p id="swapmembertext"></p>
                     <div id="swapmembershift" style="display:none">
-                        <select id="swapmembershift1" name="swapmembershift1" onclick="swapmembershift();">
-     <option value="0">Select</option>
+                        <select id="swapmembershift1" name="swapmembershift1" onchange="swapmembershift();">
         <option value="PL">PL</option>
         <option value="Sick Leave">Sick Leave</option>
         <option value="First">First</option>
@@ -308,6 +307,72 @@
                 <a data-role="button" onclick="swapmyshift();" style="background:#0E74BC;color:white;">Swap My Shift</a>
             </div>
         </div>
+        <div data-role="page" id="onshiftmanager">
+            <div data-role="header">
+                <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext btn-bg" href="#" onclick="home();"></a>
+                <h1 class="Home">On Shift</h1>
+                <a class="ui-btn-right btn-bg" data-direction="reverse" data-iconpos="notext" data-transition="slide" href="#" onclick="logout();">
+			<img src="images/logout.png" style="width: 25px;">
+			</a>
+            </div>
+            <div data-role="main">
+                <div data-collapsed="true" data-content-theme="b" data-role="collapsible" data-theme="b" id="smcollapse" style="background: #1C75BC;">
+                    <h4>SAPSM <span class="ui-li-count" id="sapsmCount">0</span>
+                    </h4>
+                    <span id="SAPSM"></span>
+                </div>
+                <div data-collapsed="true" data-content-theme="b" data-role="collapsible" data-theme="b" id="accesscollapse">
+                    <h4>SAPACCESS<span class="ui-li-count" id="SAPACCESScount">0</span>
+                    </h4>
+                    <span id="SAPACCESS"></span>
+                </div>
+                <div data-collapsed="true" data-content-theme="b" data-role="collapsible" data-theme="b" id="systcollapse">
+                    <h4>PESSYSTMAINT<span class="ui-li-count" id="PESSYSTMAINTcount">0</span>
+                    </h4>
+                    <span id="PESSYSTMAINT"></span>
+                </div>
+                <div data-collapsed="true" data-content-theme="b" data-role="collapsible" data-theme="b" id="bicollapse">
+                    <h4>SAPBI<span class="ui-li-count" id="SAPBIcount">0</span>
+                    </h4>
+                    <span id="SAPBI"></span>
+                </div>
+                <div data-collapsed="true" data-content-theme="b" data-role="collapsible" data-theme="b" id="csacollapse">
+                    <h4>CSA<span class="ui-li-count" id="CSAcount">0</span>
+                    </h4>
+                    <span id="CSA"></span>
+                </div>
+                <div data-collapsed="true" data-content-theme="b" data-role="collapsible" data-theme="b" id="woicollapse">
+                    <h4>WOI<span class="ui-li-count" id="WOIcount">0</span>
+                    </h4>
+                    <span id="WOI"></span>
+                </div>
+                <div data-collapsed="true" data-content-theme="b" data-role="collapsible" data-theme="b" id="pesadmincollapse">
+                    <h4>PESACCESSADMIN<span class="ui-li-count" id="PESACCESSADMINcount">0</span>
+                    </h4>
+                    <span id="PESACCESSADMIN"></span>
+                </div>
+                <div data-collapsed="true" data-content-theme="b" data-role="collapsible" data-theme="b" id="bondcollapse">
+                    <h4>Bond<span class="ui-li-count" id="BONDcount">0</span>
+                    </h4>
+                    <span id="BOND"></span>
+                </div>
+                <div data-collapsed="true" data-content-theme="b" data-role="collapsible" data-theme="b" id="transportcollapse">
+                    <h4>PESTRANSPORT<span class="ui-li-count" id="PESTRANSPORTcount">0</span>
+                    </h4>
+                    <span id="PESTRANSPORT"></span>
+                </div>
+                <div data-collapsed="true" data-content-theme="b" data-role="collapsible" data-theme="b" id="emtoriescollapse">
+                    <h4>EMTORIES<span class="ui-li-count" id="EMTORIEScount">0</span>
+                    </h4>
+                    <span id="EMTORIES"></span>
+                </div>
+                <div data-collapsed="true" data-content-theme="b" data-role="collapsible" data-theme="b" id="infracollapse">
+                    <h4>PESINFRA<span class="ui-li-count" id="PESINFRAcount">0</span>
+                    </h4>
+                    <span id="PESINFRA"></span>
+                </div>
+            </div>   		
+        </div>      
         <script src="js/initOptions.js"></script>
     		<script src="js/main.js"></script>
     		<script src="js/messages.js"></script>

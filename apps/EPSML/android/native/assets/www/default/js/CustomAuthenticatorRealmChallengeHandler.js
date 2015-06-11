@@ -76,7 +76,11 @@ customAuthenticatorRealmChallengeHandler.submitLoginFormCallback = function(resp
     	customAuthenticatorRealmChallengeHandler.handleChallenge(response);
     } 
 };
-
+$('#passwordInputField').bind('keypress',(function(e){
+    if(e.which == 13){//Enter key pressed
+        $('#loginButton').click();//Trigger search button click event
+    }
+}));
 $('#loginButton').bind('click', function () {
 	if(connectstatus =="disconnected")	{
 		$('#loginmesg').text("Could not connect to Server.");
