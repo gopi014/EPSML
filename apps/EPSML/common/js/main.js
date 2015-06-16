@@ -38,10 +38,14 @@ function wlCommonInit(){
 	WL.Client.setHeartBeatInterval(5);
 	document.addEventListener(WL.Events.WORKLIGHT_IS_CONNECTED, connectDetected, false); 
 	document.addEventListener(WL.Events.WORKLIGHT_IS_DISCONNECTED, disconnectDetected , false);
-		getSecretData();
-		WL.ClientMessages.loading = "Authenticating";
-		busyIndicator = new WL.BusyIndicator ();
-	
+	if(localStorage.getItem('userid') != null){
+		cookies();
+	}
+	else{
+	getSecretData();
+	WL.ClientMessages.loading = "Authenticating";
+	busyIndicator = new WL.BusyIndicator ();
+	}
 	
     
 }
@@ -57,6 +61,29 @@ function disconnectDetected(){
 
 function connectDetected(){
 	connectstatus="connected";
+}
+//storing cookies
+function cookies(){
+	if(localStorage.getItem('userteam')=='Pem'){
+		$('#AppBody').show();
+		$('#AuthBody').hide();
+		$('#smanager').hide();
+		$('#leavewfh').hide();
+		$('#start').hide();
+		$('#wikiupdates').hide();
+	}
+	else if((localStorage.getItem('userteam')=='Manager') || (localStorage.getItem('userteam')=='PL'))
+	{
+		$('#AppBody').show();
+		$('#AuthBody').hide();
+		$('#start').hide();
+		$('#onshift').show();	
+	}
+	else{
+		$('#AppBody').show();
+		$('#AuthBody').hide();
+	}
+
 }
 //login module start
 function getSecretData(){
@@ -262,6 +289,9 @@ function logout(){
 			onSuccess : WL.Client.reloadApp,
 	};
 	WL.Client.logout('CustomAuthenticatorRealm',options);
+	localStorage.removeItem('userid');
+	localStorage.removeItem('username');
+	localStorage.removeItem('password');
 }
 function getleavewfh()
 {
@@ -532,7 +562,7 @@ function startshift(){
 		WL.ClientMessages.loading = "Loading!Please wait...";
 		busy = new WL.BusyIndicator ();
 		busy.show();
-		var emp_id=$('#userid').text();
+		var emp_id=localStorage.getItem('userid');
 		var invocationData = {
 				adapter: "Validate",
 				procedure: "checkavailablity",
@@ -573,7 +603,7 @@ function availablitySuccess(response){
 		$('#flip-min').val('on').slider("refresh");
 		$('#shiftupdate').show();
 		$('#prevupdate').show();
-		var team= $('#teamname').val();
+		var team= localStorage.getItem('userteam');
 		var invocationData = {
 		        adapter : 'Validate',
 		        procedure : 'procedure2',
@@ -605,7 +635,7 @@ function startshiftprocess(){
 		WL.ClientMessages.loading = "Loading!Please wait...";
 		busy = new WL.BusyIndicator ();
 		busy.show();
-	var emp_id=$('#userid').text();
+	var emp_id=localStorage.getItem('userid');
 	
 	var invocationData = {
 			adapter: "Validate",
@@ -622,7 +652,7 @@ function startshiftprocess(){
 	else{
 		
 		//When stop button is clicked
-		var emp_id=$('#userid').text();
+		var emp_id=localStorage.getItem('userid');
 		
 		var invocationData = {
 				adapter: "Validate",
@@ -684,7 +714,7 @@ function startshiftSuccess(response){
 		 
 		
 		 if ((difference > 0 && difference < 61) || difference == 0){
-			 var emp_id=$('#userid').text();
+			 var emp_id=localStorage.getItem('userid');
 			 
 				var invocationData = {
 						adapter: "Validate",
@@ -701,8 +731,8 @@ function startshiftSuccess(response){
 		 
 		 else if(difference < 0){
 			 // condition for shift swap 
-			 var emp_id=$('#userid').text();
-			 var team = $('#teamname').val();
+			 var emp_id=localStorage.getItem('userid');
+			 var team = localStorage.getItem('userteam');
 			 var invocationData = {
 						adapter: "Validate",
 						procedure: "getmyteammembers",
@@ -732,7 +762,7 @@ function startshiftSuccess(response){
 				if(difference1 < 0 ){
 				//log in to shift before end of shift.
 			 alert("Please come on time to shift.");
-			 var emp_id=$('#userid').text();
+			 var emp_id=localStorage.getItem('userid');
 			 
 				var invocationData = {
 						adapter: "Validate",
@@ -766,7 +796,7 @@ function selectshiftactualsSuccess(response){
 	var invocationResult = response.invocationResult;
 	var results = invocationResult.resultSet;
 	if (results.length > 0) {
-		var emp_id=$('#userid').text();
+		var emp_id=localStorage.getItem('userid');
 		 
 		var invocationData = {
 				adapter: "Validate",
@@ -782,7 +812,7 @@ function selectshiftactualsSuccess(response){
 	}
 	
 	else {
-		var emp_id=$('#userid').text();
+		var emp_id=localStorage.getItem('userid');
 		 
 		var invocationData = {
 				adapter: "Validate",
@@ -806,7 +836,7 @@ function selectshiftactualsFailure(response){
 }
 
 function insertshiftactualsSuccess(response){
-	var emp_id=$('#userid').text();
+	var emp_id=localStorage.getItem('userid');
 	 
 	var invocationData = {
 			adapter: "Validate",
@@ -835,7 +865,7 @@ function startshiftFailure(response){
 
 function UpdateshiftactualsSuccess(response){
 	alert("Update Shift is a Success");
-	var team =$('#teamname').val();
+	var team =localStorage.getItem('userteam');
 	 var invocationData = {
 			        adapter : 'Validate',
 			        procedure : 'procedure2',
@@ -864,7 +894,7 @@ function shiftupdateemptySuccess(response)
 	}
 	else
 		{
-		var team =$('#teamname').val();
+		var team =localStorage.getItem('userteam');
 		var invocationData = {
 				adapter: "Validate",
 				procedure: "procedure1",
@@ -909,7 +939,7 @@ function Procedure1Success(response)
 		    	}
 		    else 
 		    {	
-		    var team =$('#teamname').val();
+		    var team =localStorage.getItem('userteam');
 		    	var invocationData = {
 						adapter: "Validate",
 						procedure: "getshiftupdateprev",
@@ -976,7 +1006,7 @@ function UpdateshiftactualsFailure(response){
 
 function completeStartSuccess(response){
 	alert("Updated the shift! Now get to Work ");
-	var team =$('#teamname').val();
+	var team =localStorage.getItem('userteam');
 	 var invocationData = {
 			        adapter : 'Validate',
 			        procedure : 'procedure2',
@@ -999,7 +1029,7 @@ function completeStartFailure(response){
 	
 }
 document.addEventListener("backbutton", function(e){
-    if($.mobile.activePage.is('#AppBody')){
+    if(($.mobile.activePage.is('#AppBody')) || ($.mobile.activePage.is('#AuthBody'))){
        
         navigator.app.exitApp();
     }
@@ -1067,7 +1097,7 @@ function stopshiftSuccess(response){
 	if(difference>0){
 		$('#shiftupdate').hide();
 		$('#prevupdate').hide();
-		var emp_id=$('#userid').text();
+		var emp_id=localStorage.getItem('userid');
 		//At stop of shift, availability flag in shift actuals tables has to be set to "Not Available"
 		var invocationData = {
 				adapter: "Validate",
@@ -1095,7 +1125,7 @@ function doshiftupdate(){
 		alert("Could not connect to Server.");
 	}
 	else{
-	var emp_id=$('#userid').text();
+	var emp_id=localStorage.getItem('userid');
 	var invocationData = {
 			adapter: "Validate",
 			procedure: "stopupdate",
@@ -1148,7 +1178,7 @@ function updatecancel(){
 //Start of Activity Handover - User Story 924135
 function updactivityhandover(){       
 
-	emp_id = $('#userid').text();
+	emp_id = localStorage.getItem('userid');
 	//shiftupdates = prompt("Enter your Updates Please");
 	shiftupdates= $("#updateshift").val();
 	if(shiftupdates==''){
@@ -1213,7 +1243,7 @@ function shiftupdateSuccess(response){
 
 function insertshiftUpdatesSuccess(response){
 	
-	   emp_id = $('#userid').text();
+	   emp_id =localStorage.getItem('userid');
 
 		var invocationData = {
 				adapter: "Validate",
@@ -1349,7 +1379,7 @@ function swapmyshift(){
 	busy.show();
 	var myshift=document.getElementById("swapmembershift1").value;
 	var emp_name=document.getElementById("swapselect").value;
-	var emp_id=$('#userid').text();
+	var emp_id=localStorage.getItem('userid');
 	
 	var invocationData = {
 			adapter: "Validate",
@@ -1376,7 +1406,7 @@ function swapmyshiftSuccess(response){
 			j++;
 		}
 	}
-	var emailid=$('#usernameInputField').val();
+	var emailid=localStorage.getItem('username');
 	var subject="shift swap notification";
 	var content=$('#swapreason').val();
 	var invocationData = {
@@ -1398,7 +1428,7 @@ function swapmailSuccess(response){
 	      reloadPage              : false});	
 	busy.hide();
 	
-var emp_id=$('#userid').text();
+var emp_id=localStorage.getItem('userid');
 	
 	var invocationData = {
 			adapter: "Validate",
@@ -1420,7 +1450,7 @@ function swapmyshiftFailure(response){
 
 function stopshiftavailablityupdateSuccess(response){
 	flag=0;
-	var emp_id=$('#userid').text();
+	var emp_id=localStorage.getItem('userid');
 	var invocationData = {
 			adapter: "Validate",
 			procedure: "stopupdate",

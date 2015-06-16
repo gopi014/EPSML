@@ -34,7 +34,10 @@ customAuthenticatorRealmChallengeHandler.handleChallenge = function(response){
         }
 	} else if (authStatus == "complete"){
 		if (result[0].team == 'Pem'){
-			
+			localStorage.setItem("username" ,$('#usernameInputField').val() );
+			localStorage.setItem("password" ,$('#passwordInputField').val());
+			localStorage.setItem("userid" ,result[0].emp_id);
+			localStorage.setItem("userteam" ,result[0].team);
 			$('#AppBody').show();
 			$('#AuthBody').hide();
 			$('#smanager').hide();
@@ -48,7 +51,10 @@ customAuthenticatorRealmChallengeHandler.handleChallenge = function(response){
 		var team=result[0].team;
 		if((team == 'Manager') || (team == 'PL') )
 			{
-			
+			localStorage.setItem("username" ,$('#usernameInputField').val() );
+			localStorage.setItem("password" ,$('#passwordInputField').val());
+			localStorage.setItem("userid" ,result[0].emp_id);
+			localStorage.setItem("userteam" ,result[0].team);
 			$('#AppBody').show();
 			$('#AuthBody').hide();
 			$('#start').hide();
@@ -56,11 +62,14 @@ customAuthenticatorRealmChallengeHandler.handleChallenge = function(response){
 			busyIndicator.hide();
 			}
 		else{
+			localStorage.setItem("username" ,$('#usernameInputField').val() );
+			localStorage.setItem("password" ,$('#passwordInputField').val());
+			localStorage.setItem("userid" ,result[0].emp_id);
+			localStorage.setItem("userteam" ,result[0].team);
 			$("#teamname").val(team);
 			$('#AppBody').show();
 			$('#AuthBody').hide();
-			$('#userid').text(result[0].emp_id);
-			useremp_id=$('#userid').text();
+			useremp_id=localStorage.getItem('userid');
 			busyIndicator.hide();
 		}
 		}
@@ -102,7 +111,7 @@ $('#loginButton').bind('click', function () {
 		var options ={
 				onSuccess: getSecretData_Callback,
 				onFailure: getSecretData_Callback1
-			  }
+			  };
 		WL.Client.invokeProcedure(invocationData,options );
 		
 		

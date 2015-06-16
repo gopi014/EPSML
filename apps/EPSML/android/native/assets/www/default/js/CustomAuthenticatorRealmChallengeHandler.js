@@ -36,7 +36,10 @@ customAuthenticatorRealmChallengeHandler.handleChallenge = function(response){
         }
 	} else if (authStatus == "complete"){
 		if (result[0].team == 'Pem'){
-			
+			localStorage.setItem("username" ,$('#usernameInputField').val() );
+			localStorage.setItem("password" ,$('#passwordInputField').val());
+			localStorage.setItem("userid" ,result[0].emp_id);
+			localStorage.setItem("userteam" ,result[0].team);
 			$('#AppBody').show();
 			$('#AuthBody').hide();
 			$('#smanager').hide();
@@ -50,7 +53,10 @@ customAuthenticatorRealmChallengeHandler.handleChallenge = function(response){
 		var team=result[0].team;
 		if((team == 'Manager') || (team == 'PL') )
 			{
-			
+			localStorage.setItem("username" ,$('#usernameInputField').val() );
+			localStorage.setItem("password" ,$('#passwordInputField').val());
+			localStorage.setItem("userid" ,result[0].emp_id);
+			localStorage.setItem("userteam" ,result[0].team);
 			$('#AppBody').show();
 			$('#AuthBody').hide();
 			$('#start').hide();
@@ -58,11 +64,14 @@ customAuthenticatorRealmChallengeHandler.handleChallenge = function(response){
 			busyIndicator.hide();
 			}
 		else{
+			localStorage.setItem("username" ,$('#usernameInputField').val() );
+			localStorage.setItem("password" ,$('#passwordInputField').val());
+			localStorage.setItem("userid" ,result[0].emp_id);
+			localStorage.setItem("userteam" ,result[0].team);
 			$("#teamname").val(team);
 			$('#AppBody').show();
 			$('#AuthBody').hide();
-			$('#userid').text(result[0].emp_id);
-			useremp_id=$('#userid').text();
+			useremp_id=localStorage.getItem('userid');
 			busyIndicator.hide();
 		}
 		}
@@ -87,9 +96,10 @@ $('#loginButton').bind('click', function () {
 	}
 	else{
 	busyIndicator.show();
-	username=$('#usernameInputField').val();
-	password=$('#passwordInputField').val();
-	if((username =='') ||(password =='') )
+	if(localStorage.getItem('userteam') == null){
+		username=$('#usernameInputField').val();
+		password=$('#passwordInputField').val();
+		if((username =='') ||(password =='') )
 		{
 		$('#loginmesg').text('* Please enter a valid username & password');
 		busyIndicator.hide();
@@ -104,12 +114,28 @@ $('#loginButton').bind('click', function () {
 		var options ={
 				onSuccess: getSecretData_Callback,
 				onFailure: getSecretData_Callback1
-			  }
+			  };
 		WL.Client.invokeProcedure(invocationData,options );
 		
 		
 		
 	}
+	}
+	else{
+		username=localStorage.getItem('username');
+		password=localStorage.getItem('password');
+		var invocationData = {
+				adapter: "Validate",
+				procedure: "validate",
+				parameters: [username]
+		};
+		var options ={
+				onSuccess: getSecretData_Callback,
+				onFailure: getSecretData_Callback1
+			  };
+		WL.Client.invokeProcedure(invocationData,options );
+	}
+	
         	
 	}       
 	});
@@ -134,10 +160,18 @@ function getSecretData_Callback(response){
 	else{
 		var reqURL = '/my_custom_auth_request_url';
         var options = {};
-        options.parameters = {
-            username : $('#usernameInputField').val(),
-            password : $('#passwordInputField').val()
-        };
+        if(localStorage.getItem('userteam') != null){
+        	 options.parameters = {
+        	            username : localStorage.getItem('username'),
+        	            password : localStorage.getItem('password')
+        	        };	
+        }
+        else{
+        	options.parameters = {
+    	            username : $('#usernameInputField').val(),
+    	            password : $('#passwordInputField').val()
+    	        };	
+        }
         options.headers = {};
         customAuthenticatorRealmChallengeHandler.submitLoginForm(reqURL, options, customAuthenticatorRealmChallengeHandler.submitLoginFormCallback);
 
