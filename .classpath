@@ -6,5 +6,10 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="server/lib/com.mysql.jdbc_5.1.5.jar"/>
 	<classpathentry kind="lib" path="server/lib/cwa-v3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/db2jcc.jar"/>
+	<classpathentry kind="lib" path="C:/workspace/EPSML/server/lib/com.mysql.jdbc_5.1.5.jar" rootpath="/"/>
+	<classpathentry kind="lib" path="C:/workspace/EPSML/server/lib/cwa-v3.2.jar" rootpath="/"/>
+	<classpathentry kind="lib" path="C:/workspace/EPSML/server/lib/db2jcc.jar" rootpath="/"/>
+	<classpathentry kind="lib" path="C:/workspace/EPSML/server/lib/db2jcc_license_cisuz.jar" rootpath="/"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

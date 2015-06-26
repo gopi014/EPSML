@@ -19,10 +19,14 @@
 			
 			<!-- Example for using MySQL connector, do not forget to put the MySQL connector library in the project's lib folder -->
 			<dataSourceDefinition>
-				<driverClass>com.mysql.jdbc.Driver</driverClass>
+  				<driverClass>com.ibm.db2.jcc.DB2Driver</driverClass>
+				<url>jdbc:db2://dst14lp15.boulder.ibm.com:60000/epsml</url>
+			    <user>db2inst1</user>
+    			<password>db24now</password> 
+<!--    			<driverClass>com.mysql.jdbc.Driver</driverClass>
 				<url>jdbc:mysql://localhost:3306/epsml2</url>
 			    <user>epsml2</user>
-    			<password>welcome</password> 
+    			<password>welcome</password> -->
 			</dataSourceDefinition>
 		</connectionPolicy>
 	</connectivity>
@@ -47,4 +51,7 @@
 	<procedure name= "checkavailablity"/>
 	<procedure name="stopshiftavailablityupdate"/> 
 	<procedure name="onshiftupdates"/> 
+	<procedure name="shiftactuser"/> 
+	<procedure name="shiftactualsall"/> 
+	<procedure name="pmshiftactuals"/>
 </wl:adapter>

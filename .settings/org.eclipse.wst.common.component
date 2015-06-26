@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="EPSML">
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Thinkmatix">
         <wb-resource deploy-path="/" source-path="/apps/EPSML/common"/>
         <wb-resource deploy-path="/" source-path="/apps/EPSML/android"/>
         <wb-resource deploy-path="/" source-path="/server/java"/>
-        <property name="context-root" value="EPSML"/>
+        <property name="context-root" value="Thinkmatix"/>
     </wb-module>
 </project-modules>
